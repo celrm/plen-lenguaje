@@ -55,7 +55,7 @@ punto = \.
 length = length
 si = si
 no = no
-caracter = '({letra}|{digito})'
+caracter = '({letra}|{digito}|{separador})'
 
 identificador = {letraMinus}({letraMinus}|{digito}|_)*
 
