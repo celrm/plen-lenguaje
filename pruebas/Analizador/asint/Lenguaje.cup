@@ -24,6 +24,15 @@ init with {:
 :};
 
 
+terminal Id, Entero, Import, From, Const, Arr, Ent, 
+		Bul, Car, Data, Function, Return, Main, If, 
+		Else, While, Punto, Length, Si, No, Caracter, 
+		Asign, Distinto, Igual, Or, And, Menor, Meq, 
+		Mayor, Maq, Not, Suma, Guion, Mul, Div, Mod,
+		Indice, Acceso, PA, PC, CA, CC, LA, LC, Coma, DosPts
+		;
+
+
 terminal  MAS, POR, PAP, PCIERRE;
 terminal String NUM;
 

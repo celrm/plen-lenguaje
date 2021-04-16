@@ -223,16 +223,46 @@ public class AnalizadorLexico implements java_cup.runtime.Scanner {
 		/* 7 */ YY_NO_ANCHOR,
 		/* 8 */ YY_NO_ANCHOR,
 		/* 9 */ YY_NO_ANCHOR,
-		/* 10 */ YY_NO_ANCHOR
+		/* 10 */ YY_NO_ANCHOR,
+		/* 11 */ YY_NO_ANCHOR,
+		/* 12 */ YY_NO_ANCHOR,
+		/* 13 */ YY_NO_ANCHOR,
+		/* 14 */ YY_NO_ANCHOR,
+		/* 15 */ YY_NO_ANCHOR,
+		/* 16 */ YY_NO_ANCHOR,
+		/* 17 */ YY_NO_ANCHOR,
+		/* 18 */ YY_NO_ANCHOR,
+		/* 19 */ YY_NO_ANCHOR,
+		/* 20 */ YY_NO_ANCHOR,
+		/* 21 */ YY_NO_ANCHOR,
+		/* 22 */ YY_NO_ANCHOR,
+		/* 23 */ YY_NO_ANCHOR,
+		/* 24 */ YY_NO_ANCHOR,
+		/* 25 */ YY_NO_ANCHOR,
+		/* 26 */ YY_NO_ANCHOR,
+		/* 27 */ YY_NO_ANCHOR,
+		/* 28 */ YY_NO_ANCHOR,
+		/* 29 */ YY_NO_ANCHOR,
+		/* 30 */ YY_NO_ANCHOR,
+		/* 31 */ YY_NO_ANCHOR,
+		/* 32 */ YY_NO_ANCHOR,
+		/* 33 */ YY_NO_ANCHOR,
+		/* 34 */ YY_NOT_ACCEPT,
+		/* 35 */ YY_NO_ANCHOR,
+		/* 36 */ YY_NOT_ACCEPT,
+		/* 37 */ YY_NO_ANCHOR
 	};
 	private int yy_cmap[] = unpackFromString(1,65538,
-"3:8,4:2,1,3:2,4,3:18,4,3:2,2,3:4,10,11,9,8,5:2,3:2,7,6:9,3:65478,0:2")[0];
+"3:8,1:3,3:2,1,3:18,1,12,3:3,22,14,9,23,24,20,18,29,19,4,21,7,6:9,30,3,15,11" +
+",16,3:2,10:26,25,3,26,3,8,3,5:26,27,13,28,3:46,17,3:8191,2,3:57171,0:2")[0];
 
-	private int yy_rmap[] = unpackFromString(1,11,
-"0,1:2,2,1,3,4,1:3,4")[0];
+	private int yy_rmap[] = unpackFromString(1,38,
+"0,1:2,2,1,3,4,5,6,1:2,7,8,1:2,9,1:18,2,1,10,11")[0];
 
-	private int yy_nxt[][] = unpackFromString(5,12,
-"1,2,3,4,2,10,5,4,6,7,8,9,-1:14,3:10,-1:6,5:2,-1:10,5,-1:5");
+	private int yy_nxt[][] = unpackFromString(12,31,
+"1,2,3,35,4,5,6,35:2,37,35,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,2" +
+"4,25,26,-1:32,34:3,27,34:26,-1:5,5:4,-1:28,6:2,-1:34,28,-1:30,29,-1:30,30,-" +
+"1:30,31,-1:35,32,-1:23,33,-1:26,36:3,-1:2,36,-1:20");
 
 	public java_cup.runtime.Symbol next_token ()
 		throws java.io.IOException {
@@ -288,36 +318,136 @@ public class AnalizadorLexico implements java_cup.runtime.Scanner {
 					case -3:
 						break;
 					case 3:
-						{}
+						{errores.errorLexico(fila(),lexema());}
 					case -4:
 						break;
 					case 4:
-						{errores.errorLexico(fila(),lexema());}
+						{return ops.unidadPunto();}
 					case -5:
 						break;
 					case 5:
-						{return ops.unidadEnt();}
+						{return ops.unidadId();}
 					case -6:
 						break;
 					case 6:
-						{return ops.unidadSuma();}
+						{return ops.unidadEntero();}
 					case -7:
 						break;
 					case 7:
-						{return ops.unidadMul();}
+						{return ops.unidadAsignacion();}
 					case -8:
 						break;
 					case 8:
-						{return ops.unidadPAp();}
+						{return ops.unidadIndice();}
 					case -9:
 						break;
 					case 9:
-						{return ops.unidadPCierre();}
+						{return ops.unidadOr();}
 					case -10:
 						break;
 					case 10:
-						{errores.errorLexico(fila(),lexema());}
+						{return ops.unidadAnd();}
 					case -11:
+						break;
+					case 11:
+						{return ops.unidadMenor();}
+					case -12:
+						break;
+					case 12:
+						{return ops.unidadMayor();}
+					case -13:
+						break;
+					case 13:
+						{return ops.unidadNot();}
+					case -14:
+						break;
+					case 14:
+						{return ops.unidadSuma();}
+					case -15:
+						break;
+					case 15:
+						{return ops.unidadGuion ();}
+					case -16:
+						break;
+					case 16:
+						{return ops.unidadMultiplicacion();}
+					case -17:
+						break;
+					case 17:
+						{return ops.unidadDivision();}
+					case -18:
+						break;
+					case 18:
+						{return ops.unidadModulo();}
+					case -19:
+						break;
+					case 19:
+						{return ops.unidadParentesisApertura();}
+					case -20:
+						break;
+					case 20:
+						{return ops.unidadParentesisCierre();}
+					case -21:
+						break;
+					case 21:
+						{return ops.unidadCorcheteApertura();}
+					case -22:
+						break;
+					case 22:
+						{return ops.unidadCorcheteCierre();}
+					case -23:
+						break;
+					case 23:
+						{return ops.unidadLlaveApertura();}
+					case -24:
+						break;
+					case 24:
+						{return ops.unidadLlaveCierre();}
+					case -25:
+						break;
+					case 25:
+						{return ops.unidadComa();}
+					case -26:
+						break;
+					case 26:
+						{return ops.unidadDosPts();}
+					case -27:
+						break;
+					case 27:
+						{}
+					case -28:
+						break;
+					case 28:
+						{return ops.unidadIgual();}
+					case -29:
+						break;
+					case 29:
+						{return ops.unidadDistinto();}
+					case -30:
+						break;
+					case 30:
+						{return ops.unidadMeq();}
+					case -31:
+						break;
+					case 31:
+						{return ops.unidadMaq();}
+					case -32:
+						break;
+					case 32:
+						{return ops.unidadAcceso();}
+					case -33:
+						break;
+					case 33:
+						{return ops.unidadCaracter();}
+					case -34:
+						break;
+					case 35:
+						{errores.errorLexico(fila(),lexema());}
+					case -35:
+						break;
+					case 37:
+						{errores.errorLexico(fila(),lexema());}
+					case -36:
 						break;
 					default:
 						yy_error(YY_E_INTERNAL,false);
