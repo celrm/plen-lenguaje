@@ -10,7 +10,7 @@ cd ../..
 
 echo -e '\n\nAnalizador sintáctico:\n\n'
 
-java -cp cup.jar java_cup.Main -parser AnalizadorSintactico -symbols ClaseLexica -nopositions Lenguaje.cup
+java -cp cup.jar java_cup.Main -parser AnalizadorSintactico -symbols ClaseLexica -nopositions Analizador/asint/Lenguaje.cup
 mv AnalizadorSintactico.java Analizador/asint/AnalizadorSintactico.java
 mv ClaseLexica.java Analizador/asint/ClaseLexica.java
 
