@@ -89,8 +89,6 @@ dosPts = :
 %%
 {separador}               {}
 {comentario}              {}
-{evalua}                  {return ops.unidadEvalua();}
-{donde}                   {return ops.unidadDonde();}
 {identificador}           {return ops.unidadId();}
 {entero}                  {return ops.unidadEntero();}
 {import}                  {return ops.unidadImport();}
