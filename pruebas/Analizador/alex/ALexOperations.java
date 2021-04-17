@@ -20,6 +20,9 @@ public class ALexOperations {
   public UnidadLexica unidadFrom() {
      return new UnidadLexica(alex.fila(),ClaseLexica.From,alex.lexema()); 
   } 
+  public UnidadLexica unidadType() {
+     return new UnidadLexica(alex.fila(),ClaseLexica.Type,alex.lexema()); 
+  } 
   public UnidadLexica unidadConst() {
      return new UnidadLexica(alex.fila(),ClaseLexica.Const,alex.lexema()); 
   } 
@@ -145,6 +148,9 @@ public class ALexOperations {
   }
   public UnidadLexica unidadDosPts() {
      return new UnidadLexica(alex.fila(),ClaseLexica.DosPts,alex.lexema()); 
+  }
+  public UnidadLexica unidadBackslash() {
+     return new UnidadLexica(alex.fila(),ClaseLexica.Backslash,alex.lexema()); 
   }
   public UnidadLexica unidadEof() {
      return new UnidadLexica(alex.fila(),ClaseLexica.EOF,"<EOF>"); 

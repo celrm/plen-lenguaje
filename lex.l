@@ -1,32 +1,34 @@
-
 package alex;
 
-import errors.GestionErroresTiny;
+import errors.GestionErrores;
 
 %%
-%cup
 %line
-%class AnalizadorLexicoTiny
+%class AnalizadorLexico
+%type  UnidadLexica
 %unicode
 %public
+%cup
 
 %{
-private ALexOperations ops;
-private GestionErroresTiny errores;
-public String lexema() {return yytext();}
-public int fila() {return yyline+1;}
-public void fijaGestionErrores(GestionErroresTiny errores) {
-this.errores = errores;
-}
+  private ALexOperations ops;
+  private GestionErrores errores;
+  public String lexema() {return yytext();}
+  public int fila() {return yyline+1;}
+  public void fijaGestionErrores(GestionErrores errores) {
+   this.errores = errores;
+  }
 %}
 
 %eofval{
-return ops.unidadEof();
+  return ops.unidadEof();
 %eofval}
 
 %init{
-ops = new ALexOperations(this);
+  ops = new ALexOperations(this);
 %init}
+
+
 
 letraMayus = [A-Z]
 letraMinus = [a-z]
@@ -35,7 +37,7 @@ digitoPositivo = [1-9]
 digito = ({digitoPositivo}|0)
 entero = {digitoPositivo}{digito}*
 separador = [ \t\r\b\n]
-comentario = €[^\.]*\.
+comentario = €[^]*
 import = import
 from = from
 type = type
@@ -55,7 +57,7 @@ punto = \.
 length = length
 si = si
 no = no
-caracter = '({letra}|{digito}|{separador})'
+caracter = '({letra}|{digito})'
 
 identificador = {letraMinus}({letraMinus}|{digito}|_)*
 
@@ -84,12 +86,12 @@ llaveApertura = \{
 llaveCierre = \}
 coma  = \,
 dosPts = :
+backslash = \\
 
 
 %%
 {separador}               {}
 {comentario}              {}
-{identificador}           {return ops.unidadId();}
 {entero}                  {return ops.unidadEntero();}
 {import}                  {return ops.unidadImport();}
 {from}                    {return ops.unidadFrom();}
@@ -136,5 +138,7 @@ dosPts = :
 {llaveCierre}             {return ops.unidadLlaveCierre();}
 {coma}                    {return ops.unidadComa();}
 {dosPts}                  {return ops.unidadDosPts();}
+{backslash}               {return ops.unidadBackslash();}
+{identificador}           {return ops.unidadId();}
 
 [^]                       {errores.errorLexico(fila(),lexema());}

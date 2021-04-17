@@ -37,7 +37,7 @@ digitoPositivo = [1-9]
 digito = ({digitoPositivo}|0)
 entero = {digitoPositivo}{digito}*
 separador = [ \t\r\b\n]
-comentario = €[^\.]*\.
+comentario = €[^]*
 import = import
 from = from
 type = type
@@ -86,12 +86,12 @@ llaveApertura = \{
 llaveCierre = \}
 coma  = \,
 dosPts = :
+backslash = \\
 
 
 %%
 {separador}               {}
 {comentario}              {}
-{identificador}           {return ops.unidadId();}
 {entero}                  {return ops.unidadEntero();}
 {import}                  {return ops.unidadImport();}
 {from}                    {return ops.unidadFrom();}
@@ -138,5 +138,7 @@ dosPts = :
 {llaveCierre}             {return ops.unidadLlaveCierre();}
 {coma}                    {return ops.unidadComa();}
 {dosPts}                  {return ops.unidadDosPts();}
+{backslash}               {return ops.unidadBackslash();}
+{identificador}           {return ops.unidadId();}
 
 [^]                       {errores.errorLexico(fila(),lexema());}
