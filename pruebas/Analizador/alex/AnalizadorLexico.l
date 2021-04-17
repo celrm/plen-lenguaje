@@ -53,10 +53,11 @@ main = main
 if = if
 else = else
 while = while
+for = for
 punto = \.
-length = length
 si = si
 no = no
+kut = kut
 caracter = '({letra}|{digito})'
 
 identificador = {letraMinus}({letraMinus}|{digito}|_)*
@@ -108,10 +109,11 @@ backslash = \\
 {if}                      {return ops.unidadIf();}
 {else}                    {return ops.unidadElse();}
 {while}                   {return ops.unidadWhile();}
+{for}                     {return ops.unidadFor();}
 {punto}                   {return ops.unidadPunto();}
-{length}                  {return ops.unidadLength();}
 {si}                      {return ops.unidadSi();}
 {no}                      {return ops.unidadNo();}
+{kut}                      {return ops.unidadKut();}
 {caracter}                {return ops.unidadCaracter();}
 {asignacion}              {return ops.unidadAsignacion();}
 {distinto}                {return ops.unidadDistinto();}

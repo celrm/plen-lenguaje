@@ -59,17 +59,20 @@ public class ALexOperations {
   public UnidadLexica unidadWhile() {
      return new UnidadLexica(alex.fila(),ClaseLexica.While,alex.lexema()); 
   } 
+  public UnidadLexica unidadFor() {
+     return new UnidadLexica(alex.fila(),ClaseLexica.For,alex.lexema()); 
+  } 
   public UnidadLexica unidadPunto() {
      return new UnidadLexica(alex.fila(),ClaseLexica.Punto,alex.lexema()); 
-  } 
-  public UnidadLexica unidadLength() {
-     return new UnidadLexica(alex.fila(),ClaseLexica.Length,alex.lexema()); 
   } 
   public UnidadLexica unidadSi() {
      return new UnidadLexica(alex.fila(),ClaseLexica.Si,alex.lexema()); 
   } 
   public UnidadLexica unidadNo() {
      return new UnidadLexica(alex.fila(),ClaseLexica.No,alex.lexema()); 
+  } 
+  public UnidadLexica unidadKut() {
+     return new UnidadLexica(alex.fila(),ClaseLexica.Kut,alex.lexema()); 
   } 
   public UnidadLexica unidadCaracter() {
      return new UnidadLexica(alex.fila(),ClaseLexica.Caracter,alex.lexema()); 

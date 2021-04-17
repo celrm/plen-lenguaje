@@ -26,16 +26,18 @@ init with {:
 
 terminal Id, Entero, Import, From, Const, Arr, Ent, 
 		Bul, Car, Data, Function, Type, Return, Main, If, 
-		Else, While, Punto, Length, Si, No, Caracter, 
+		Else, While, For, Punto, Si, No, Kut, Caracter, 
 		Asign, Distinto, Igual, Or, And, Menor, Meq, 
 		Mayor, Maq, Not, Suma, Guion, Mul, Div, Mod,
 		Indice, Acceso, PA, PC, CA, CC, LA, LC, Coma, 
 		DosPts, Backslash
 		;
 
-non terminal  PROG, IMPORTBL, DECBL, DECVAR, DECVAR2, DECREG, 
+non terminal  PROG, IMPORTBL, DECBL, DECVAR, DECVAR2, DECVARREG, DECREG,
 		CPARAMS, REGDENTRO, DECFUN, PARAMS, DENTRO, DECTYPE,
-		MAINBL, TYPENAME, EXPR, INSTR;
+		MAINBL,EXPR, EXPFUN, EXPLISTA, LISTADENTRO, VALUES,
+		E0,E1,E2,E3,E4,E5,E6,E7,ETOP,
+		INSTR, TYPENAME;
 
 PROG ::= IMPORTBL DECBL MAINBL ;
 
@@ -45,19 +47,69 @@ DECBL ::= | DECVAR DECBL | DECREG DECBL | DECFUN DECBL | DECTYPE DECBL ;
 
 DECVAR ::= Const DECVAR2 | DECVAR2 ;
 DECVAR2 ::= TYPENAME Id Asign EXPR Punto ;
+DECVARREG ::= TYPENAME Id PA VALUES PC Punto;
 
-DECREG ::= Data Id PA CPARAMS PC Asign CA REGDENTRO CC Punto ;
+DECREG ::= Data Id PA CPARAMS PC Asign LA REGDENTRO LC Punto ;
 CPARAMS ::= | Const TYPENAME Id Coma CPARAMS;
-REGDENTRO ::= | DECVAR REGDENTRO ;
+REGDENTRO ::= | DECVAR REGDENTRO | DECVARREG REGDENTRO;
  
-DECFUN ::= Function Id Return TYPENAME PA PARAMS PC CA DENTRO CC ;
+DECFUN ::= Function Id Return TYPENAME PA PARAMS PC LA DENTRO LC ;
 PARAMS ::= | Const TYPENAME Id Coma PARAMS | TYPENAME Id Coma PARAMS ;
 DENTRO ::= | INSTR DENTRO;
 
 DECTYPE ::= Type Id Asign TYPENAME;
 
-MAINBL ::= Main CA DENTRO CC ;
+MAINBL ::= Main LA DENTRO LC ;
 
-EXPR::= Entero ;
-INSTR ::= DECVAR ;
+EXPR ::= E0;
+E0 ::= E0 Acceso E1 | E1 ;
+E1 ::= E1 Indice E2 | E2 ;
+E2 ::= Guion E3 | E3 ;
+E3 ::= E3 Mod E4 
+        | E3 Div E4 
+        | E3 Mul E4 
+        | E4 ;
+E4 ::= E4 Suma E5
+        | E4 Guion E5
+        | Not E5 
+        | E5 ;
+E5 ::= E5 Meq E6
+        | E5 Maq E6
+        | E5 Menor E6
+        | E5 Mayor E6
+        | E5 And E6
+        | E6 ;
+E6 ::= E6 Or E7 | E7;
+E7 ::= E7 Igual ETOP 
+        | E7 Distinto ETOP
+        | ETOP;
+ETOP ::= Entero 
+        | Si 
+        | No 
+        | Id 
+        | Caracter 
+        | PA E0 PC
+        | EXPFUN
+        | EXPLISTA
+        | PA EXPR Coma EXPR PC
+        ;
+
+EXPFUN ::= Id PA VALUES PC;
+EXPLISTA ::= CA LISTADENTRO CC;
+LISTADENTRO ::= | EXPR Coma LISTADENTRO;
+		
+INSTR ::= DECVAR 
+		| DECVARREG 
+		| Return EXPR Punto
+		| Kut PA EXPR PC Punto
+		| While PA EXPR PC LA DENTRO LC
+		| For PA EXPR DosPts EXPR PC LA DENTRO LC
+		| If PA EXPR PC LA DENTRO LC
+		| Else PA EXPR PC LA DENTRO LC
+		| EXPFUN Punto
+		;
+
+
+
+VALUES ::= | EXPR Coma VALUES;
 TYPENAME ::= Ent | Bul | Car | Id | Arr Backslash TYPENAME ;
