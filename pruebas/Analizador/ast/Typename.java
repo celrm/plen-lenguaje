@@ -4,9 +4,9 @@ import alex.TV;
 
 public class Typename {
 	private Typename t1;
-	private TV tb;
+	private TV tbasic;
 	public Typename(TV e) {
-		tb = e;
+		tbasic = e;
 	}
 	public Typename(Typename e) {
 		t1 = e;
@@ -15,9 +15,11 @@ public class Typename {
 		return t1;
 	}
 	public TV tb(){
-		return tb;
+		return tbasic;
 	}
 	public String toString() {
-		return tb.toString();
+		if(tbasic!= null)
+			return tbasic.toString();
+		return t1.toString();
 	}
 }

@@ -1,9 +1,12 @@
 package ast;
 
 public class Return extends Instruction {
-
+	private E exp;
 	public Return(E e) {
-		// TODO Auto-generated constructor stub
+		this.exp=e;
+	}
+	public E exp() {
+		return exp;
 	}
 
 }

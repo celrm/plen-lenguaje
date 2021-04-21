@@ -12,6 +12,7 @@ public class Reg extends Declare {
 		this.tipo=tipo;
 		this.id=id;
 		this.values=values.list();
+		type_of_dec=WhatDec.VARREG;
 	}
 	public Typename tipo() {
 		return tipo;

@@ -20,5 +20,11 @@ public class VarIni {
 	public E exp() {
 		return exp;
 	}
+	public String toString() {
+		String sol = tipo.toString() + " ";
+		sol = sol + id.toString() + " = (";
+		sol = sol + exp.toString() + ")";
+		return sol;
+	}
 
 }
