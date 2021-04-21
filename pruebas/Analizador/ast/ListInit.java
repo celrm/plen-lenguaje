@@ -1,9 +1,14 @@
 package ast;
 
-public class ListInit extends E {
+import java.util.List;
 
-	public ListInit(ListCons l) {
-		// TODO Auto-generated constructor stub
+public class ListInit extends E {
+	private List<E> list;
+	public ListInit(HomogValues l) {
+		list=l.list();
+	}
+	public List<E> list() {
+		return list;
 	}
 
 }

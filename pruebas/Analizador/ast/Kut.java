@@ -1,9 +1,12 @@
 package ast;
 
 public class Kut extends Instruction {
-
+	private String print;
 	public Kut(E i) {
-		// TODO Auto-generated constructor stub
+		print=i.toString();
+	}
+	public String print() {
+		return print;
 	}
 
 }

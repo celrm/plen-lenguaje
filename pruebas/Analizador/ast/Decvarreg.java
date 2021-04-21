@@ -1,11 +1,9 @@
 package ast;
 
-import alex.TV;
+public class Decvarreg extends Declares {
 
-public class Decvarreg extends Declare {
-
-	public Decvarreg(Reg var, Declare rest) {
-		// TODO Auto-generated constructor stub
+	public Decvarreg(Reg var, Declares rest) {
+		super(var,rest);
+		type_of_dec = WhatDec.VARREG;
 	}
-
 }

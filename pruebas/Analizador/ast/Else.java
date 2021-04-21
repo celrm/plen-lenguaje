@@ -1,9 +1,11 @@
 package ast;
 
-public class Else extends Instruction {
+import java.util.List;
 
-	public Else(Dentro d) {
-		// TODO Auto-generated constructor stub
+public class Else extends Instruction {
+	List<Instruction> lista;
+	public Else(Instructions d) {
+		lista=d.list();
 	}
 
 }

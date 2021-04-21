@@ -1,11 +1,9 @@
 package ast;
 
-import alex.TV;
+public class Decreg extends Declares {
 
-public class Decreg extends Declare {
-
-	public Decreg(RegIni var, Declare rest) {
-		// TODO Auto-generated constructor stub
+	public Decreg(RegIni var, Declares rest) {
+		super(var,rest);
+		type_of_dec = WhatDec.REGISTER;
 	}
-
 }

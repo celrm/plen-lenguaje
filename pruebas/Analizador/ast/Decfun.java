@@ -1,11 +1,10 @@
 package ast;
 
-import alex.TV;
+public class Decfun extends Declares {
 
-public class Decfun extends Declare {
-
-	public Decfun(FunIni var, Declare rest) {
-		// TODO Auto-generated constructor stub
+	public Decfun(FunIni var, Declares rest) {
+		super(var,rest);
+		type_of_dec = WhatDec.FUNCTION;
 	}
 
 }

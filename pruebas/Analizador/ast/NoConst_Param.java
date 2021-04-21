@@ -5,7 +5,8 @@ import alex.TV;
 public class NoConst_Param extends Params {
 
 	public NoConst_Param(Typename tipo, TV id, Params rest) {
-		// TODO Auto-generated constructor stub
+		super(tipo,id,rest);
+		is_const=false;
 	}
 
 }

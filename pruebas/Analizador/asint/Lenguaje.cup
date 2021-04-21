@@ -3,8 +3,8 @@ package asint;
 import java_cup.runtime.*;
 import alex.AnalizadorLexico;
 import alex.UnidadLexica;
-import alex.TV;
 import errors.GestionErrores;
+import alex.TV;
 import ast.E;
 import ast.ASExp;
 import ast.ASIns;
@@ -42,7 +42,7 @@ non terminal    PROG, IMPORTBL, DECBL, DECVAR, DECVAR2, DECVARREG, DECREG,
                 E0,E1,E2,E3,E4,E5,E6,E7,ETOP,
                 INSTR, TYPENAME;
 
-PROG ::= IMPORTBL:imps DECBL:decs MAINBL:exe 
+PROG ::= IMPORTBL:imps DECBL:decs MAINBL:exe
     {: RESULT=is.program(imps,decs,exe); :}
 		;
 
@@ -210,7 +210,7 @@ INSTR ::= DECVAR:i
     {: RESULT=is.ins_kut(e); :}
 		| While PA EXPR:b PC LA DENTRO:d LC
     {: RESULT=is.ins_while(b,d); :}
-		| For PA EXPR:el DosPts EXPR:ar PC LA DENTRO:d LC
+		| For PA Id:el DosPts EXPR:ar PC LA DENTRO:d LC
     {: RESULT=is.ins_for(el,ar,d); :}
 		| If PA EXPR:b PC LA DENTRO:d LC
     {: RESULT=is.ins_if(b,d); :}

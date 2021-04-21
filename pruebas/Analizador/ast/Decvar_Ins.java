@@ -1,9 +1,9 @@
 package ast;
 
 public class Decvar_Ins extends Instruction {
-
+	Decvar decvar;
 	public Decvar_Ins(Decvar i) {
-		// TODO Auto-generated constructor stub
+		decvar=i;
 	}
 
 }

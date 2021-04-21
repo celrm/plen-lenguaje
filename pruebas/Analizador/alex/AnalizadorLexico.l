@@ -28,8 +28,6 @@ import errors.GestionErrores;
   ops = new ALexOperations(this);
 %init}
 
-
-
 letraMayus = [A-Z]
 letraMinus = [a-z]
 letra  = ({letraMayus}|{letraMinus})
@@ -59,9 +57,7 @@ si = si
 no = no
 kut = kut
 caracter = '({letra}|{digito})'
-
 identificador = {letraMinus}({letraMinus}|{digito}|_)*
-
 asignacion = \=
 distinto = !\=
 igual = \=\=
@@ -88,8 +84,6 @@ llaveCierre = \}
 coma  = \,
 dosPts = :
 backslash = \\
-
-
 %%
 {separador}               {}
 {comentario}              {}
@@ -142,5 +136,4 @@ backslash = \\
 {dosPts}                  {return ops.unidadDosPts();}
 {backslash}               {return ops.unidadBackslash();}
 {identificador}           {return ops.unidadId();}
-
 [^]                       {errores.errorLexico(fila(),lexema());}

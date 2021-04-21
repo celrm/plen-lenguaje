@@ -7,4 +7,7 @@ public class TV {
 	   this.lexema=lexema;
 	   this.fila=fila;
    }
+   public String toString() {
+		return lexema;
+	}
 }
