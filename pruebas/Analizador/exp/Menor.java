@@ -1,4 +1,4 @@
-package ast;
+package exp;
 
 public class Menor extends EBin {
    public Menor(E opnd1, E opnd2) {

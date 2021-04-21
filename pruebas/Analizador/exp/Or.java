@@ -1,4 +1,4 @@
-package ast;
+package exp;
 
 public class Or extends EBin {
    public Or(E opnd1, E opnd2) {

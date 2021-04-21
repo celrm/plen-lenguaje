@@ -1,4 +1,4 @@
-package ast;
+package exp;
 
 public class Mod extends EBin {
 	public Mod(E opnd1, E opnd2) {

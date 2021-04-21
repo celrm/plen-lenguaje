@@ -1,4 +1,4 @@
-package ast;
+package exp;
 
 public class Maq extends EBin {
    public Maq(E opnd1, E opnd2) {

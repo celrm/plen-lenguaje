@@ -3,6 +3,8 @@ package ast;
 import alex.TV;
 
 public class Typename {
+	Tipo tipo;
+	
 	private Typename t1;
 	private TV tbasic;
 	public Typename(TV e) {

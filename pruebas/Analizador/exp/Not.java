@@ -1,4 +1,4 @@
-package ast;
+package exp;
 
 public class Not extends EMono {
 	public Not(E opn) {

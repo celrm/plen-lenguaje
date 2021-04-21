@@ -1,4 +1,4 @@
-package ast;
+package exp;
 
 public class Suma extends EBin {
    public Suma(E opnd1, E opnd2) {

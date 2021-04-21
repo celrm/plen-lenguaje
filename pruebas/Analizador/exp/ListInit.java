@@ -1,6 +1,8 @@
-package ast;
+package exp;
 
 import java.util.List;
+
+import ast.HomogValues;
 
 public class ListInit extends E {
 	private List<E> list;

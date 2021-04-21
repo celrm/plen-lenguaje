@@ -1,5 +1,25 @@
 package ast;
 
+import exp.Acceso;
+import exp.And;
+import exp.ArrayInit;
+import exp.Distinto;
+import exp.Div;
+import exp.E;
+import exp.Igual;
+import exp.Indice;
+import exp.Maq;
+import exp.Mayor;
+import exp.Menor;
+import exp.Meq;
+import exp.Mod;
+import exp.Mul;
+import exp.Not;
+import exp.Or;
+import exp.Resta;
+import exp.Signo;
+import exp.Suma;
+
 public class ASExp {
 	public E acceso(Object opnd1, Object opnd2) {return new Acceso((E)opnd1,(E)opnd2);} 
 	public E indice(Object opnd1, Object opnd2) {return new Indice((E)opnd1,(E)opnd2);} 

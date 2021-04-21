@@ -1,4 +1,4 @@
-package ast;
+package exp;
 
 public class Indice extends EBin {
 	public Indice(E opnd1, E opnd2) {

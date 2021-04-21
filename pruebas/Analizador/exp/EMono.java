@@ -1,4 +1,4 @@
-package ast;
+package exp;
 
 public abstract class EMono extends E {
    private E opnd1;

@@ -1,8 +1,12 @@
 package ast;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class Program {
+	private Map<String,Object> tabla = new HashMap<>();
+	
 	private List<Import> imps;
 	private List<Declare> decs;
 	private List<Instruction> mn;

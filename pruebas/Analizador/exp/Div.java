@@ -1,4 +1,4 @@
-package ast;
+package exp;
 
 public class Div extends EBin {
 	public Div(E opnd1, E opnd2) {

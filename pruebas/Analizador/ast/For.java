@@ -3,6 +3,7 @@ package ast;
 import java.util.List;
 
 import alex.TV;
+import exp.E;
 
 public class For extends Instruction {
 	private TV elem;
