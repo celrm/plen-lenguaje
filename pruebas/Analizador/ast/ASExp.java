@@ -1,7 +1,22 @@
 package ast;
 
 public class ASExp {
-  public E suma(E opnd1, E opnd2) {return new Suma(opnd1,opnd2);}  
-  public E mul(E opnd1, E opnd2) {return new Mul(opnd1,opnd2);}  
-  public E num(String num) {return new Num(num);}      
+	public E acceso(Object opnd1, Object opnd2) {return new Acceso((E)opnd1,(E)opnd2);} 
+	public E indice(Object opnd1, Object opnd2) {return new Indice((E)opnd1,(E)opnd2);} 
+	public E signo(Object opnd) {return new Signo((E)opnd);}
+	public E mod(Object opnd1, Object opnd2) {return new Mod((E)opnd1,(E)opnd2);}  
+	public E div(Object opnd1, Object opnd2) {return new Div((E)opnd1,(E)opnd2);}  
+	public E mul(Object opnd1, Object opnd2) {return new Mul((E)opnd1,(E)opnd2);}  
+	public E suma(Object opnd1, Object opnd2) {return new Suma((E)opnd1,(E)opnd2);}
+	public E resta(Object opnd1, Object opnd2) {return new Resta((E)opnd1,(E)opnd2);}
+	public E not(Object opnd) {return new Not((E)opnd);}
+	public E meq(Object opnd1, Object opnd2) {return new Meq((E)opnd1,(E)opnd2);}
+	public E maq(Object opnd1, Object opnd2) {return new Maq((E)opnd1,(E)opnd2);}
+	public E menor(Object opnd1, Object opnd2) {return new Menor((E)opnd1,(E)opnd2);}
+	public E mayor(Object opnd1, Object opnd2) {return new Mayor((E)opnd1,(E)opnd2);}
+	public E and(Object opnd1, Object opnd2) {return new And((E)opnd1,(E)opnd2);}
+	public E or(Object opnd1, Object opnd2) {return new Or((E)opnd1,(E)opnd2);}
+	public E igual(Object opnd1, Object opnd2) {return new Igual((E)opnd1,(E)opnd2);}
+	public E distinto(Object opnd1, Object opnd2) {return new Distinto((E)opnd1,(E)opnd2);}
+	public E array_init(Object opnd1, Object opnd2) {return new ArrayInit((E)opnd1,(E)opnd2);}
 }

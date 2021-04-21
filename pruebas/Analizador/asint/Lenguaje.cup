@@ -3,13 +3,16 @@ package asint;
 import java_cup.runtime.*;
 import alex.AnalizadorLexico;
 import alex.UnidadLexica;
+import alex.TV;
 import errors.GestionErrores;
 import ast.E;
 import ast.ASExp;
+import ast.ASIns;
 
 scan with {: return getScanner().next_token(); :};
 action code {:
    private ASExp as = new ASExp();
+   private ASIns is = new ASIns();
 :};
 parser code {: 
    private GestionErrores errores;
@@ -24,92 +27,223 @@ init with {:
 :};
 
 
-terminal Id, Entero, Import, From, Const, Arr, Ent, 
-		Bul, Car, Data, Function, Type, Return, Main, If, 
-		Else, While, For, Punto, Si, No, Kut, Caracter, 
-		Asign, Distinto, Igual, Or, And, Menor, Meq, 
-		Mayor, Maq, Not, Suma, Guion, Mul, Div, Mod,
-		Indice, Acceso, PA, PC, CA, CC, LA, LC, Coma, 
-		DosPts, Backslash
+terminal    TV  Id, Entero, Import, From, Const, Arr, Ent, 
+                        Bul, Car, Data, Function, Type, Return, Main, If, 
+                        Else, While, For, Punto, Si, No, Kut, Caracter, 
+                        Asign, Distinto, Igual, Or, And, Menor, Meq, 
+                        Mayor, Maq, Not, Suma, Guion, Mul, Div, Mod,
+                        Indice, Acceso, PA, PC, CA, CC, LA, LC, Coma, 
+                        DosPts, Backslash
+                        ;
+
+non terminal    PROG, IMPORTBL, DECBL, DECVAR, DECVAR2, DECVARREG, DECREG,
+                CPARAMS, REGDENTRO, DECFUN, PARAMS, DENTRO, DECTYPE,
+                MAINBL,EXPR, EXPFUN, EXPLISTA, LISTADENTRO, VALUES,
+                E0,E1,E2,E3,E4,E5,E6,E7,ETOP,
+                INSTR, TYPENAME;
+
+PROG ::= IMPORTBL:imps DECBL:decs MAINBL:exe 
+    {: RESULT=is.program(imps,decs,exe); :}
 		;
 
-non terminal  PROG, IMPORTBL, DECBL, DECVAR, DECVAR2, DECVARREG, DECREG,
-		CPARAMS, REGDENTRO, DECFUN, PARAMS, DENTRO, DECTYPE,
-		MAINBL,EXPR, EXPFUN, EXPLISTA, LISTADENTRO, VALUES,
-		E0,E1,E2,E3,E4,E5,E6,E7,ETOP,
-		INSTR, TYPENAME;
+IMPORTBL ::= 
+		| Import Id:i From Id:s Punto IMPORTBL:r
+    {: RESULT=is.imports(i,s,r); :}
+		;
 
-PROG ::= IMPORTBL DECBL MAINBL ;
+DECBL ::= 
+		| DECVAR:v DECBL:r
+    {: RESULT=is.decvar(v,r); :}
+		| DECVARREG:v DECBL:r
+    {: RESULT=is.decvarreg(v,r); :}
+		| DECREG:v DECBL:r 
+    {: RESULT=is.decreg(v,r); :}
+		| DECFUN:v DECBL:r
+    {: RESULT=is.decfun(v,r); :}
+		| DECTYPE:v DECBL:r 
+    {: RESULT=is.dectype(v,r); :}
+		;
 
-IMPORTBL ::= | Import Id From Id Punto IMPORTBL;
+DECVAR ::= Const DECVAR2:e
+    {: RESULT=is.const_var(e); :}
+		| DECVAR2:e
+    {: RESULT=is.noconst_var(e); :}
+		;
+DECVAR2 ::= TYPENAME:t Id:i Asign EXPR:e Punto 
+    {: RESULT=is.var_init(t,i,e); :}
+		;
+DECVARREG ::= TYPENAME:t Id:i PA VALUES:v PC Punto
+    {: RESULT=is.varreg_init(t,i,v); :}
+		;
 
-DECBL ::= | DECVAR DECBL | DECREG DECBL | DECFUN DECBL | DECTYPE DECBL ;
+DECREG ::= Data Id:i PA CPARAMS:ps PC Asign LA REGDENTRO:d LC Punto 
+    {: RESULT=is.reg_init(i,ps,d); :}
+		;
+CPARAMS ::= 
+		| Const TYPENAME:t Id:i Coma CPARAMS:r
+    {: RESULT=is.cparams(t,i,r); :}
+		;
+REGDENTRO ::= 
+		| DECVAR:d REGDENTRO :r
+    {: RESULT=is.decvar(d,r); :}
+		| DECVARREG:d REGDENTRO:r
+    {: RESULT=is.decvarreg(d,r); :}
+		;
+DECTYPE ::= Type Id:i Asign TYPENAME:t
+    {: RESULT=is.type_init(i,t); :}
+		;
 
-DECVAR ::= Const DECVAR2 | DECVAR2 ;
-DECVAR2 ::= TYPENAME Id Asign EXPR Punto ;
-DECVARREG ::= TYPENAME Id PA VALUES PC Punto;
+DECFUN ::= Function Id:i Return TYPENAME:t PA PARAMS:ps PC LA DENTRO:d LC 
+    {: RESULT=is.fun_init(i,t,ps,d); :}
+		;
+PARAMS ::= 
+		| Const TYPENAME:t Id:i Coma PARAMS :r
+    {: RESULT=is.cparams(t,i,r); :}
+		| TYPENAME:t Id:i Coma PARAMS :r
+    {: RESULT=is.params(t,i,r); :}
+		;
+DENTRO ::= 
+		| INSTR:i DENTRO:r
+    {: RESULT=is.instructions(i,r); :}
+		;
 
-DECREG ::= Data Id PA CPARAMS PC Asign LA REGDENTRO LC Punto ;
-CPARAMS ::= | Const TYPENAME Id Coma CPARAMS;
-REGDENTRO ::= | DECVAR REGDENTRO | DECVARREG REGDENTRO;
- 
-DECFUN ::= Function Id Return TYPENAME PA PARAMS PC LA DENTRO LC ;
-PARAMS ::= | Const TYPENAME Id Coma PARAMS | TYPENAME Id Coma PARAMS ;
-DENTRO ::= | INSTR DENTRO;
 
-DECTYPE ::= Type Id Asign TYPENAME;
+MAINBL ::= Main LA DENTRO:d LC 
+    {: RESULT=d; :}
+		;
 
-MAINBL ::= Main LA DENTRO LC ;
-
-EXPR ::= E0;
-E0 ::= E0 Acceso E1 | E1 ;
-E1 ::= E1 Indice E2 | E2 ;
-E2 ::= Guion E3 | E3 ;
-E3 ::= E3 Mod E4 
-        | E3 Div E4 
-        | E3 Mul E4 
-        | E4 ;
-E4 ::= E4 Suma E5
-        | E4 Guion E5
-        | Not E5 
-        | E5 ;
-E5 ::= E5 Meq E6
-        | E5 Maq E6
-        | E5 Menor E6
-        | E5 Mayor E6
-        | E5 And E6
-        | E6 ;
-E6 ::= E6 Or E7 | E7;
-E7 ::= E7 Igual ETOP 
-        | E7 Distinto ETOP
-        | ETOP;
-ETOP ::= Entero 
-        | Si 
-        | No 
-        | Id 
-        | Caracter 
-        | PA E0 PC
-        | EXPFUN
-        | EXPLISTA
-        | PA EXPR Coma EXPR PC
+EXPR ::= E0:o
+    {: RESULT=o; :}
+		;
+E0 ::= E0:o1 Acceso E1:o2
+    {: RESULT=as.acceso(o1,o2); :}
+        | E1:o
+    {: RESULT=o; :}
+		;
+E1 ::= E1:o1 Indice E2:o2
+    {: RESULT=as.indice(o1,o2); :}
+        | E2:o
+    {: RESULT=o; :}
+		;
+E2 ::= Guion E3:o
+    {: RESULT=as.signo(o); :}
+        | E3:o
+    {: RESULT=o; :}
+		;
+E3 ::= E3:o1 Mod E4:o2
+    {: RESULT=as.mod(o1,o2); :}
+        | E3:o1 Div E4:o2
+    {: RESULT=as.div(o1,o2); :}
+        | E3:o1 Mul E4:o2
+    {: RESULT=as.mul(o1,o2); :}
+        | E4:o
+    {: RESULT=o; :}
+		;
+E4 ::= E4:o1 Suma E5:o2
+    {: RESULT=as.suma(o1,o2); :}
+        | E4:o1 Guion E5:o2
+    {: RESULT=as.resta(o1,o2); :}
+        | Not E5:o
+    {: RESULT=as.not(o); :}
+        | E5:o
+    {: RESULT=o; :}
+		;
+E5 ::= E5:o1 Meq E6:o2
+    {: RESULT=as.meq(o1,o2); :}
+        | E5:o1 Maq E6:o2
+    {: RESULT=as.maq(o1,o2); :}
+        | E5:o1 Menor E6:o2
+    {: RESULT=as.menor(o1,o2); :}
+        | E5:o1 Mayor E6:o2
+    {: RESULT=as.mayor(o1,o2); :}
+        | E5:o1 And E6:o2
+    {: RESULT=as.and(o1,o2); :}
+        | E6:o 
+    {: RESULT=o; :}
+		;
+E6 ::= E6:o1 Or E7:o2
+    {: RESULT=as.or(o1,o2); :}
+        | E7:o
+    {: RESULT=o; :}
+		;
+E7 ::= E7:o1 Igual ETOP:o2
+    {: RESULT=as.igual(o1,o2); :}
+        | E7:o1 Distinto ETOP:o2
+    {: RESULT=as.distinto(o1,o2); :}
+        | ETOP:o
+    {: RESULT=o; :}
+		;
+ETOP ::= Entero:e
+    {: RESULT=e; :}
+        | Si :e
+    {: RESULT=e; :}
+        | No :e
+    {: RESULT=e; :}
+        | Id :e
+    {: RESULT=e; :}
+        | Caracter :e
+    {: RESULT=e; :}
+        | PA E0:e PC
+    {: RESULT=e; :}
+        | EXPFUN:e
+    {: RESULT=e; :}
+        | EXPLISTA:e
+    {: RESULT=e; :}
+        | PA EXPR:e1 Coma EXPR:e2 PC
+    {: RESULT=as.array_init(e1,e2); :}
         ;
 
-EXPFUN ::= Id PA VALUES PC;
-EXPLISTA ::= CA LISTADENTRO CC;
-LISTADENTRO ::= | EXPR Coma LISTADENTRO;
+EXPFUN ::= Id:i PA VALUES:v PC
+    {: RESULT=is.call(i,v); :};
+EXPLISTA ::= CA LISTADENTRO:l CC
+    {: RESULT=is.list_init(l); :};
+LISTADENTRO ::= | EXPR:e Coma LISTADENTRO:l
+    {: RESULT=is.list_cons(e,l); :};
 		
-INSTR ::= DECVAR 
-		| DECVARREG 
-		| Return EXPR Punto
-		| Kut PA EXPR PC Punto
-		| While PA EXPR PC LA DENTRO LC
-		| For PA EXPR DosPts EXPR PC LA DENTRO LC
-		| If PA EXPR PC LA DENTRO LC
-		| Else PA EXPR PC LA DENTRO LC
-		| EXPFUN Punto
+INSTR ::= DECVAR:i
+    {: RESULT=is.ins_var(i); :}
+		| DECVARREG :i
+    {: RESULT=is.ins_varreg(i); :}
+		| Return EXPR:e Punto
+    {: RESULT=is.ins_return(e); :}
+		| Kut PA EXPR:e PC Punto
+    {: RESULT=is.ins_kut(e); :}
+		| While PA EXPR:b PC LA DENTRO:d LC
+    {: RESULT=is.ins_while(b,d); :}
+		| For PA EXPR:el DosPts EXPR:ar PC LA DENTRO:d LC
+    {: RESULT=is.ins_for(el,ar,d); :}
+		| If PA EXPR:b PC LA DENTRO:d LC
+    {: RESULT=is.ins_if(b,d); :}
+		| Else If PA EXPR:b PC LA DENTRO:d LC
+    {: RESULT=is.ins_ifelse(b,d); :}
+		| Else LA DENTRO:d LC
+    {: RESULT=is.ins_else(d); :}
+		| EXPFUN:f Punto
+    {: RESULT=is.ins_fun(f); :}
 		;
 
+VALUES ::= 
+		| EXPR:e Coma VALUES:v
+    {: RESULT=is.values(e,v); :}
+		;
+TYPENAME ::= Ent:e
+    {: RESULT=is.t_ent(e); :}
+        | Bul :e
+    {: RESULT=is.t_bul(e); :}
+        | Car :e
+    {: RESULT=is.t_car(e); :}
+        | Id :e
+    {: RESULT=is.t_id(e); :}
+        | Arr Backslash TYPENAME:e
+    {: RESULT=is.t_array(e); :}
+        ;
 
 
-VALUES ::= | EXPR Coma VALUES;
-TYPENAME ::= Ent | Bul | Car | Id | Arr Backslash TYPENAME ;
+
+
+
+
+
+
+
+
