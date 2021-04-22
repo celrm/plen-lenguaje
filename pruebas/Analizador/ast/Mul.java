@@ -1,4 +1,4 @@
-package exp;
+package ast;
 
 public class Mul extends EBin {
    public Mul(E opnd1, E opnd2) {

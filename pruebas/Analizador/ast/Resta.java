@@ -1,4 +1,4 @@
-package exp;
+package ast;
 
 public class Resta extends EBin {
    public Resta(E opnd1, E opnd2) {

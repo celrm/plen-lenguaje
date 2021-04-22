@@ -1,9 +1,6 @@
 package ast;
 
 import alex.TV;
-import exp.Call;
-import exp.E;
-import exp.ListInit;
 
 public class ASIns {
 	public Program program(Object imps, Object decs, Object mn) 

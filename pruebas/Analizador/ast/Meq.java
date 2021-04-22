@@ -1,4 +1,4 @@
-package exp;
+package ast;
 
 public class Meq extends EBin {
    public Meq(E opnd1, E opnd2) {

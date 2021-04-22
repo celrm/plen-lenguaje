@@ -1,4 +1,4 @@
-package exp;
+package ast;
 
 public class Distinto extends EBin {
    public Distinto(E opnd1, E opnd2) {

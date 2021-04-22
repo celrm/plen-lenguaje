@@ -1,7 +1,6 @@
 package ast;
 
 import alex.TV;
-import exp.E;
 
 public class VarIni {
 	private Typename tipo;

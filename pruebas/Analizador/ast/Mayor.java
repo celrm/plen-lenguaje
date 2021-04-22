@@ -1,4 +1,4 @@
-package exp;
+package ast;
 
 public class Mayor extends EBin {
    public Mayor(E opnd1, E opnd2) {

@@ -1,4 +1,4 @@
-package exp;
+package ast;
 
 public class Igual extends EBin {
    public Igual(E opnd1, E opnd2) {

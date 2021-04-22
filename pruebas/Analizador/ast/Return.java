@@ -1,7 +1,5 @@
 package ast;
 
-import exp.E;
-
 public class Return extends Instruction {
 	private E exp;
 	public Return(E e) {

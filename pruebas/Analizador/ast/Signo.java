@@ -1,4 +1,4 @@
-package exp;
+package ast;
 
 public class Signo extends EMono {
 	public Signo(E opn) {

@@ -1,4 +1,4 @@
-package exp;
+package ast;
 
 public abstract class EBin extends E {
    private E opnd1;

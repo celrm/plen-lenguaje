@@ -3,7 +3,6 @@ package ast;
 import java.util.List;
 
 import alex.TV;
-import exp.E;
 
 public class Reg extends Declare {
 	private Typename tipo;

@@ -2,8 +2,6 @@ package ast;
 
 import java.util.List;
 
-import exp.E;
-
 public class IfElse extends Instruction {
 
 	private E b;

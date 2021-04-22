@@ -1,4 +1,4 @@
-package sem;
+package ast;
 
 public class SemEnt extends Semantic {
 

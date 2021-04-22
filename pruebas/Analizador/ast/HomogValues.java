@@ -3,8 +3,6 @@ package ast;
 import java.util.ArrayList;
 import java.util.List;
 
-import exp.E;
-
 public class HomogValues {
 	private E e;
 	private HomogValues rest;
