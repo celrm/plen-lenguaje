@@ -49,6 +49,7 @@ PROG ::= IMPORTBL:imps DECBL:decs MAINBL:exe
 IMPORTBL ::= 
 		| Import Id:i From Id:s Punto IMPORTBL:r
     {: RESULT=is.imports(i,s,r); :}
+    | Import error Punto
 		;
 
 DECBL ::= 
@@ -220,7 +221,7 @@ INSTR ::= DECVAR:i
     {: RESULT=is.ins_else(d); :}
 		| EXPFUN:f Punto
     {: RESULT=is.ins_fun(f); :}
-        | error
+        | error Punto
 		;
 
 VALUES ::= 

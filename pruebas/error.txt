@@ -1,20 +1,20 @@
-€import quicksort from sort. € Imports
+import quicksort from sort. € Imports
 
-€type matriz = arr\arr\ent. € Tipos con nombre
+type matriz = arr\arr\ent. € Tipos con nombre
 
-€const ent pi = 3. € Constantes
+const ent pi = 3. € Constantes
 
-€ Registros con parámetros
-€data coleccion (ent size) = {
-€    arr\ent cosas = (size,0).
-€    bul vacio = size == 0.
-€} .
+€Registros con parámetros
+data coleccion (ent size) = {
+    arr\ent cosas = (size,0).
+    bul vacio = size == 0.
+} .
 
 € Funciones
-€function my_quick return arr\ent (arr\ent v) {
-€    arr\ent w = quicksort(v).
-€    return w.
-€}
+function my_quick return arr\ent (arr\ent v) {
+    arr\ent w = quicksort(v).
+    return w.
+}
 
 € Siempre al final
 main {
@@ -40,4 +40,4 @@ main {
 €    else {
 €        kut(my_bolsa->cosas ! 0).
 €    }
-€}
+}
