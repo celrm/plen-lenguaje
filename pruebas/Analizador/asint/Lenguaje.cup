@@ -109,7 +109,7 @@ DENTRO ::=
 
 
 MAINBL ::= Main LA DENTRO:d LC 
-    {: RESULT=d; :}
+    {: RESULT=d; :} | error
 		;
 
 EXPR ::= E0:o
@@ -220,6 +220,7 @@ INSTR ::= DECVAR:i
     {: RESULT=is.ins_else(d); :}
 		| EXPFUN:f Punto
     {: RESULT=is.ins_fun(f); :}
+        | error
 		;
 
 VALUES ::= 
