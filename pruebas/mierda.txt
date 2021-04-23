@@ -1,6 +1,6 @@
 import source from file.
 
-type matriz = arr\arr\ent.
+type matriz = arr\arr\ent. € giueordshbiow4trhbfiu
 
 const ent pi = 3.
 
