@@ -1,4 +1,4 @@
-import quicksort from sort. € Imports
+import quicksort sort. € Imports
 
 type matriz = arr\arr\ent. € Tipos con nombre
 
