@@ -110,7 +110,7 @@ DENTRO ::=
 
 
 MAINBL ::= Main LA DENTRO:d LC 
-    {: RESULT=d; :} | error
+    {: RESULT=d; :}
 		;
 
 EXPR ::= E0:o
