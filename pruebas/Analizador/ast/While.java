@@ -1,5 +1,6 @@
 package ast;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class While extends Instruction {
@@ -8,7 +9,10 @@ public class While extends Instruction {
 	private List<Instruction> list;
 	public While(E b, Instructions d) {
 		this.b=b;
-		this.list=d.list();
+		if(d == null) 
+			list = new ArrayList<Instruction>();
+		else
+			list=d.list();
 	}
 	public E b() {
 		return b;

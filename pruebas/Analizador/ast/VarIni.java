@@ -6,10 +6,10 @@ public class VarIni {
 	private Typename tipo;
 	private TV id;
 	private E exp;
-	public VarIni(Typename tipo, TV id, E exp) {
+	public VarIni(Typename tipo, TV id, E exp2) {
 		this.tipo=tipo;
 		this.id=id;
-		this.exp=exp;
+		this.exp=exp2;
 	}
 	public Typename tipo() {
 		return tipo;

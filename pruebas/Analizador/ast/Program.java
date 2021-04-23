@@ -1,5 +1,6 @@
 package ast;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -11,9 +12,21 @@ public class Program {
 	private List<Declare> decs;
 	private List<Instruction> mn;
 	public Program(Imports imps, Declares decs, Instructions mn) {
-		this.imps=imps.list();
-		this.decs=decs.list();
-		this.mn=mn.list();
+
+		if(imps == null) 
+			this.imps = new ArrayList<Import>();
+		else
+			this.imps=imps.list();
+
+		if(decs == null) 
+			this.decs = new ArrayList<Declare>();
+		else
+			this.decs=decs.list();
+
+		if(mn == null) 
+			this.mn= new ArrayList<Instruction>();
+		else
+			this.mn=mn.list();
 	}
 	public List<Import> imps() {
 		return imps;

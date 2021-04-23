@@ -45,7 +45,7 @@ public class ASIns {
 		{ return new Instructions((Instruction)i,(Instructions)rest); }
 
 	public Instruction ins_var(Object i) 
-		{ return new Decvar_Ins((Decvar)i); }
+		{ return new Decvar_Ins((Var)i); }
 	public Instruction ins_varreg(Object i) 
 		{ return new Decvarreg_Ins((Decvarreg)i); }
 	public Instruction ins_return(Object e) 
@@ -64,7 +64,7 @@ public class ASIns {
 		{ return new Else((Instructions)d); }
 	public Instruction ins_fun(Object f) 
 		{ return new Fun((Call)f); }
-	
+
 	public HeterValues values(Object e,Object rest) 
 		{ return new HeterValues((E)e,(HeterValues)rest); }
 	public Typename t_ent(Object e)

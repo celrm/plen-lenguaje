@@ -36,7 +36,7 @@ terminal    TV  Id, Entero, Import, From, Const, Arr, Ent,
                         DosPts, Backslash
                         ;
 
-non terminal    PROG, IMPORTBL, DECBL, DECVAR, DECVAR2, DECVARREG, DECREG,
+non terminal    P, PROG, IMPORTBL, DECBL, DECVAR, DECVAR2, DECVARREG, DECREG,
                 CPARAMS, REGDENTRO, DECFUN, PARAMS, DENTRO, DECTYPE,
                 MAINBL,EXPR, EXPFUN, EXPLISTA, LISTADENTRO, VALUES,
                 E0,E1,E2,E3,E4,E5,E6,E7,ETOP,
@@ -80,6 +80,8 @@ DECREG ::= Data Id:i PA CPARAMS:ps PC Asign LA REGDENTRO:d LC Punto
     {: RESULT=is.reg_init(i,ps,d); :}
 		;
 CPARAMS ::= 
+		| Const TYPENAME:t Id:i
+    {: RESULT=is.cparams(t,i,null); :}
 		| Const TYPENAME:t Id:i Coma CPARAMS:r
     {: RESULT=is.cparams(t,i,r); :}
 		;
@@ -89,7 +91,7 @@ REGDENTRO ::=
 		| DECVARREG:d REGDENTRO:r
     {: RESULT=is.decvarreg(d,r); :}
 		;
-DECTYPE ::= Type Id:i Asign TYPENAME:t
+DECTYPE ::= Type Id:i Asign TYPENAME:t Punto
     {: RESULT=is.type_init(i,t); :}
 		;
 
@@ -97,6 +99,10 @@ DECFUN ::= Function Id:i Return TYPENAME:t PA PARAMS:ps PC LA DENTRO:d LC
     {: RESULT=is.fun_init(i,t,ps,d); :}
 		;
 PARAMS ::= 
+		| Const TYPENAME:t Id:i
+    {: RESULT=is.cparams(t,i,null); :}
+		| TYPENAME:t Id:i
+    {: RESULT=is.params(t,i,null); :}
 		| Const TYPENAME:t Id:i Coma PARAMS :r
     {: RESULT=is.cparams(t,i,r); :}
 		| TYPENAME:t Id:i Coma PARAMS :r
@@ -109,7 +115,7 @@ DENTRO ::=
 
 
 MAINBL ::= Main LA DENTRO:d LC 
-    {: RESULT=d; :} | error
+    {: RESULT=d; :}
 		;
 
 EXPR ::= E0:o
@@ -174,17 +180,17 @@ E7 ::= E7:o1 Igual ETOP:o2
     {: RESULT=o; :}
 		;
 ETOP ::= Entero:e
-    {: RESULT=e; :}
+    {: RESULT=as.single_init(e); :}
         | Si :e
-    {: RESULT=e; :}
+    {: RESULT=as.single_init(e); :}
         | No :e
-    {: RESULT=e; :}
+    {: RESULT=as.single_init(e); :}
         | Id :e
-    {: RESULT=e; :}
+    {: RESULT=as.single_init(e); :}
         | Caracter :e
-    {: RESULT=e; :}
+    {: RESULT=as.single_init(e); :}
         | PA E0:e PC
-    {: RESULT=e; :}
+    {: RESULT=as.single_init(e); :}
         | EXPFUN:e
     {: RESULT=e; :}
         | EXPLISTA:e
@@ -197,8 +203,12 @@ EXPFUN ::= Id:i PA VALUES:v PC
     {: RESULT=is.call(i,v); :};
 EXPLISTA ::= CA LISTADENTRO:l CC
     {: RESULT=is.list_init(l); :};
-LISTADENTRO ::= | EXPR:e Coma LISTADENTRO:l
-    {: RESULT=is.list_cons(e,l); :};
+LISTADENTRO ::= 
+        | EXPR:e
+    {: RESULT=is.list_cons(e,null); :}
+        | EXPR:e Coma LISTADENTRO:l
+    {: RESULT=is.list_cons(e,l); :}
+        ;
 		
 INSTR ::= DECVAR:i
     {: RESULT=is.ins_var(i); :}
@@ -224,6 +234,8 @@ INSTR ::= DECVAR:i
 		;
 
 VALUES ::= 
+		| EXPR:e
+    {: RESULT=is.values(e,null); :}
 		| EXPR:e Coma VALUES:v
     {: RESULT=is.values(e,v); :}
 		;

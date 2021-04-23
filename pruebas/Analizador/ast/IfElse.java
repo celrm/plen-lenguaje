@@ -1,5 +1,6 @@
 package ast;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class IfElse extends Instruction {
@@ -9,7 +10,10 @@ public class IfElse extends Instruction {
 
 	public IfElse(E b, Instructions d) {
 		this.b=b;
-		this.list=d.list();
+		if(d == null) 
+			list = new ArrayList<Instruction>();
+		else
+			list=d.list();
 	}
 	public E b() {
 		return b;

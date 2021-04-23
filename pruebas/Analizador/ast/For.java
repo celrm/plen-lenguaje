@@ -1,5 +1,6 @@
 package ast;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import alex.TV;
@@ -11,7 +12,10 @@ public class For extends Instruction {
 	public For(TV elem, E arr, Instructions d) {
 		this.elem=elem;
 		this.arr=arr;
-		lista=d.list();
+		if(d == null) 
+			lista = new ArrayList<Instruction>();
+		else
+			lista=d.list();
 	}
 	public TV elem() {
 		return elem;

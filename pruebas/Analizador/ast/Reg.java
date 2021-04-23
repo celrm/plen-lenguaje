@@ -1,5 +1,6 @@
 package ast;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import alex.TV;
@@ -11,7 +12,11 @@ public class Reg extends Declare {
 	public Reg(Typename tipo, TV id, HeterValues values) {
 		this.tipo=tipo;
 		this.id=id;
-		this.values=values.list();
+
+		if(values == null) 
+			this.values = new ArrayList<E>();
+		else
+			this.values=values.list();
 		type_of_dec=WhatDec.VARREG;
 	}
 	public Typename tipo() {

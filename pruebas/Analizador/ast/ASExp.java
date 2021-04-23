@@ -1,5 +1,7 @@
 package ast;
 
+import alex.TV;
+
 public class ASExp {
 	public E acceso(Object opnd1, Object opnd2) {return new Acceso((E)opnd1,(E)opnd2);} 
 	public E indice(Object opnd1, Object opnd2) {return new Indice((E)opnd1,(E)opnd2);} 
@@ -19,4 +21,5 @@ public class ASExp {
 	public E igual(Object opnd1, Object opnd2) {return new Igual((E)opnd1,(E)opnd2);}
 	public E distinto(Object opnd1, Object opnd2) {return new Distinto((E)opnd1,(E)opnd2);}
 	public E array_init(Object opnd1, Object opnd2) {return new ArrayInit((E)opnd1,(E)opnd2);}
+	public E single_init(Object opnd1) {return new SingleInit((TV)opnd1);}
 }

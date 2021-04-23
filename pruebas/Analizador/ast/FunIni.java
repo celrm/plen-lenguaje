@@ -1,5 +1,6 @@
 package ast;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import alex.TV;
@@ -13,8 +14,14 @@ public class FunIni extends Declare {
 		type_of_dec = WhatDec.FUNCTION;
 		this.id=id;
 		this.tipo=tipo;
-		this.params=params.list();
-		this.d=d.list();
+		if(params == null) 
+			this.params = new ArrayList<Param>();
+		else
+			this.params=params.list();
+		if(d == null) 
+			this.d = new ArrayList<Instruction>();
+		else
+			this.d=d.list();
 	}
 	public TV id() {
 		return id;
