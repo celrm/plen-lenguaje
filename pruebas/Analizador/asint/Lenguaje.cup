@@ -36,7 +36,7 @@ terminal    TV  Id, Entero, Import, From, Const, Arr, Ent,
                         DosPts, Backslash
                         ;
 
-non terminal    P, PROG, IMPORTBL, DECBL, DECVAR, DECVAR2, DECVARREG, DECREG,
+non terminal    PROG, IMPORTBL, DECBL, DECVAR, DECVAR2, DECVARREG, DECREG,
                 CPARAMS, REGDENTRO, DECFUN, PARAMS, DENTRO, DECTYPE,
                 MAINBL,EXPR, EXPFUN, EXPLISTA, LISTADENTRO, VALUES,
                 E0,E1,E2,E3,E4,E5,E6,E7,ETOP,
