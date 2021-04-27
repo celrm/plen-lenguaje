@@ -3,25 +3,20 @@ package ast;
 import alex.TV;
 
 public class Typename {
-	Tipo tipo;
+	private Typename() {}
+	public static final Typename BUL = new Typename();
+	public static final Typename CAR = new Typename();
+	public static final Typename ENT = new Typename();	
 	
-	private Typename t1;
-	private TV tbasic;
-	public Typename(TV e) {
-		tbasic = e;
+	private Typename t_arr;
+	private TV t_id;
+
+	public Typename(Typename t1) {this.t_arr=t1;}
+	public Typename(TV id) {this.t_id=id;}
+	public Typename t_arr() {
+		return t_arr;
 	}
-	public Typename(Typename e) {
-		t1 = e;
-	}
-	public Typename t1(){
-		return t1;
-	}
-	public TV tb(){
-		return tbasic;
-	}
-	public String toString() {
-		if(tbasic!= null)
-			return tbasic.toString();
-		return t1.toString();
+	public TV t_id() {
+		return t_id;
 	}
 }

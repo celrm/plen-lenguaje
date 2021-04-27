@@ -67,22 +67,6 @@ public class ASIns {
 
 	public HeterValues values(Object e,Object rest) 
 		{ return new HeterValues((E)e,(HeterValues)rest); }
-	public Typename t_ent(Object e)
-		{ return new Ent((TV)e); }
-	public Typename t_bul(Object e)
-		{ return new Bul((TV)e); }
-	public Typename t_car(Object e)
-		{ return new Car((TV)e); }
-	public Typename t_id(Object e)
-		{ return new IdType((TV)e); }
-	public Typename t_array(Object e)
-		{ return new ArrayType((Typename)e); }
-
-	public E call(Object id, Object v) 
-		{ return new Call((TV)id,(HeterValues)v); }
-	public E list_init(Object l) 
-		{ return new ListInit((HomogValues)l); }
-	public HomogValues list_cons(Object e,Object rest) 
-		{ return new HomogValues((E)e,(HomogValues)rest); }
+	
 	  
 }

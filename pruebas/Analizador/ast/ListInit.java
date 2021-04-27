@@ -6,6 +6,7 @@ import java.util.List;
 public class ListInit extends E {
 	private List<E> list;
 	public ListInit(HomogValues l) {
+		super(Op.LISTA);
 		if(l == null) 
 			list = new ArrayList<E>();
 		else

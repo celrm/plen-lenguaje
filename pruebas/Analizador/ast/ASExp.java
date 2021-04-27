@@ -3,23 +3,16 @@ package ast;
 import alex.TV;
 
 public class ASExp {
-	public E acceso(Object opnd1, Object opnd2) {return new Acceso((E)opnd1,(E)opnd2);} 
-	public E indice(Object opnd1, Object opnd2) {return new Indice((E)opnd1,(E)opnd2);} 
-	public E signo(Object opnd) {return new Signo((E)opnd);}
-	public E mod(Object opnd1, Object opnd2) {return new Mod((E)opnd1,(E)opnd2);}  
-	public E div(Object opnd1, Object opnd2) {return new Div((E)opnd1,(E)opnd2);}  
-	public E mul(Object opnd1, Object opnd2) {return new Mul((E)opnd1,(E)opnd2);}  
-	public E suma(Object opnd1, Object opnd2) {return new Suma((E)opnd1,(E)opnd2);}
-	public E resta(Object opnd1, Object opnd2) {return new Resta((E)opnd1,(E)opnd2);}
-	public E not(Object opnd) {return new Not((E)opnd);}
-	public E meq(Object opnd1, Object opnd2) {return new Meq((E)opnd1,(E)opnd2);}
-	public E maq(Object opnd1, Object opnd2) {return new Maq((E)opnd1,(E)opnd2);}
-	public E menor(Object opnd1, Object opnd2) {return new Menor((E)opnd1,(E)opnd2);}
-	public E mayor(Object opnd1, Object opnd2) {return new Mayor((E)opnd1,(E)opnd2);}
-	public E and(Object opnd1, Object opnd2) {return new And((E)opnd1,(E)opnd2);}
-	public E or(Object opnd1, Object opnd2) {return new Or((E)opnd1,(E)opnd2);}
-	public E igual(Object opnd1, Object opnd2) {return new Igual((E)opnd1,(E)opnd2);}
-	public E distinto(Object opnd1, Object opnd2) {return new Distinto((E)opnd1,(E)opnd2);}
-	public E array_init(Object opnd1, Object opnd2) {return new ArrayInit((E)opnd1,(E)opnd2);}
-	public E single_init(Object opnd1) {return new SingleInit((TV)opnd1);}
+	public E op_bin(Object opnd1, Object opnd2,Object oper) 
+		{ return new EBin((E)opnd1,(E)opnd2,(Op)oper); }
+	public E op_mono(Object opnd1,Object oper) 
+		{ return new EMono((E)opnd1,(Op)oper); }
+	public E op_call(Object id, Object v) 
+		{ return new Call((TV)id,(HeterValues)v); }
+	public E op_listinit(Object l) 
+		{ return new ListInit((HomogValues)l); }
+	public HomogValues list_cons(Object e,Object rest) 
+		{ return new HomogValues((E)e,(HomogValues)rest); }
+	public E op_basico(Object e) 
+		{ return new EBasico((TV)e); }
 }
