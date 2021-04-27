@@ -1,40 +1,17 @@
 package ast;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
-public class Program {
-	private Map<String,Object> tabla = new HashMap<>();
-	
-	private List<Import> imps;
-	private List<Declare> decs;
-	private List<Instruction> mn;
+public class Program {	
+	private Imports imps;
+	private Declares decs;
+	private Instructions mn;
 	public Program(Imports imps, Declares decs, Instructions mn) {
-
-		if(imps == null) 
-			this.imps = new ArrayList<Import>();
-		else
-			this.imps=imps.list();
-
-		if(decs == null) 
-			this.decs = new ArrayList<Declare>();
-		else
-			this.decs=decs.list();
-
-		if(mn == null) 
-			this.mn= new ArrayList<Instruction>();
-		else
-			this.mn=mn.list();
+		this.imps=imps;
+		this.decs=decs;
+		this.mn=mn;
 	}
-	public List<Import> imps() {
-		return imps;
-	}
-	public List<Declare> decs() {
-		return decs;
-	}
-	public List<Instruction> mn() {
-		return mn;
+	public String toString() {
+		String sol = (imps==null?"":imps.toString())+ "\n";
+		sol = sol + (decs==null?"":decs.toString()) + "\n";
+		return sol + "main {\n" + (mn==null?"":mn.toString())+ "}";
 	}
 }

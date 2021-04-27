@@ -1,18 +1,22 @@
 package ast;
 
+import alex.TV;
+
 public class Var extends Declare {
-	boolean is_const;
-	private VarIni var;
-	public Var(VarIni var) {
-		this.var=var;
-		type_of_dec=WhatDec.VAR;
-	}
-	public VarIni var() {
-		return var;
+	private Typename type;
+	private TV id;
+	private E exp;
+	private boolean is_const;
+	public Var(Typename tipo, TV id, E exp2, boolean is_const) {
+		this.type=tipo;
+		this.id=id;
+		this.exp=exp2;
+		this.is_const=is_const;
 	}
 	public String toString() {
-		String sol = is_const?"cons ":"";
-		sol = sol + var.toString();
-		return sol;
+		String sol = type.toString() + " ";
+		sol = sol + id.toString() + " = ";
+		sol = sol + exp.toString() + ".";
+		return (is_const?"const " :"") + sol;
 	}
 }

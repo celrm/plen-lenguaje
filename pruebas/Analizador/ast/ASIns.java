@@ -8,61 +8,47 @@ public class ASIns {
 	public Imports imports(Object name, Object source, Object rest) 
 		{ return new Imports((TV)name,(TV)source,(Imports)rest); }
 	
-	public Declares decvar(Object var, Object rest) 
-		{ return new Decvar((Var)var,(Declares)rest); }
-	public Declares decvarreg(Object var, Object rest) 
-		{ return new Decvarreg((Reg)var,(Declares)rest); }
-	public Declares decreg(Object var, Object rest) 
-		{ return new Decreg((RegIni)var,(Declares)rest); }
-	public Declares decfun(Object var, Object rest) 
-		{ return new Decfun((FunIni)var,(Declares)rest); }
-	public Declares dectype(Object var, Object rest) 
-		{ return new Dectype((TypeIni)var,(Declares)rest); }
+	public Declares declares(Object var, Object rest,Object dectype) 
+		{ return new Declares((Declare)var,(Declares)rest,(Dec) dectype); }
 
-	public Var const_var(Object var) 
-		{ return new Const_Var((VarIni)var); }
-	public Var noconst_var(Object var) 
-		{ return new NoConst_Var((VarIni)var); }
-
-	public VarIni var_init(Object tipo, Object id, Object exp ) 
-		{ return new VarIni((Typename)tipo,(TV)id,(E)exp); }
-	public Reg varreg_init(Object tipo, Object id, Object values ) 
+	public Declare dec_var(Object t,Object i,Object e,boolean is_const) 
+		{ return new Var((Typename) t,(TV) i,(E) e, is_const); }
+	public Declare dec_reg(Object tipo, Object id, Object values ) 
 		{ return new Reg((Typename)tipo,(TV)id,(HeterValues)values); }
+	public Declare dec_defreg(Object id, Object params, Object d ) 
+		{ return new DefReg((TV)id,(Params)params,(Declares)d); }
+	public Declare dec_type(Object id, Object tipo) 
+		{ return new TypeAlias((TV)id,(Typename)tipo); }
+	public Declare dec_fun(Object id, Object tipo, Object params, Object d ) 
+		{ return new DefFun((TV)id,(Typename)tipo,(Params)params,(Instructions)d); }
 
-	public RegIni reg_init(Object id, Object params, Object d ) 
-		{ return new RegIni((TV)id,(Params)params,(Declares)d); }
-	public Params cparams(Object tipo, Object id, Object rest ) 
-		{ return new Const_Param((Typename)tipo,(TV)id,(Params)rest); }
-	public Params params(Object tipo, Object id, Object rest ) 
-		{ return new NoConst_Param((Typename)tipo,(TV)id,(Params)rest); }
-
-	public TypeIni type_init(Object id, Object tipo) 
-		{ return new TypeIni((TV)id,(Typename)tipo); }
-	public FunIni fun_init(Object id, Object tipo, Object params, Object d ) 
-		{ return new FunIni((TV)id,(Typename)tipo,(Params)params,(Instructions)d); }
+	public Params params(Object tipo, Object id, Object rest,boolean is_const) 
+		{ return new Params((Typename)tipo,(TV)id,(Params)rest,is_const); }
 	
 	public Instructions instructions(Object i, Object rest) 
-		{ return new Instructions((Instruction)i,(Instructions)rest); }
+		{ return new Instructions((Instr)i,(Instructions)rest); }
 
-	public Instruction ins_var(Object i) 
-		{ return new Decvar_Ins((Var)i); }
-	public Instruction ins_varreg(Object i) 
-		{ return new Decvarreg_Ins((Decvarreg)i); }
-	public Instruction ins_return(Object e) 
+	public Instr ins_var(Object i) 
+		{ return new Var_Ins((Var)i); }
+	public Instr ins_reg(Object i) 
+	{ return new Reg_Ins((Reg)i); }
+	public Instr ins_asign(Object e1,Object e2) 
+		{ return new Asigna((E)e1,(E)e2); }
+	public Instr ins_return(Object e) 
 		{ return new Return((E)e); }
-	public Instruction ins_kut(Object i) 
+	public Instr ins_kut(Object i) 
 		{ return new Kut((E)i); }
-	public Instruction ins_while(Object b, Object d) 
+	public Instr ins_while(Object b, Object d) 
 		{ return new While((E)b,(Instructions)d); }
-	public Instruction ins_for(Object elem, Object arr, Object d) 
+	public Instr ins_for(Object elem, Object arr, Object d) 
 		{ return new For((TV)elem,(E)arr,(Instructions)d); }
-	public Instruction ins_if(Object b,Object d) 
+	public Instr ins_if(Object b,Object d) 
 		{ return new If((E)b,(Instructions)d); }
-	public Instruction ins_ifelse(Object b,Object d) 
-		{ return new IfElse((E)b,(Instructions)d); }
-	public Instruction ins_else(Object d) 
+	public Instr ins_elseif(Object b,Object d) 
+		{ return new ElseIf((E)b,(Instructions)d); }
+	public Instr ins_else(Object d) 
 		{ return new Else((Instructions)d); }
-	public Instruction ins_fun(Object f) 
+	public Instr ins_fun(Object f) 
 		{ return new Fun((Call)f); }
 
 	public HeterValues values(Object e,Object rest) 

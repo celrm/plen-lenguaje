@@ -1,19 +1,13 @@
 package ast;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class ListInit extends E {
-	private List<E> list;
+	private HomogValues lista;
 	public ListInit(HomogValues l) {
 		super(Op.LISTA);
-		if(l == null) 
-			list = new ArrayList<E>();
-		else
-			list=l.list();
+		lista=l;
 	}
-	public List<E> list() {
-		return list;
+	public String toString() {
+		return "["+(lista==null?"":lista.toString())+"]";
 	}
 
 }

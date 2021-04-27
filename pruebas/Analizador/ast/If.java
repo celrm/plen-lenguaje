@@ -1,23 +1,15 @@
 package ast;
 
-import java.util.ArrayList;
-import java.util.List;
-
-public class If extends Instruction {
+public class If extends Instr {
 	private E b;
-	private List<Instruction> list;
+	private Instructions lista;
 	public If(E b, Instructions d) {
 		this.b=b;
-		if(d == null) 
-			this.list = new ArrayList<Instruction>();
-		else
-			this.list=d.list();
+		lista=d;
 	}
-	public E b() {
-		return b;
+	public String toString() {
+		String sol = "if ("+ b.toString()  +") {\n";
+		sol = (lista==null?"":lista.toString())+ "}";
+		return sol;
 	}
-	public List<Instruction> list() {
-		return list;
-	}
-
 }

@@ -1,24 +1,15 @@
 package ast;
 
-import java.util.ArrayList;
-import java.util.List;
-
-public class While extends Instruction {
-
+public class While extends Instr {
 	private E b;
-	private List<Instruction> list;
+	private Instructions lista;
 	public While(E b, Instructions d) {
 		this.b=b;
-		if(d == null) 
-			list = new ArrayList<Instruction>();
-		else
-			list=d.list();
+		lista=d;
 	}
-	public E b() {
-		return b;
+	public String toString() {
+		String sol = "while ("+ b.toString()  +") {\n";
+		sol = (lista==null?"":lista.toString())+ "}";
+		return sol;
 	}
-	public List<Instruction> list() {
-		return list;
-	}
-
 }

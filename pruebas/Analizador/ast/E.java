@@ -1,11 +1,12 @@
 package ast;
 
-public class E {
-private Op oper;
+public abstract class E {
+	private Op oper;
 	public E(Op oper) {
-this.oper=oper;
+		this.oper=oper;
 	}
 	public Op oper() {
 		return oper;
 	}
+	public abstract String toString();
 }

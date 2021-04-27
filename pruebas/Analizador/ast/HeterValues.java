@@ -10,8 +10,8 @@ public class HeterValues {
 		this.e=e;
 		this.rest=rest;
 	}
-	public List<E> list() {
-
+	// cuidado está al revés
+	private List<E> list() {
 		List<E> sol;
 		if(rest == null) {
 			sol = new ArrayList<E>();
@@ -19,6 +19,14 @@ public class HeterValues {
 		else sol = rest.list();
 
 		sol.add(e);
+		return sol;
+	}
+	// acaba en coma fea
+	public String toString() {
+		String sol = "";
+		for(E d : list()) {
+			sol = sol + d.toString() + ",";
+		}
 		return sol;
 	}
 }

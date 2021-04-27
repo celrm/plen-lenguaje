@@ -1,12 +1,11 @@
 package ast;
 
-public class Kut extends Instruction {
-	private String print;
+public class Kut extends Instr {
+	private E print;
 	public Kut(E i) {
-		print=i.toString();
+		print=i;
 	}
-	public String print() {
-		return print;
+	public String toString() {
+		return "kut("+print.toString()+").";
 	}
-
 }

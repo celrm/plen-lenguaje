@@ -1,6 +1,5 @@
 package ast;
 
-public class Declare {
-
-	WhatDec type_of_dec;
+public abstract class Declare {
+	Dec type_of_dec;
 }

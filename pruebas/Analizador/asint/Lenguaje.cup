@@ -5,8 +5,8 @@ import alex.AnalizadorLexico;
 import alex.UnidadLexica;
 import errors.GestionErrores;
 import alex.TV;
-import ast.E;
 import ast.Op;
+import ast.Dec;
 import ast.Typename;
 import ast.ASExp;
 import ast.ASIns;
@@ -38,10 +38,10 @@ terminal    TV  Id, Entero, Import, From, Const, Arr, Ent,
                         DosPts, Backslash
                         ;
 
-non terminal    PROG, IMPORTBL, DECBL, DECVAR, DECVAR2, DECVARREG, DECREG,
-                CPARAMS, REGDENTRO, DECFUN, PARAMS, DENTRO, DECTYPE,
+non terminal    PROG, IMPORTBL, DECBL, DEC_VAR, DEC_DEFREG, DEC_REG,
+                CPARAMS, DENTRO_REG, DEC_FUN, PARAMS, DENTRO, DEC_TYPE,
                 MAINBL,EXPR, EXPFUN, EXPLISTA, LISTADENTRO, VALUES,
-                E0,E1,E2,E3,E4,E5,E6,E7,ETOP,
+                E0,E1,E2,E3,E4,E5,E6,E7,ETOP,INSTR_REG,
                 INSTR, TYPENAME;
 
 PROG ::= IMPORTBL:imps DECBL:decs MAINBL:exe
@@ -55,61 +55,54 @@ IMPORTBL ::=
 		;
 
 DECBL ::= 
-		| DECVAR:v DECBL:r
-    {: RESULT=is.decvar(v,r); :}
-		| DECVARREG:v DECBL:r
-    {: RESULT=is.decvarreg(v,r); :}
-		| DECREG:v DECBL:r 
-    {: RESULT=is.decreg(v,r); :}
-		| DECFUN:v DECBL:r
-    {: RESULT=is.decfun(v,r); :}
-		| DECTYPE:v DECBL:r 
-    {: RESULT=is.dectype(v,r); :}
+		| DEC_VAR:v DECBL:r
+    {: RESULT=is.declares(v,r,Dec.VAR); :}
+		| DEC_REG:v DECBL:r 
+    {: RESULT=is.declares(v,r,Dec.REGISTER); :}
+		| DEC_DEFREG:v DECBL:r
+    {: RESULT=is.declares(v,r,Dec.DEFREG); :}
+		| DEC_FUN:v DECBL:r
+    {: RESULT=is.declares(v,r,Dec.FUNCTION); :}
+		| DEC_TYPE:v DECBL:r 
+    {: RESULT=is.declares(v,r,Dec.TYPE); :}
 		;
 
-DECVAR ::= Const DECVAR2:e
-    {: RESULT=is.const_var(e); :}
-		| DECVAR2:e
-    {: RESULT=is.noconst_var(e); :}
-		;
-DECVAR2 ::= TYPENAME:t Id:i Asign EXPR:e Punto 
-    {: RESULT=is.var_init(t,i,e); :}
-		;
-DECVARREG ::= TYPENAME:t Id:i PA VALUES:v PC Punto
-    {: RESULT=is.varreg_init(t,i,v); :}
+DEC_VAR ::= Const TYPENAME:t Id:i Asign EXPR:e Punto
+    {: RESULT=is.dec_var(t,i,e,true); :}
+		| TYPENAME:t Id:i Asign EXPR:e Punto
+    {: RESULT=is.dec_var(t,i,e,false); :}
 		;
 
-DECREG ::= Data Id:i PA CPARAMS:ps PC Asign LA REGDENTRO:d LC Punto 
-    {: RESULT=is.reg_init(i,ps,d); :}
+DEC_REG ::= TYPENAME:t Id:i PA VALUES:v PC Punto
+    {: RESULT=is.dec_reg(t,i,v); :}
+		;
+
+DEC_DEFREG ::= Data Id:i PA CPARAMS:ps PC Asign LA DENTRO_REG:d LC Punto 
+    {: RESULT=is.dec_defreg(i,ps,d); :}
 		;
 CPARAMS ::= 
 		| Const TYPENAME:t Id:i
-    {: RESULT=is.cparams(t,i,null); :}
+    {: RESULT=is.params(t,i,null,true); :}
 		| Const TYPENAME:t Id:i Coma CPARAMS:r
-    {: RESULT=is.cparams(t,i,r); :}
+    {: RESULT=is.params(t,i,r,true); :}
 		;
-REGDENTRO ::= 
-		| DECVAR:d REGDENTRO :r
-    {: RESULT=is.decvar(d,r); :}
-		| DECVARREG:d REGDENTRO:r
-    {: RESULT=is.decvarreg(d,r); :}
+DENTRO_REG ::= 
+		| INSTR_REG:d DENTRO_REG :r
+    {: RESULT=is.instructions(d,r); :}
 		;
-DECTYPE ::= Type Id:i Asign TYPENAME:t Punto
-    {: RESULT=is.type_init(i,t); :}
+DEC_TYPE ::= Type Id:i Asign TYPENAME:t Punto
+    {: RESULT=is.dec_type(i,t); :}
 		;
 
-DECFUN ::= Function Id:i Return TYPENAME:t PA PARAMS:ps PC LA DENTRO:d LC 
-    {: RESULT=is.fun_init(i,t,ps,d); :}
+DEC_FUN ::= Function Id:i Return TYPENAME:t PA PARAMS:ps PC LA DENTRO:d LC 
+    {: RESULT=is.dec_fun(i,t,ps,d); :}
 		;
-PARAMS ::= 
-		| Const TYPENAME:t Id:i
-    {: RESULT=is.cparams(t,i,null); :}
+PARAMS ::= CPARAMS:c
+    {: RESULT=c; :}
 		| TYPENAME:t Id:i
-    {: RESULT=is.params(t,i,null); :}
-		| Const TYPENAME:t Id:i Coma PARAMS :r
-    {: RESULT=is.cparams(t,i,r); :}
+    {: RESULT=is.params(t,i,null,false); :}
 		| TYPENAME:t Id:i Coma PARAMS :r
-    {: RESULT=is.params(t,i,r); :}
+    {: RESULT=is.params(t,i,r,false); :}
 		;
 DENTRO ::= 
 		| INSTR:i DENTRO:r
@@ -213,10 +206,17 @@ LISTADENTRO ::=
     {: RESULT=as.list_cons(e,l); :}
         ;
 		
-INSTR ::= DECVAR:i
+		
+INSTR_REG ::= DEC_VAR:i
     {: RESULT=is.ins_var(i); :}
-		| DECVARREG :i
-    {: RESULT=is.ins_varreg(i); :}
+		| DEC_REG :i
+    {: RESULT=is.ins_reg(i); :}
+        ;
+    
+INSTR ::= INSTR_REG:i
+    {: RESULT=i; :}
+		| EXPR:e1 Asign EXPR:e2 Punto
+    {: RESULT=is.ins_asign(e1,e2); :}
 		| Return EXPR:e Punto
     {: RESULT=is.ins_return(e); :}
 		| Kut PA EXPR:e PC Punto
@@ -228,7 +228,7 @@ INSTR ::= DECVAR:i
 		| If PA EXPR:b PC LA DENTRO:d LC
     {: RESULT=is.ins_if(b,d); :}
 		| Else If PA EXPR:b PC LA DENTRO:d LC
-    {: RESULT=is.ins_ifelse(b,d); :}
+    {: RESULT=is.ins_elseif(b,d); :}
 		| Else LA DENTRO:d LC
     {: RESULT=is.ins_else(d); :}
 		| EXPFUN:f Punto
@@ -243,11 +243,11 @@ VALUES ::=
     {: RESULT=is.values(e,v); :}
 		;
 TYPENAME ::= Ent:e
-    {: RESULT=Typename.ENT; :}
+    {: RESULT=new Typename(e.toString()); :}
         | Bul :e
-    {: RESULT=Typename.BUL; :}
+    {: RESULT=new Typename(e.toString()); :}
         | Car :e
-    {: RESULT=Typename.CAR; :}
+    {: RESULT=new Typename(e.toString()); :}
         | Id :e
     {: RESULT=new Typename((TV)e); :}
         | Arr Backslash TYPENAME:e

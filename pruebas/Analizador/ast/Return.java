@@ -1,12 +1,12 @@
 package ast;
 
-public class Return extends Instruction {
+public class Return extends Instr {
 	private E exp;
 	public Return(E e) {
 		this.exp=e;
 	}
-	public E exp() {
-		return exp;
-	}
+	public String toString() {
+		return "return " + exp.toString()+".";
+	} 
 
 }

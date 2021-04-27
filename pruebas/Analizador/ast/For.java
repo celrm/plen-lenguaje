@@ -1,30 +1,19 @@
 package ast;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import alex.TV;
 
-public class For extends Instruction {
+public class For extends Instr {
 	private TV elem;
 	private E arr;
-	private List<Instruction> lista;
+	private Instructions lista;
 	public For(TV elem, E arr, Instructions d) {
 		this.elem=elem;
 		this.arr=arr;
-		if(d == null) 
-			lista = new ArrayList<Instruction>();
-		else
-			lista=d.list();
+		lista=d;
 	}
-	public TV elem() {
-		return elem;
+	public String toString() {
+		String sol =  "for (" + elem.toString() + " : " + arr.toString();
+		sol = sol +  ") {\n" + (lista==null?"":lista.toString())+ "}";  
+		return sol;
 	}
-	public E arr() {
-		return arr;
-	}
-	public List<Instruction> list() {
-		return lista;
-	}
-
 }

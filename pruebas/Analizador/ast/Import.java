@@ -9,4 +9,7 @@ public class Import {
 		this.name=name;
 		this.source=source;
 	}
+	public String toString() {
+		return "import " + name.toString() + " from " + source.toString() + ".";
+	}
 }

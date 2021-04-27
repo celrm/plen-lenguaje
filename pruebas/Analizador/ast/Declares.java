@@ -6,13 +6,13 @@ import java.util.List;
 public class Declares {
 	private Declare var;
 	private Declares rest;
-	WhatDec type_of_dec;
-	public Declares(Declare var, Declares rest) {
+	public Declares(Declare var, Declares rest, Dec dectype) {
 		this.var= var;
 		this.rest=rest;
+		var.type_of_dec = dectype;
 	}
-
-	public List<Declare> list() {
+	// cuidado está al revés
+	private List<Declare> list() {
 		List<Declare> sol;
 		if(rest == null) {
 			sol = new ArrayList<Declare>();
@@ -21,6 +21,12 @@ public class Declares {
 
 		sol.add(var);
 		return sol;
+	}	
+	public String toString() {
+		String sol = "";
+		for(Declare d : list()) {
+			sol = sol + d.toString() + "\n";
+		}
+		return sol;
 	}
-
 }
