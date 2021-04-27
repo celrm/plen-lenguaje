@@ -16,7 +16,7 @@ public class ASIns {
 	public Declare dec_reg(Object tipo, Object id, Object values ) 
 		{ return new Reg((Typename)tipo,(TV)id,(HeterValues)values); }
 	public Declare dec_defreg(Object id, Object params, Object d ) 
-		{ return new DefReg((TV)id,(Params)params,(Declares)d); }
+		{ return new DefReg((TV)id,(Params)params,(Instructions)d); }
 	public Declare dec_type(Object id, Object tipo) 
 		{ return new TypeAlias((TV)id,(Typename)tipo); }
 	public Declare dec_fun(Object id, Object tipo, Object params, Object d ) 

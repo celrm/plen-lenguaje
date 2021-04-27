@@ -5,10 +5,10 @@ type matriz = arr\arr\ent. € Tipos con nombre
 const ent pi = 3. € Constantes
 
 € Registros con parámetros
-€data coleccion (const ent size) = {
-€   arr\ent cosas = (size,0).
-€    bul vacio = size == 0.
-€} .
+data coleccion (const ent size) = {
+   arr\ent cosas = (size,0).
+    bul vacio = size == 0.
+} .
 
 € Funciones
 function my_quick return arr\ent (arr\ent v) {
@@ -34,10 +34,10 @@ main {
     
     coleccion my_bolsa(3).
     
-  €  if (my_bolsa->vacio) {
-   €     kut(-1).
-    €}
-  € else {
-  €      kut(my_bolsa->cosas ! 0).
-  €  }
+    if (my_bolsa->vacio) {
+        kut(-1).
+    }
+   else {
+        kut(my_bolsa->cosas ! 0).
+   }
 }
