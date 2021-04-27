@@ -18,7 +18,7 @@ public class HomogValues {
 		}
 		else sol = rest.list();
 
-		sol.add(e);
+		sol.add(0,e);
 		return sol;
 	}
 	// acaba en coma fea

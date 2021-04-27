@@ -24,7 +24,7 @@ main {
         a = a - 1.
     }    
     
-    arr\ent v = [2 * 3, 9 / 3, 1 + (-1)].
+    arr\ent v = [2 * 3 + 1, 9 / 3, 1 + (-1)].
     kut(v ! 3).
     
     arr\ent w = my_quick(v).

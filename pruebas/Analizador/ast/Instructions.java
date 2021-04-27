@@ -18,7 +18,7 @@ public class Instructions {
 		}
 		else sol = rest.list();
 
-		sol.add(i);
+		sol.add(0,i);
 		return sol;
 	}
 	public String toString() {

@@ -18,8 +18,7 @@ public class Declares {
 			sol = new ArrayList<Declare>();
 		}
 		else sol = rest.list();
-
-		sol.add(var);
+		sol.add(0, var);
 		return sol;
 	}	
 	public String toString() {

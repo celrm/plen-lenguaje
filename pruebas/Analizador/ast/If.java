@@ -9,7 +9,7 @@ public class If extends Instr {
 	}
 	public String toString() {
 		String sol = "if ("+ b.toString()  +") {\n";
-		sol = (lista==null?"":lista.toString())+ "}";
+		sol = sol+(lista==null?"":lista.toString())+ "}";
 		return sol;
 	}
 }

@@ -9,6 +9,6 @@ public class EBin extends E {
 	     this.o2 = opnd2;
    }
 	public String toString() {
-		return o1.toString() + " " + this.oper().toString() + " " + o2.toString();
+		return "("+o1.toString() + " " + this.oper().toString() + " " + o2.toString()+")";
 	}
 }

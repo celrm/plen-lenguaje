@@ -6,6 +6,6 @@ public class Else extends Instr {
 		lista=d;
 	}
 	public String toString() {
-		return "else {\n" + lista.toString() + "}";  
+		return "else {\n" + (lista==null?"":lista.toString())+ "}";  
 	}
 }
