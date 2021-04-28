@@ -18,7 +18,7 @@ echo -e '\n\n'
 
 cd Analizador/
 javac -cp "../cup.jar" alex/*.java asint/*.java errors/*.java ast/*.java
-java -cp ".:../cup.jar" asint.Main "../error.txt"
+java -cp ".:../cup.jar" asint.Main "../$1.txt"
 
 cd ..
 
