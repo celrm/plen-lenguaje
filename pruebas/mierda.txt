@@ -1,18 +1,37 @@
-import source from file.
+type string = arr\car.
+const ent max_string = 100.
 
-type matriz = arr\arr\ent. € giueordshbiow4trhbfiu
-
-const ent pi = 3.
-
-function my_quick return arr\ent (arr\ent v) {
-    arr\ent w = quicksort(v).
-    return w.
+function copy return string (string source, ent longitud) {
+    string dest = (longitud, ' ').
+    i = 0.
+    while (i < longitud) {
+        dest!i = source!i.
+        i = i + 1.
+    }
+    return dest.
 }
 
-main {
-ent patata = 1.
-
-ent a = kin().
-    while (a) {
-    }    
+function kin_string return string (){
+    car letra = kin().
+    string aux = (max_string,' ').
+    ent i = 0.
+    while (letra != '\n' & i < max_string) {
+        aux!i = letra.
+        letra = kin().
+        i = i + 1.
+    }
+    if (i < max_string) {
+        aux!i = letra.
+        i = i + 1.
+    }
+    return copy(aux,i).
 }
+
+function kut_string return ent (string cadena){
+    for(letra : cadena) {
+        kut(letra).
+    }
+    return 0.
+}
+
+main {}

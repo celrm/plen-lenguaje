@@ -20,7 +20,8 @@ public class Params {
 		}
 		else sol = rest.list();
 
-		sol.add(0,p);
+		if(p!=null)
+			sol.add(0,p);
 		return sol;
 	}
 	// acaba en coma fea

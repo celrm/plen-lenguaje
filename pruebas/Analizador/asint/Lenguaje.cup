@@ -7,7 +7,6 @@ import errors.GestionErrores;
 import alex.TV;
 import ast.Op;
 import ast.Dec;
-import ast.Typename;
 import ast.ASExp;
 import ast.ASIns;
 
@@ -117,62 +116,62 @@ MAINBL ::= Main LA DENTRO:d LC
 EXPR ::= E0:o
     {: RESULT=o; :}
 		;
-E0 ::= E0:o1 Acceso E1:o2
+E7 ::= E7:o1 Acceso ETOP:o2
     {: RESULT=as.op_bin(o1,o2,Op.ACCESO); :}
-        | E1:o
+        | ETOP:o
     {: RESULT=o; :}
 		;
-E1 ::= E1:o1 Indice E2:o2
+E6 ::= E6:o1 Indice E7:o2
     {: RESULT=as.op_bin(o1,o2,Op.INDICE); :}
-        | E2:o
-    {: RESULT=o; :}
-		;
-E2 ::= Guion E3:o
-    {: RESULT=as.op_mono(o,Op.SIGNO); :}
-        | E3:o
-    {: RESULT=o; :}
-		;
-E3 ::= E3:o1 Mod E4:o2
-    {: RESULT=as.op_bin(o1,o2,Op.MOD); :}
-        | E3:o1 Div E4:o2
-    {: RESULT=as.op_bin(o1,o2,Op.DIV); :}
-        | E3:o1 Mul E4:o2
-    {: RESULT=as.op_bin(o1,o2,Op.MUL); :}
-        | E4:o
-    {: RESULT=o; :}
-		;
-E4 ::= E4:o1 Suma E5:o2
-    {: RESULT=as.op_bin(o1,o2,Op.SUMA); :}
-        | E4:o1 Guion E5:o2
-    {: RESULT=as.op_bin(o1,o2,Op.RESTA); :}
-        | Not E5:o
-    {: RESULT=as.op_mono(o,Op.NOT); :}
-        | E5:o
-    {: RESULT=o; :}
-		;
-E5 ::= E5:o1 Meq E6:o2
-    {: RESULT=as.op_bin(o1,o2,Op.MEQ); :}
-        | E5:o1 Maq E6:o2
-    {: RESULT=as.op_bin(o1,o2,Op.MAQ); :}
-        | E5:o1 Menor E6:o2
-    {: RESULT=as.op_bin(o1,o2,Op.MENOR); :}
-        | E5:o1 Mayor E6:o2
-    {: RESULT=as.op_bin(o1,o2,Op.MAYOR); :}
-        | E5:o1 And E6:o2
-    {: RESULT=as.op_bin(o1,o2,Op.AND); :}
-        | E6:o 
-    {: RESULT=o; :}
-		;
-E6 ::= E6:o1 Or E7:o2
-    {: RESULT=as.op_bin(o1,o2,Op.OR); :}
         | E7:o
     {: RESULT=o; :}
 		;
-E7 ::= E7:o1 Igual ETOP:o2
+E5 ::= Guion E6:o
+    {: RESULT=as.op_mono(o,Op.SIGNO); :}
+        | E6:o
+    {: RESULT=o; :}
+		;
+E4 ::= E4:o1 Mod E5:o2
+    {: RESULT=as.op_bin(o1,o2,Op.MOD); :}
+        | E4:o1 Div E5:o2
+    {: RESULT=as.op_bin(o1,o2,Op.DIV); :}
+        | E4:o1 Mul E5:o2
+    {: RESULT=as.op_bin(o1,o2,Op.MUL); :}
+        | E5:o
+    {: RESULT=o; :}
+		;
+E3 ::= E3:o1 Suma E4:o2
+    {: RESULT=as.op_bin(o1,o2,Op.SUMA); :}
+        | E3:o1 Guion E4:o2
+    {: RESULT=as.op_bin(o1,o2,Op.RESTA); :}
+        | Not E4:o
+    {: RESULT=as.op_mono(o,Op.NOT); :}
+        | E4:o
+    {: RESULT=o; :}
+		;
+E2 ::= E2:o1 Meq E3:o2
+    {: RESULT=as.op_bin(o1,o2,Op.MEQ); :}
+        | E2:o1 Maq E3:o2
+    {: RESULT=as.op_bin(o1,o2,Op.MAQ); :}
+        | E2:o1 Menor E3:o2
+    {: RESULT=as.op_bin(o1,o2,Op.MENOR); :}
+        | E2:o1 Mayor E3:o2
+    {: RESULT=as.op_bin(o1,o2,Op.MAYOR); :}
+        | E2:o1 And E3:o2
+    {: RESULT=as.op_bin(o1,o2,Op.AND); :}
+        | E3:o 
+    {: RESULT=o; :}
+		;
+E1 ::= E1:o1 Or E2:o2
+    {: RESULT=as.op_bin(o1,o2,Op.OR); :}
+        | E2:o
+    {: RESULT=o; :}
+		;
+E0 ::= E0:o1 Igual E1:o2
     {: RESULT=as.op_bin(o1,o2,Op.IGUAL); :}
-        | E7:o1 Distinto ETOP:o2
+        | E0:o1 Distinto E1:o2
     {: RESULT=as.op_bin(o1,o2,Op.DISTINTO); :}
-        | ETOP:o
+        | E1:o
     {: RESULT=o; :}
 		;
 ETOP ::= Entero:e
@@ -208,9 +207,9 @@ LISTADENTRO ::=
 		
 		
 INSTR_REG ::= DEC_VAR:i
-    {: RESULT=is.ins_var(i); :}
+    {: RESULT=i; :}
 		| DEC_REG :i
-    {: RESULT=is.ins_reg(i); :}
+    {: RESULT=i; :}
         ;
     
 INSTR ::= INSTR_REG:i
@@ -243,15 +242,15 @@ VALUES ::=
     {: RESULT=is.values(e,v); :}
 		;
 TYPENAME ::= Ent:e
-    {: RESULT=new Typename(e.toString()); :}
+    {: RESULT=is.typename(e); :}
         | Bul :e
-    {: RESULT=new Typename(e.toString()); :}
+    {: RESULT=is.typename(e); :}
         | Car :e
-    {: RESULT=new Typename(e.toString()); :}
+    {: RESULT=is.typename(e); :}
         | Id :e
-    {: RESULT=new Typename((TV)e); :}
+    {: RESULT=is.typename(e); :}
         | Arr Backslash TYPENAME:e
-    {: RESULT=new Typename((Typename)e); :}
+    {: RESULT=is.typename_arr(e); :}
         ;
 
 

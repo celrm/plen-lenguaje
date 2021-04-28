@@ -57,7 +57,7 @@ punto = \.
 si = si
 no = no
 kut = kut
-caracter = '({letra}|{digito})'
+caracter = '([^]|\\[tn])'
 identificador = {letraMinus}({letraMinus}|{digito}|_)*
 asignacion = \=
 distinto = !\=

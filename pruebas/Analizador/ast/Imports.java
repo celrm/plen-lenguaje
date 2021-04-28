@@ -12,7 +12,6 @@ public class Imports {
 		this.i= new Import(name,source);
 		this.rest=rest;
 	}
-	// cuidado está al revés
 	private List<Import> list() {
 		List<Import> sol;
 		if(rest == null) {
@@ -20,7 +19,8 @@ public class Imports {
 		}
 		else sol = rest.list();
 
-		sol.add(0,i);
+		if(i!=null)
+			sol.add(0,i);
 		return sol;
 	}
 	public String toString() {

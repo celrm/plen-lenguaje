@@ -10,7 +10,6 @@ public class HomogValues {
 		this.e=e;
 		this.rest=rest;
 	}
-	// cuidado está al revés
 	private List<E> list() {
 		List<E> sol;
 		if(rest == null) {
@@ -18,7 +17,8 @@ public class HomogValues {
 		}
 		else sol = rest.list();
 
-		sol.add(0,e);
+		if(e!=null)
+			sol.add(0,e);
 		return sol;
 	}
 	// acaba en coma fea

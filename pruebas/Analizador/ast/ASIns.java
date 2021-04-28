@@ -28,10 +28,6 @@ public class ASIns {
 	public Instructions instructions(Object i, Object rest) 
 		{ return new Instructions((Instr)i,(Instructions)rest); }
 
-	public Instr ins_var(Object i) 
-		{ return new Var_Ins((Var)i); }
-	public Instr ins_reg(Object i) 
-	{ return new Reg_Ins((Reg)i); }
 	public Instr ins_asign(Object e1,Object e2) 
 		{ return new Asigna((E)e1,(E)e2); }
 	public Instr ins_return(Object e) 
@@ -53,6 +49,11 @@ public class ASIns {
 
 	public HeterValues values(Object e,Object rest) 
 		{ return new HeterValues((E)e,(HeterValues)rest); }
+
+	public Typename typename(Object e) 
+		{ return new Typename((TV)e); }
+	public Typename typename_arr(Object e) 
+		{ return new Typename((Typename)e); }
 	
 	  
 }

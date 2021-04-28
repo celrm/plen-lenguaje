@@ -11,14 +11,14 @@ public class Declares {
 		this.rest=rest;
 		var.type_of_dec = dectype;
 	}
-	// cuidado está al revés
 	private List<Declare> list() {
 		List<Declare> sol;
 		if(rest == null) {
 			sol = new ArrayList<Declare>();
 		}
 		else sol = rest.list();
-		sol.add(0, var);
+		if(var!=null)
+			sol.add(0, var);
 		return sol;
 	}	
 	public String toString() {
