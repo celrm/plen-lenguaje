@@ -1,5 +1,7 @@
 package ast;
 
+import java.util.Map;
+
 import alex.TV;
 
 public class TypeAlias extends Declare {
@@ -13,5 +15,17 @@ public class TypeAlias extends Declare {
 	}
 	public String toString() {
 		return "type " + id.toString() + " = " + tipo.toString() + "."; 
+	}
+	@Override
+	protected void vinculo() {
+				
+	}
+	public void chequea_prep(Map<String, Typename> typedefs) {
+		typedefs.put(id.toString(),tipo);
+	}
+	@Override
+	protected void chequea() {
+		// TODO Auto-generated method stub
+		
 	}
 }

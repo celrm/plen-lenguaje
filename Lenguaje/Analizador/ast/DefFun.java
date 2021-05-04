@@ -20,4 +20,22 @@ public class DefFun extends Declare {
 		sol = sol + (decs==null?"":decs.toString()) + "}";
 		return sol;
 	}
+	@Override
+	protected void vinculo() throws Exception {
+		Program.insertaId(id.toString(), this);
+		Program.abreBloque();
+		
+		params.vinculo();
+		decs.vinculo();
+		
+		Program.cierraBloque();
+	}
+	@Override
+	protected void chequea() {
+		// TODO Auto-generated method stub
+		
+	}
+	public Typename tipo() {
+		return tipo;
+	}
 }

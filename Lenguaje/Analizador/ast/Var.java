@@ -19,4 +19,14 @@ public class Var extends Declare {
 		sol = sol + exp.toString() + ".";
 		return (is_const?"const " :"") + sol;
 	}
+	@Override
+	protected void vinculo() {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	protected void chequea() {
+		// TODO Auto-generated method stub
+		
+	}
 }

@@ -1,5 +1,7 @@
 package ast;
 
+import java.util.Map;
+
 import alex.TV;
 
 public class DefReg extends Declare {
@@ -17,5 +19,28 @@ public class DefReg extends Declare {
 		sol = sol + " (" + (params==null?"":params.toString()) + ") {\n";
 		sol = sol + (ins==null?"":ins.toString()) + "}";
 		return sol;
+	}
+	private Map<String,Object> defs;
+	@Override
+	protected void vinculo() throws Exception {
+		Program.insertaId(id.toString(), this);
+		Program.abreBloque();
+		
+		params.vinculo();
+		
+		Program.abreBloque();
+		ins.vinculo();
+		defs = Program.paraRegistros();
+		Program.cierraBloque();
+		
+		Program.cierraBloque();
+	}
+	@Override
+	protected void chequea() {
+		// TODO Auto-generated method stub
+		
+	}
+	public Object get(String arg0) {
+		return defs.get(arg0);
 	}
 }

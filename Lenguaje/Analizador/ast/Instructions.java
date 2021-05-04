@@ -2,6 +2,7 @@ package ast;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 public class Instructions {
 	private Instr i;
@@ -26,5 +27,16 @@ public class Instructions {
 			sol = sol + d.toString() + "\n";
 		}
 		return sol;
+	}
+	public void vinculo() throws Exception {
+		i.vinculo();
+		if(rest!=null)
+			rest.vinculo();
+	}
+	public void chequea() throws Exception {
+		i.chequea();
+		if(rest!=null) 
+			rest.chequea();
+		
 	}
 }

@@ -16,4 +16,17 @@ public class For extends Instr {
 		sol = sol +  ") {\n" + (lista==null?"":lista.toString())+ "}";  
 		return sol;
 	}
+	@Override
+	protected void vinculo() throws Exception {
+		arr.vinculo();
+		Program.abreBloque();
+		Program.insertaId(elem.toString(), this);
+		lista.vinculo();
+		Program.cierraBloque();
+	}
+	@Override
+	protected void chequea() throws Exception {
+		// TODO Auto-generated method stub
+		
+	}
 }

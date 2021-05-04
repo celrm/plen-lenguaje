@@ -12,4 +12,8 @@ public class Import {
 	public String toString() {
 		return "import " + name.toString() + " from " + source.toString() + ".";
 	}
+	public void vinculo() {
+		Program.insertaId(name.toString(), this);
+	}
+	public void chequea() {} // TODO ?
 }

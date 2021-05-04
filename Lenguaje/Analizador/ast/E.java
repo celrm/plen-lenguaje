@@ -9,4 +9,6 @@ public abstract class E {
 		return oper;
 	}
 	public abstract String toString();
+	protected abstract void vinculo() throws Exception;
+	protected abstract String chequea();
 }

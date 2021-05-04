@@ -2,6 +2,7 @@ package ast;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 public class Declares {
 	private Declare var;
@@ -27,5 +28,21 @@ public class Declares {
 			sol = sol + d.toString() + "\n";
 		}
 		return sol;
+	}
+	public void vinculo() throws Exception {
+		var.vinculo();
+		if(rest!=null)
+			rest.vinculo();
+	}
+	public void chequea_prep(Map<String, Typename> typedefs) {
+		if(var.type_of_dec == Dec.TYPE)
+			((TypeAlias) var).chequea_prep(typedefs);
+		if(rest!=null)
+			rest.chequea_prep(typedefs);
+	}
+	public void chequea() {
+		var.chequea();
+		if(rest!=null)
+			rest.chequea();
 	}
 }

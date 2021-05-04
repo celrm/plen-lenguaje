@@ -7,6 +7,16 @@ public class Return extends Instr {
 	}
 	public String toString() {
 		return "return " + exp.toString()+".";
+	}
+	@Override
+	protected void vinculo() {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	protected void chequea() throws Exception {
+		// TODO Auto-generated method stub
+		
 	} 
 
 }

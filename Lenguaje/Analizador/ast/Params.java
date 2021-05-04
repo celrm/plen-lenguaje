@@ -32,4 +32,8 @@ public class Params {
 		}
 		return sol;
 	}
+	public void vinculo() {
+		// TODO Auto-generated method stub
+		
+	}
 }

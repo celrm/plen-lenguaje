@@ -17,4 +17,18 @@ public class Typename {
 		}
 		return "";
 	}
+	public String pure() {
+		if(t_arr == null) {
+			String from = t_id.toString();
+			Typename to = Program.get_alias(from);
+			while(to != null) {
+				from = to.pure();
+				to = Program.get_alias(from);
+			}
+			return from;
+		}
+		else {
+			return "arr\\" + t_arr.pure();
+		}
+	}
 }

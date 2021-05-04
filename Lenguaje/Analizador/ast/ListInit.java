@@ -9,5 +9,15 @@ public class ListInit extends E {
 	public String toString() {
 		return "["+(lista==null?"":lista.toString())+"]";
 	}
+	@Override
+	protected void vinculo() {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	protected String chequea() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 
 }

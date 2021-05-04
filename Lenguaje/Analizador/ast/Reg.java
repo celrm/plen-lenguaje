@@ -18,4 +18,18 @@ public class Reg extends Declare {
 		sol = sol + (values==null?"":values.toString())+ ").";
 		return sol;
 	}
+	private DefReg dr;
+	@Override
+	protected void vinculo() throws Exception {
+		// TODO Auto-generated method stub
+		dr = (DefReg) Program.buscaId(tipo.toString());
+	}
+	@Override
+	protected void chequea() {
+		// TODO Auto-generated method stub
+		
+	}
+	public Object get(String arg0) {
+		return dr.get(arg0);
+	}
 }

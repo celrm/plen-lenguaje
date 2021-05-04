@@ -117,7 +117,7 @@ EXPR ::= E0:o
     {: RESULT=o; :}
 		;
 E7 ::= E7:o1 Acceso ETOP:o2
-    {: RESULT=as.op_bin(o1,o2,Op.ACCESO); :}
+    {: RESULT=as.op_acceso(o1,o2,Op.ACCESO); :}
         | ETOP:o
     {: RESULT=o; :}
 		;
@@ -175,15 +175,15 @@ E0 ::= E0:o1 Igual E1:o2
     {: RESULT=o; :}
 		;
 ETOP ::= Entero:e
-    {: RESULT=as.op_basico(e); :}
+    {: RESULT=as.op_basico_ent(e); :}
         | Si :e
-    {: RESULT=as.op_basico(e); :}
+    {: RESULT=as.op_basico_bul(e); :}
         | No :e
-    {: RESULT=as.op_basico(e); :}
+    {: RESULT=as.op_basico_bul(e); :}
         | Id :e
-    {: RESULT=as.op_basico(e); :}
+    {: RESULT=as.op_basico_id(e); :}
         | Caracter :e
-    {: RESULT=as.op_basico(e); :}
+    {: RESULT=as.op_basico_car(e); :}
         | PA E0:e PC
     {: RESULT=e; :}
         | EXPFUN:e

@@ -2,6 +2,7 @@ package ast;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import alex.TV;
 
@@ -29,5 +30,15 @@ public class Imports {
 			sol = sol + d.toString() + "\n";
 		}
 		return sol;
+	}
+	public void vinculo() {
+		i.vinculo();
+		if(rest!=null)
+			rest.vinculo();
+	}
+	public void chequea() {
+		i.chequea();
+		if(rest!=null)
+			rest.chequea();
 	}
 }

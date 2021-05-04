@@ -11,4 +11,14 @@ public class EBin extends E {
 	public String toString() {
 		return "("+o1.toString() + " " + this.oper().toString() + " " + o2.toString()+")";
 	}
+	@Override
+	protected void vinculo() throws Exception {
+		o1.vinculo();
+		o2.vinculo();
+	}
+	@Override
+	protected String chequea() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }

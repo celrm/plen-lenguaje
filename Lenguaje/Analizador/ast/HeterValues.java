@@ -29,4 +29,8 @@ public class HeterValues {
 		}
 		return sol;
 	}
+	public void vinculo() {
+		// TODO Auto-generated method stub
+		
+	}
 }

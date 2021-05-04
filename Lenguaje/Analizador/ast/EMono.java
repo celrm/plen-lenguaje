@@ -9,4 +9,13 @@ public class EMono extends E {
 	public String toString() {
 		return this.oper().toString() + " " + o.toString();
 	}
+	@Override
+	protected void vinculo() throws Exception {
+		o.vinculo();
+	}
+	@Override
+	protected String chequea() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }

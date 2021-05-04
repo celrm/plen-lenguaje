@@ -12,4 +12,14 @@ public class While extends Instr {
 		sol = sol+(lista==null?"":lista.toString())+ "}";
 		return sol;
 	}
+	@Override
+	protected void vinculo() {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	protected void chequea() throws Exception {
+		// TODO Auto-generated method stub
+		
+	}
 }

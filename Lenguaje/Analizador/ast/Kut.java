@@ -8,4 +8,13 @@ public class Kut extends Instr {
 	public String toString() {
 		return "kut("+print.toString()+").";
 	}
+	@Override
+	protected void vinculo() throws Exception {
+		print.vinculo();		
+	}
+	@Override
+	protected void chequea() throws Exception {
+		// TODO Auto-generated method stub
+		
+	}
 }
