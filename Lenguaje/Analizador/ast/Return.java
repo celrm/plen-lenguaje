@@ -9,9 +9,8 @@ public class Return extends Instr {
 		return "return " + exp.toString()+".";
 	}
 	@Override
-	protected void vinculo() {
-		// TODO Auto-generated method stub
-		
+	protected void vinculo() throws Exception {
+		exp.vinculo();		
 	}
 	@Override
 	protected void chequea() throws Exception {

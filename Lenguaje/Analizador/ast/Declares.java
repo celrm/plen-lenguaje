@@ -36,7 +36,7 @@ public class Declares {
 	}
 	public void chequea_prep(Map<String, Typename> typedefs) {
 		if(var.type_of_dec == Dec.TYPE)
-			((TypeAlias) var).chequea_prep(typedefs);
+			((DefType) var).chequea_prep(typedefs);
 		if(rest!=null)
 			rest.chequea_prep(typedefs);
 	}

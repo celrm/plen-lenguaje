@@ -18,7 +18,7 @@ public class ASIns {
 	public Declare dec_defreg(Object id, Object params, Object d ) 
 		{ return new DefReg((TV)id,(Params)params,(Instructions)d); }
 	public Declare dec_type(Object id, Object tipo) 
-		{ return new TypeAlias((TV)id,(Typename)tipo); }
+		{ return new DefType((TV)id,(Typename)tipo); }
 	public Declare dec_fun(Object id, Object tipo, Object params, Object d ) 
 		{ return new DefFun((TV)id,(Typename)tipo,(Params)params,(Instructions)d); }
 
@@ -40,10 +40,8 @@ public class ASIns {
 		{ return new For((TV)elem,(E)arr,(Instructions)d); }
 	public Instr ins_if(Object b,Object d) 
 		{ return new If((E)b,(Instructions)d); }
-	public Instr ins_elseif(Object b,Object d) 
-		{ return new ElseIf((E)b,(Instructions)d); }
-	public Instr ins_else(Object d) 
-		{ return new Else((Instructions)d); }
+	public Instr ins_ifelse(Object b,Object d1,Object d2) 
+		{ return new IfElse((E)b,(Instructions)d1,(Instructions)d2); }
 	public Instr ins_fun(Object f) 
 		{ return new Fun((Call)f); }
 

@@ -17,8 +17,9 @@ public class Call extends E {
 	DefFun f;
 	@Override
 	protected void vinculo() throws Exception {
+		if(v!=null)
+			v.vinculo();
 		f = (DefFun) Program.buscaId(id.toString());
-		v.vinculo();
 	}
 	@Override
 	protected String chequea() {

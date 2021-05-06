@@ -21,8 +21,8 @@ public class Reg extends Declare {
 	private DefReg dr;
 	@Override
 	protected void vinculo() throws Exception {
-		// TODO Auto-generated method stub
 		dr = (DefReg) Program.buscaId(tipo.toString());
+		Program.insertaId(id.toString(), this);
 	}
 	@Override
 	protected void chequea() {

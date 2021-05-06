@@ -36,8 +36,8 @@ public class Program {
 		pila.firstElement().put(ident,puntero);
 	}
 	public static Object buscaId(String ident) throws Exception {
-		for(Map<String,Object> m : pila) {
-			Object sol = m.getOrDefault(ident, null);
+		for(Map<String,Object> m : pila) { // mirar si va de arriba abajo
+			Object sol = m.get(ident);
 			if(sol != null) return sol;
 		}
 		throw new Exception("Error de vinculación: " + ident);
@@ -47,9 +47,12 @@ public class Program {
 		inicializa();
 		abreBloque();
 		
-		imps.vinculo();
-		decs.vinculo();
-		mn.vinculo();
+		if(imps!=null)
+			imps.vinculo();
+		if(decs!=null)
+			decs.vinculo();
+		if(mn!=null)
+			mn.vinculo();
 		
 		cierraBloque();
 	}

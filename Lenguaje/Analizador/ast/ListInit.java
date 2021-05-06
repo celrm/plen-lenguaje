@@ -10,9 +10,9 @@ public class ListInit extends E {
 		return "["+(lista==null?"":lista.toString())+"]";
 	}
 	@Override
-	protected void vinculo() {
-		// TODO Auto-generated method stub
-		
+	protected void vinculo() throws Exception {
+		if(lista!=null)
+			lista.vinculo();
 	}
 	@Override
 	protected String chequea() {

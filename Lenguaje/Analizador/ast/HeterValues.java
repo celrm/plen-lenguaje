@@ -29,8 +29,9 @@ public class HeterValues {
 		}
 		return sol;
 	}
-	public void vinculo() {
-		// TODO Auto-generated method stub
-		
+	public void vinculo() throws Exception {
+		e.vinculo();
+		if(rest!=null)
+			rest.vinculo();
 	}
 }

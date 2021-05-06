@@ -14,6 +14,8 @@ public class Asigna extends Instr {
 	}
 	@Override
 	protected void vinculo() throws Exception {
+		if(e1.oper() != Op.ACCESO && e1.oper() != Op.INDICE)
+			throw new Exception("No asignable: " + e1.toString());
 		e1.vinculo();
 		e2.vinculo();
 	}

@@ -20,9 +20,9 @@ public class Var extends Declare {
 		return (is_const?"const " :"") + sol;
 	}
 	@Override
-	protected void vinculo() {
-		// TODO Auto-generated method stub
-		
+	protected void vinculo() throws Exception {
+		exp.vinculo();
+		Program.insertaId(id.toString(), this);
 	}
 	@Override
 	protected void chequea() {

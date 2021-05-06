@@ -1,7 +1,5 @@
 package ast;
 
-import java.util.Map;
-
 public abstract class Instr {
 
 	protected abstract void vinculo() throws Exception;

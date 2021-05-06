@@ -15,7 +15,8 @@ public class EBasico extends E {
 	@Override
 	protected void vinculo() throws Exception {
 		if(oper()==Op.BASICO_ID)
-			d = (Declare) Program.buscaId(id.toString());
+			d = (Declare) Program.buscaId(id.toString()); 
+		// por definición de declare, son todos los sitios donde he hecho inserts
 	}
 	@Override
 	protected String chequea() {
@@ -27,7 +28,7 @@ public class EBasico extends E {
 		case BASICO_ENT:
 			return "ent";
 		case BASICO_ID:
-			return chequea();
+			return chequea(); // TODO
 		default:
 			break;
 		}

@@ -13,9 +13,11 @@ public class While extends Instr {
 		return sol;
 	}
 	@Override
-	protected void vinculo() {
-		// TODO Auto-generated method stub
-		
+	protected void vinculo() throws Exception {
+		b.vinculo();
+		Program.abreBloque();
+		lista.vinculo();
+		Program.cierraBloque();
 	}
 	@Override
 	protected void chequea() throws Exception {

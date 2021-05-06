@@ -29,4 +29,9 @@ public class HomogValues {
 		}
 		return sol;
 	}
+	public void vinculo() throws Exception {
+		e.vinculo();
+		if(rest!=null)
+			rest.vinculo();
+	}
 }

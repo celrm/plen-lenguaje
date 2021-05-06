@@ -40,7 +40,7 @@ terminal    TV  Id, Entero, Import, From, Const, Arr, Ent,
 non terminal    PROG, IMPORTBL, DECBL, DEC_VAR, DEC_DEFREG, DEC_REG,
                 CPARAMS, DENTRO_REG, DEC_FUN, PARAMS, DENTRO, DEC_TYPE,
                 MAINBL,EXPR, EXPFUN, EXPLISTA, LISTADENTRO, VALUES,
-                E0,E1,E2,E3,E4,E5,E6,E7,ETOP,INSTR_REG,
+                E0,E1,E2,E3,E4,E5,E6,E7,ETOP,INSTR_REG,IFBL
                 INSTR, TYPENAME;
 
 PROG ::= IMPORTBL:imps DECBL:decs MAINBL:exe
@@ -50,6 +50,8 @@ PROG ::= IMPORTBL:imps DECBL:decs MAINBL:exe
 IMPORTBL ::= 
 		| Import Id:i From Id:s Punto IMPORTBL:r
     {: RESULT=is.imports(i,s,r); :}
+		| Import Mul From Id:s Punto IMPORTBL:r
+    {: RESULT=is.imports(null,s,r); :}
     | Import error Punto
 		;
 
@@ -122,7 +124,7 @@ E7 ::= E7:o1 Acceso ETOP:o2
     {: RESULT=o; :}
 		;
 E6 ::= E6:o1 Indice E7:o2
-    {: RESULT=as.op_bin(o1,o2,Op.INDICE); :}
+    {: RESULT=as.op_indice(o1,o2,Op.INDICE); :}
         | E7:o
     {: RESULT=o; :}
 		;
@@ -226,10 +228,8 @@ INSTR ::= INSTR_REG:i
     {: RESULT=is.ins_for(el,ar,d); :}
 		| If PA EXPR:b PC LA DENTRO:d LC
     {: RESULT=is.ins_if(b,d); :}
-		| Else If PA EXPR:b PC LA DENTRO:d LC
-    {: RESULT=is.ins_elseif(b,d); :}
-		| Else LA DENTRO:d LC
-    {: RESULT=is.ins_else(d); :}
+		| If PA EXPR:b PC LA DENTRO:d1 LC Else LA DENTRO:d2 LC
+    {: RESULT=is.ins_ifelse(b,d1,d2); :}
 		| EXPFUN:f Punto
     {: RESULT=is.ins_fun(f); :}
         | error Punto

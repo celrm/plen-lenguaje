@@ -33,7 +33,8 @@ public class Params {
 		return sol;
 	}
 	public void vinculo() {
-		// TODO Auto-generated method stub
-		
+		p.vinculo();
+		if(rest!=null)
+			rest.vinculo();
 	}
 }

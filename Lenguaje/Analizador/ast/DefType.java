@@ -4,11 +4,11 @@ import java.util.Map;
 
 import alex.TV;
 
-public class TypeAlias extends Declare {
+public class DefType extends Declare {
 	private TV id;
 	private Typename tipo;
 
-	public TypeAlias(TV id, Typename tipo) {
+	public DefType(TV id, Typename tipo) {
 		type_of_dec=Dec.TYPE;
 		this.id=id;
 		this.tipo=tipo;
@@ -18,7 +18,7 @@ public class TypeAlias extends Declare {
 	}
 	@Override
 	protected void vinculo() {
-				
+		Program.insertaId(id.toString(), this);
 	}
 	public void chequea_prep(Map<String, Typename> typedefs) {
 		typedefs.put(id.toString(),tipo);
