@@ -6,6 +6,7 @@ public class While extends Instr {
 	public While(E b, Instructions d) {
 		this.b=b;
 		lista=d;
+		type_of_in = In.WHILE;
 	}
 	public String toString() {
 		String sol = "while ("+ b.toString()  +") {\n";
@@ -21,7 +22,10 @@ public class While extends Instr {
 	}
 	@Override
 	protected void chequea() throws Exception {
-		// TODO Auto-generated method stub
-		
+		String s = b.chequea();
+		if(!s.equals("bul")) {
+			throw new Exception("While no bul b");
+		}
+		lista.chequea();
 	}
 }

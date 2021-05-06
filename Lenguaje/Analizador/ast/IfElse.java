@@ -8,6 +8,7 @@ public class IfElse extends Instr {
 		this.b=b;
 		listaif=d1;
 		listaelse=d2;
+		type_of_in = In.IFELSE;
 	}
 	public String toString() {
 		String sol = "if (" + b.toString() + ") {\n";
@@ -28,7 +29,11 @@ public class IfElse extends Instr {
 	}
 	@Override
 	protected void chequea() throws Exception {
-		// TODO Auto-generated method stub
-		
+		String s = b.chequea();
+		if(!s.equals("bul")) {
+			throw new Exception("Ifelse no bul b");
+		}
+		listaif.chequea();
+		listaelse.chequea();
 	}
 }

@@ -13,13 +13,13 @@ public class EBasico extends E {
 	}
 	Declare d;
 	@Override
-	protected void vinculo() throws Exception {
+	public void vinculo() throws Exception {
 		if(oper()==Op.BASICO_ID)
 			d = (Declare) Program.buscaId(id.toString()); 
 		// por definición de declare, son todos los sitios donde he hecho inserts
 	}
 	@Override
-	protected String chequea() {
+	public String chequea() {
 		switch(oper()) {
 		case BASICO_BUL:
 			return "bul";
@@ -28,7 +28,8 @@ public class EBasico extends E {
 		case BASICO_ENT:
 			return "ent";
 		case BASICO_ID:
-			return chequea(); // TODO
+//			System.out.println(id.fila);
+			return d.tipo().pure(); // TODO
 		default:
 			break;
 		}

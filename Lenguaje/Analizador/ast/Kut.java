@@ -4,6 +4,7 @@ public class Kut extends Instr {
 	private E print;
 	public Kut(E i) {
 		print=i;
+		type_of_in = In.KUT;
 	}
 	public String toString() {
 		return "kut("+print.toString()+").";
@@ -14,7 +15,11 @@ public class Kut extends Instr {
 	}
 	@Override
 	protected void chequea() throws Exception {
-		// TODO Auto-generated method stub
+		String s = print.chequea();
+		if(!s.equals("ent") && !s.equals("bul")) {
+
+			throw new Exception("no kuteable");
 		
+		}
 	}
 }

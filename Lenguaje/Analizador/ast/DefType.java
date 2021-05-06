@@ -12,20 +12,25 @@ public class DefType extends Declare {
 		type_of_dec=Dec.TYPE;
 		this.id=id;
 		this.tipo=tipo;
+		type_of_in = In.DECLARE;
 	}
 	public String toString() {
 		return "type " + id.toString() + " = " + tipo.toString() + "."; 
 	}
+	public String name() {
+		return id.toString();
+	}
 	@Override
 	protected void vinculo() {
-		Program.insertaId(id.toString(), this);
+		Program.insertaId(name(), this);
 	}
 	public void chequea_prep(Map<String, Typename> typedefs) {
-		typedefs.put(id.toString(),tipo);
+		typedefs.put(name(),tipo);
 	}
 	@Override
-	protected void chequea() {
-		// TODO Auto-generated method stub
-		
+	protected void chequea() {}
+	@Override
+	protected Typename tipo() {
+		return tipo;
 	}
 }

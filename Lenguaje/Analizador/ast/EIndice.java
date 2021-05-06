@@ -2,34 +2,45 @@ package ast;
 
 public class EIndice extends EBin {
    private E o1;
-   private EBasico o2;
-   public EIndice(E opnd1, EBasico opnd2, Op oper) {
+   private E o2;
+   public EIndice(E opnd1, E opnd2, Op oper) {
 	   super(opnd1, opnd2, oper);
 	     this.o1 = opnd1;
 	     this.o2 = opnd2;
    }
+   Declare array;
+   int dim = 1;
 	@Override
 	protected void vinculo() throws Exception {
-		o1.vinculo();
-		o2.vinculo();
-		String e1 = null;
-		if(o1.oper() == Op.BASICO_ID) {
-			e1 = ((EBasico) o1).toString();
+		if (o1.oper()==Op.BASICO_ID) {
+			EBasico o11 = (EBasico) o1;
+			o11.vinculo();
+			array = o11.d;
 		}
-		else if (o1.oper() == Op.ACCESO) {
-			
+		else if (o1.oper()==Op.ACCESO) {
+			EAcceso o11 = (EAcceso) o1;
+			o11.vinculo();
+			array = o11.acc;
 		}
-		else throw new Exception("Error en vínculo de acceso.");
-		if(o2.oper() != Op.BASICO_ID)
-			throw new Exception("Error en vínculo de acceso.");
-		Reg r = (Reg) Program.buscaId(e1);
-		if(r.get(o2.toString())==null)
-			throw new Exception("Error en vínculo de acceso: " + o2.toString());
+		else if (o1.oper()==Op.INDICE) {
+			EIndice o11 = (EIndice) o1;
+			o11.vinculo();
+			array = o11.array;
+			dim = o11.dim+1; 
+		}
+		else 
+			throw new Exception("Access: "+ o2.toString());
 	}
 	@Override
-	protected String chequea() {
+	protected String chequea() throws Exception {
+		String s1 = o1.chequea();
+		String s2 = o2.chequea();
+		if(!s2.equals("ent"))
+			throw new Exception("Acceso no entero");
 		
-		return null;
+		if(!s1.startsWith("arr\\"))
+			throw new Exception("Acceso no array");
+		return s1.substring(4);
 	}
 	public String o2() {
 		return o2.toString();

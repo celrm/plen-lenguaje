@@ -34,4 +34,14 @@ public class HomogValues {
 		if(rest!=null)
 			rest.vinculo();
 	}
+	public String chequea() throws Exception {
+		String t = e.chequea();
+		String w;
+		if(rest!= null) {
+			w = rest.chequea();
+			if(!t.equals(w))
+				throw new Exception("bad list");
+		}
+		return t;
+	}
 }

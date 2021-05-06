@@ -4,6 +4,8 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Stack;
 
+import alex.TV;
+
 public class Program {	
 	private Imports imps;
 	private Declares decs;
@@ -43,9 +45,17 @@ public class Program {
 		throw new Exception("Error de vinculación: " + ident);
 	}
 	
+	private DefFun kin = new DefFun(
+			new TV("kin",-1), new Typename(new TV("ent",-1)), null, null);
+	private DefFun length = new DefFun(
+			new TV("length",-1), new Typename(new TV("ent",-1)), null, null);
+	
 	public void vinculo() throws Exception {
 		inicializa();
 		abreBloque();
+
+		kin.vinculo();
+		length.vinculo();
 		
 		if(imps!=null)
 			imps.vinculo();
@@ -63,9 +73,12 @@ public class Program {
 	public void chequea() throws Exception {
 		typedefs = new HashMap<>();
 		decs.chequea_prep(typedefs);
-		
+
+		if(imps!=null)
 		imps.chequea();
+		if(decs!=null)
 		decs.chequea();
+		if(mn!=null)
 		mn.chequea();
 	}
 }

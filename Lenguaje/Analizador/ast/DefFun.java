@@ -1,5 +1,7 @@
 package ast;
 
+import java.util.List;
+
 import alex.TV;
 
 public class DefFun extends Declare {
@@ -13,6 +15,7 @@ public class DefFun extends Declare {
 		this.tipo=tipo;
 		this.params=params;
 		this.decs=d;
+		type_of_in = In.DECLARE;
 	}
 	public String toString() {
 		String sol = "function " + id.toString() + " return " + tipo.toString();
@@ -20,20 +23,29 @@ public class DefFun extends Declare {
 		sol = sol + (decs==null?"":decs.toString()) + "}";
 		return sol;
 	}
+	public String name() {
+		return id.toString();
+	}
 	@Override
 	protected void vinculo() throws Exception {
-		Program.insertaId(id.toString(), this);
+		Program.insertaId(name(), this);
 		Program.abreBloque();
 		
-		params.vinculo();
-		decs.vinculo();
+		if(params!=null)
+			params.vinculo();
+		if(decs!=null)
+			decs.vinculo();
 		
 		Program.cierraBloque();
 	}
 	@Override
-	protected void chequea() {
-		// TODO Auto-generated method stub
-		
+	protected void chequea() throws Exception {
+		String t = tipo.pure();
+		List<String> returns = decs.chequea();
+		for(String ret : returns) {
+			if(!ret.equals(t))
+				throw new Exception("Bad return type: "+ t + " / " + ret);
+		}
 	}
 	public Typename tipo() {
 		return tipo;

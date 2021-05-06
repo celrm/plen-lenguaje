@@ -11,6 +11,7 @@ public class Reg extends Declare {
 		this.id=id;
 		this.values=values;
 		type_of_dec=Dec.DEFREG;
+		type_of_in = In.DECLARE;
 	}
 	public String toString() {
 		String sol = tipo.toString() + " ";
@@ -18,18 +19,25 @@ public class Reg extends Declare {
 		sol = sol + (values==null?"":values.toString())+ ").";
 		return sol;
 	}
-	private DefReg dr;
+	DefReg dr;
+	public String name() {
+		return id.toString();
+	}
 	@Override
 	protected void vinculo() throws Exception {
 		dr = (DefReg) Program.buscaId(tipo.toString());
-		Program.insertaId(id.toString(), this);
+		Program.insertaId(name(), this);
 	}
 	@Override
 	protected void chequea() {
 		// TODO Auto-generated method stub
-		
+		// hetvalues
 	}
 	public Object get(String arg0) {
 		return dr.get(arg0);
+	}
+	@Override
+	protected Typename tipo() {
+		return tipo;
 	}
 }

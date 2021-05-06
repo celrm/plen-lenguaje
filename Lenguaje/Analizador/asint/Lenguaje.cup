@@ -40,7 +40,7 @@ terminal    TV  Id, Entero, Import, From, Const, Arr, Ent,
 non terminal    PROG, IMPORTBL, DECBL, DEC_VAR, DEC_DEFREG, DEC_REG,
                 CPARAMS, DENTRO_REG, DEC_FUN, PARAMS, DENTRO, DEC_TYPE,
                 MAINBL,EXPR, EXPFUN, EXPLISTA, LISTADENTRO, VALUES,
-                E0,E1,E2,E3,E4,E5,E6,E7,ETOP,INSTR_REG,IFBL
+                E0,E1,E2,E3,E4,E5,E6,E7,ETOP,INSTR_REG,
                 INSTR, TYPENAME;
 
 PROG ::= IMPORTBL:imps DECBL:decs MAINBL:exe

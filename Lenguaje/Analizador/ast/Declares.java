@@ -40,7 +40,7 @@ public class Declares {
 		if(rest!=null)
 			rest.chequea_prep(typedefs);
 	}
-	public void chequea() {
+	public void chequea() throws Exception {
 		var.chequea();
 		if(rest!=null)
 			rest.chequea();

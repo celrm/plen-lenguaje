@@ -12,6 +12,7 @@ public class Var extends Declare {
 		this.id=id;
 		this.exp=exp2;
 		this.is_const=is_const;
+		type_of_in = In.DECLARE;
 	}
 	public String toString() {
 		String sol = type.toString() + " ";
@@ -25,8 +26,15 @@ public class Var extends Declare {
 		Program.insertaId(id.toString(), this);
 	}
 	@Override
-	protected void chequea() {
-		// TODO Auto-generated method stub
-		
+	protected void chequea() throws Exception {
+		String t = type.pure();
+		String e = exp.chequea();
+		if(!t.equals(e)) {
+			throw new Exception("bad var declare " + t +" " + e+" "+ id.fila);
+		}
+	}
+	@Override
+	protected Typename tipo() {
+		return type;
 	}
 }

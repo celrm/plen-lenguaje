@@ -9,6 +9,7 @@ public class ForDec extends Declare {
 		this.elem = elem;
 		this.f = f;
 		type_of_dec = Dec.FORDEC;
+		type_of_in = In.DECLARE;
 	}
 	public String toString() {
 		return elem.toString();
@@ -19,5 +20,10 @@ public class ForDec extends Declare {
 	protected void chequea() {
 		// TODO Auto-generated method stub
 		
+	}
+	Typename tipo;
+	@Override
+	protected Typename tipo() {
+		return tipo;
 	}
 }

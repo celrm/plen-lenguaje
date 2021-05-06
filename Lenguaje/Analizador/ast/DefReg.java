@@ -13,6 +13,7 @@ public class DefReg extends Declare {
 		this.id=id;
 		this.params=params;
 		ins=d;
+		type_of_in = In.DECLARE;
 	}
 	public String toString() {
 		String sol = "data " + id.toString();
@@ -21,26 +22,34 @@ public class DefReg extends Declare {
 		return sol;
 	}
 	private Map<String,Object> defs;
+	public String name() {
+		return id.toString();
+	}
 	@Override
 	protected void vinculo() throws Exception {
-		Program.insertaId(id.toString(), this);
+		Program.insertaId(name(), this);
 		Program.abreBloque();
 		
-		params.vinculo();
+		if(params!=null)
+			params.vinculo();
 		
 		Program.abreBloque();
-		ins.vinculo();
+		if(ins!=null)
+			ins.vinculo();
 		defs = Program.paraRegistros();
 		Program.cierraBloque();
 		
 		Program.cierraBloque();
 	}
 	@Override
-	protected void chequea() {
-		// TODO Auto-generated method stub
-		
+	protected void chequea() throws Exception {
+		ins.chequea();
 	}
 	public Object get(String arg0) {
 		return defs.get(arg0);
+	}
+	@Override
+	protected Typename tipo() {
+		return new Typename(id);
 	}
 }

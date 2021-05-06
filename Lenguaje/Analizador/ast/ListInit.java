@@ -15,9 +15,8 @@ public class ListInit extends E {
 			lista.vinculo();
 	}
 	@Override
-	protected String chequea() {
-		// TODO Auto-generated method stub
-		return null;
+	protected String chequea() throws Exception {
+		return "arr\\"+lista.chequea();
 	}
 
 }

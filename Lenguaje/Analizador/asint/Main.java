@@ -11,9 +11,12 @@ public class Main {
      Reader input = new InputStreamReader(new FileInputStream(args[0]));
 	 AnalizadorLexico alex = new AnalizadorLexico(input);
 	 AnalizadorSintactico asint = new AnalizadorSintactico(alex);
+
+	 Program prog = (Program) asint.parse().value;
 	 
-	 System.out.println(asint.parse().value);
-//	 Program prog = (Program) asint.parse().value;
-//	 prog.vinculo();
+	 System.out.println(prog);
+
+	 prog.vinculo();
+	 prog.chequea();
  }
 }

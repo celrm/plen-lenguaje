@@ -23,6 +23,7 @@ public class Call extends E {
 	}
 	@Override
 	protected String chequea() {
+		// TODO comprobar parámetros
 		return f.tipo().pure();
 	}
 }

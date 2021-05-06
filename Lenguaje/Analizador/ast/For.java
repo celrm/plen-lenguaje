@@ -10,6 +10,7 @@ public class For extends Instr {
 		this.elemDec=new ForDec(elem,this);
 		this.arr=arr;
 		lista=d;
+		type_of_in = In.FOR;
 	}
 	public String toString() {
 		String sol =  "for (" + elemDec.toString() + " : " + arr.toString();
@@ -26,7 +27,10 @@ public class For extends Instr {
 	}
 	@Override
 	protected void chequea() throws Exception {
-		// TODO Auto-generated method stub
-		
+		String s1 = arr.chequea(); 
+		if(!s1.startsWith("arr\\"))
+			throw new Exception("Acceso no array");
+		elemDec.tipo = new Typename(s1.substring(4));
+		lista.chequea();
 	}
 }

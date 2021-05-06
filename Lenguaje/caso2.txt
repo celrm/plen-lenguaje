@@ -1,4 +1,4 @@
-import quicksort from sort. € Imports
+€import quicksort from sort. € Imports
 
 type matriz = arr\arr\ent. € Tipos con nombre
 
@@ -12,12 +12,22 @@ data coleccion (const ent size) = {
 
 € Funciones
 function my_quick return arr\ent (arr\ent v) {
-    arr\ent w = quicksort(v).
+    arr\ent w = (2,0).
     return w.
 }
 
-€ Siempre al final
+data bolsillo() = {
+    ent monedas = 0.
+}.
+data pantalon() = {
+    bolsillo delantero().
+    bolsillo trasero().
+}.
+
 main {
+    pantalon vaquero().
+    vaquero->delantero->monedas=1.
+    
     ent a = kin().
     while (a > 0) {
         kut(a).

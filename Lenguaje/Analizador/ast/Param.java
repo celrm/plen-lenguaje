@@ -10,6 +10,7 @@ public class Param extends Declare {
 		this.tipo = tipo;
 		this.id = id;
 		type_of_dec = Dec.PARAM;
+		type_of_in = In.DECLARE;
 	}
 	public String toString() {
 		String sol = tipo.toString() + " ";
@@ -20,8 +21,9 @@ public class Param extends Declare {
 		Program.insertaId(id.toString(), this);
 	}
 	@Override
-	protected void chequea() {
-		// TODO Auto-generated method stub
-		
+	protected void chequea() {}
+	@Override
+	protected Typename tipo() {
+		return tipo;
 	}
 }

@@ -6,6 +6,7 @@ public class If extends Instr {
 	public If(E b, Instructions d) {
 		this.b=b;
 		lista=d;
+		type_of_in = In.IF;
 	}
 	public String toString() {
 		String sol = "if ("+ b.toString()  +") {\n";
@@ -21,7 +22,10 @@ public class If extends Instr {
 	}
 	@Override
 	protected void chequea() throws Exception {
-		// TODO Auto-generated method stub
-		
+		String s = b.chequea();
+		if(!s.equals("bul")) {
+			throw new Exception("If no bul b");
+		}
+		lista.chequea();
 	}
 }
