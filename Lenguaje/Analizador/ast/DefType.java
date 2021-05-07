@@ -14,7 +14,6 @@ public class DefType extends Declare {
 		type_of_dec=Dec.TYPE;
 		this.id=id;
 		this.tipo=tipo;
-		type_of_in = In.DECLARE;
 	}
 	public String toString() {
 		return "type " + id.toString() + " = " + tipo.toString() + "."; 

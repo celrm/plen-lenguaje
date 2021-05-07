@@ -13,7 +13,6 @@ public class Import extends Declare {
 		this.name=name;
 		this.source=source;
 		type_of_dec = Dec.IMPORT;
-		type_of_in = In.DECLARE;
 	}
 	public String toString() {
 		return "import " + name.toString() + " from " + source.toString() + ".";

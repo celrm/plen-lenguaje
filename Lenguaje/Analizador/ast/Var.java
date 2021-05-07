@@ -15,7 +15,6 @@ public class Var extends Declare {
 		this.id=id;
 		this.exp=exp2;
 		this.is_const=is_const;
-		type_of_in = In.DECLARE;
 	}
 	public String toString() {
 		String sol = type.toString() + " ";

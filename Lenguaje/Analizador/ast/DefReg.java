@@ -15,7 +15,6 @@ public class DefReg extends Declare {
 		this.id=id;
 		this.params=params;
 		ins=d;
-		type_of_in = In.DECLARE;
 	}
 	public String toString() {
 		String sol = "data " + id.toString();

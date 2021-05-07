@@ -13,7 +13,6 @@ public class Param extends Declare {
 		this.tipo = tipo;
 		this.id = id;
 		type_of_dec = Dec.PARAM;
-		type_of_in = In.DECLARE;
 	}
 	public String toString() {
 		String sol = tipo.toString() + " ";

@@ -12,7 +12,6 @@ public class ForDec extends Declare {
 		this.elem = elem;
 //		this.f = f;
 		type_of_dec = Dec.FORDEC;
-		type_of_in = In.DECLARE;
 	}
 	public String toString() {
 		return elem.toString();

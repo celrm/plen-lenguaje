@@ -14,7 +14,6 @@ public class Reg extends Declare {
 		this.id=id;
 		this.v=values;
 		type_of_dec=Dec.DEFREG;
-		type_of_in = In.DECLARE;
 	}
 	public String toString() {
 		String sol = tipo.toString() + " ";
@@ -33,17 +32,17 @@ public class Reg extends Declare {
 	}
 	@Override
 	protected List<Typename> chequea() throws Exception {
+		Params p = dr.params;
+		HeterValues q = v;
 		while(true) {
-			Params p = dr.params;
-			HeterValues q = v;
 			if(p==null && q == null)
 				return new ArrayList<>();
 			if(p==null || q == null)
 				throw new Exception("different parameters in call "+id.fila);
 			Param e1 = p.p;
 			p = p.rest;
-			E e2 = v.e;
-			v = v.rest;
+			E e2 = q.e;
+			q = q.rest;
 			e1.chequea();
 			Typename par = e2.chequea();
 			if(!e1.tipo().equals(par)) {

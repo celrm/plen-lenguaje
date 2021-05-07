@@ -16,7 +16,6 @@ public class DefFun extends Declare {
 		this.tipo=tipo;
 		this.params=params;
 		this.decs=d;
-		type_of_in = In.DECLARE;
 	}
 	public String toString() {
 		String sol = "function " + id.toString() + " return " + tipo.toString();

@@ -37,7 +37,7 @@ main {
     arr\ent v = [2 * 3 + 1, 9 / 3, 1 + (-1)].
     kut(v ! 3).
     
-    arr\ent w = my_quick(v).
+    my_quick(v).
     for(e : w) {
         kut(e).
     }

@@ -17,23 +17,26 @@ public class Call extends E {
 	DefFun f;
 	@Override
 	protected void vinculo() throws Exception {
-		if(v!=null)
+		if(v!=null) {
 			v.vinculo();
-		f = (DefFun) Program.buscaId(id.toString());
+		}
+		f = (DefFun) Program.buscaId(id.toString()); // CAST
 	}
 	@Override
 	protected Typename chequea() throws Exception {
+		Params p = f.params;
+		HeterValues q = v;
 		while(true) {
-			Params p = f.params;
-			HeterValues q = v;
 			if(p==null && q == null)
 				return f.tipo().pure();
-			if(p==null || q == null)
-				throw new Exception("different parameters in call "+id.fila);
+			if(q==null)
+				throw new Exception("different parameters p: "+p.toString()+" in call "+id.fila);
+			if(p==null)
+				throw new Exception("different parameters c: "+q.toString()+" in call "+id.fila);
 			Param e1 = p.p;
 			p = p.rest;
-			E e2 = v.e;
-			v = v.rest;
+			E e2 = q.e;
+			q = q.rest;
 			e1.chequea();
 			Typename par = e2.chequea();
 			if(!e1.tipo().equals(par)) {
