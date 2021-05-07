@@ -22,8 +22,8 @@ public class While extends Instr {
 	}
 	@Override
 	protected void chequea() throws Exception {
-		String s = b.chequea();
-		if(!s.equals("bul")) {
+		Typename s = b.chequea();
+		if(s.t != Type.BUL) {
 			throw new Exception("While no bul b");
 		}
 		lista.chequea();

@@ -4,8 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class HeterValues {
-	private E e;
-	private HeterValues rest;
+	E e;
+	HeterValues rest;
 	public HeterValues(E e, HeterValues rest) {
 		this.e=e;
 		this.rest=rest;

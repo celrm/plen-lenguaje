@@ -7,7 +7,7 @@ import alex.TV;
 public class DefFun extends Declare {
 	private TV id;
 	private Typename tipo;
-	private Params params;
+	Params params;
 	private Instructions decs;
 	public DefFun(TV id, Typename tipo, Params params, Instructions d) {
 		type_of_dec = Dec.FUNCTION;
@@ -40,9 +40,9 @@ public class DefFun extends Declare {
 	}
 	@Override
 	protected void chequea() throws Exception {
-		String t = tipo.pure();
-		List<String> returns = decs.chequea();
-		for(String ret : returns) {
+		Typename t = tipo.pure();
+		List<Typename> returns = decs.chequea();
+		for(Typename ret : returns) {
 			if(!ret.equals(t))
 				throw new Exception("Bad return type: "+ t + " / " + ret);
 		}

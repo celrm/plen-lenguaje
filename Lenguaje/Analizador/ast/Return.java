@@ -13,12 +13,12 @@ public class Return extends Instr {
 	protected void vinculo() throws Exception {
 		exp.vinculo();		
 	}
-	String tipo;
+	Typename tipo;
 	@Override
 	protected void chequea() throws Exception {
 		tipo = exp.chequea();
 	}
-	public String tipo() {
+	public Typename tipo() {
 		return tipo;
 	} 
 

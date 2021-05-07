@@ -32,9 +32,9 @@ public class Instructions {
 		if(rest!=null)
 			rest.vinculo();
 	}
-	public List<String> chequea() throws Exception {
-		List<String> rets = new ArrayList<>();
-		String meter = null;
+	public List<Typename> chequea() throws Exception {
+		List<Typename> rets = new ArrayList<>();
+		Typename meter = null;
 		i.chequea();
 		if(i.type_of_in == In.RETURN)
 			meter = ((Return)i).tipo();

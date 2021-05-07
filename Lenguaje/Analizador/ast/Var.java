@@ -27,8 +27,8 @@ public class Var extends Declare {
 	}
 	@Override
 	protected void chequea() throws Exception {
-		String t = type.pure();
-		String e = exp.chequea();
+		Typename t = type.pure();
+		Typename e = exp.chequea();
 		if(!t.equals(e)) {
 			throw new Exception("bad var declare " + t +" " + e+" "+ id.fila);
 		}

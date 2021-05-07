@@ -27,10 +27,11 @@ public class For extends Instr {
 	}
 	@Override
 	protected void chequea() throws Exception {
-		String s1 = arr.chequea(); 
-		if(!s1.startsWith("arr\\"))
+		Typename s1 = arr.chequea(); 
+
+		if(s1.t != Type.ARR)
 			throw new Exception("Acceso no array");
-		elemDec.tipo = new Typename(s1.substring(4));
+		elemDec.tipo = s1.t_arr;
 		lista.chequea();
 	}
 }

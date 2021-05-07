@@ -15,8 +15,8 @@ public class ListInit extends E {
 			lista.vinculo();
 	}
 	@Override
-	protected String chequea() throws Exception {
-		return "arr\\"+lista.chequea();
+	protected Typename chequea() throws Exception {
+		return new Typename(lista.chequea());
 	}
 
 }

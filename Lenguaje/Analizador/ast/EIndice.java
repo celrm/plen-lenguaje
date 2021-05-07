@@ -32,15 +32,15 @@ public class EIndice extends EBin {
 			throw new Exception("Access: "+ o2.toString());
 	}
 	@Override
-	protected String chequea() throws Exception {
-		String s1 = o1.chequea();
-		String s2 = o2.chequea();
-		if(!s2.equals("ent"))
+	protected Typename chequea() throws Exception {
+		Typename s1 = o1.chequea();
+		Typename s2 = o2.chequea();
+		if(s2.t != Type.ENT)
 			throw new Exception("Acceso no entero");
 		
-		if(!s1.startsWith("arr\\"))
+		if(s1.t != Type.ARR)
 			throw new Exception("Acceso no array");
-		return s1.substring(4);
+		return s1.t_arr;
 	}
 	public String o2() {
 		return o2.toString();

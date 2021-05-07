@@ -6,8 +6,8 @@ import java.util.List;
 import alex.TV;
 
 public class Params {
-	private Param p;
-	private Params rest; 
+	Param p;
+	Params rest; 
 	public Params(Typename tipo, TV id, Params rest, boolean is_const2) {
 		p = new Param(tipo,id);
 		this.rest = rest;

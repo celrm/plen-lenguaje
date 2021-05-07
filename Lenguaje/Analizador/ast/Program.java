@@ -66,9 +66,9 @@ public class Program {
 		
 		cierraBloque();
 	}
-	private static Map<String,Typename> typedefs;
-	public static Typename get_alias(String arg0) {
-		return typedefs.get(arg0);
+	private static Map<Typename,Typename> typedefs;
+	public static Typename get_alias(Typename from) {
+		return typedefs.get(from);
 	}
 	public void chequea() throws Exception {
 		typedefs = new HashMap<>();

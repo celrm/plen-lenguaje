@@ -4,7 +4,7 @@ import alex.TV;
 
 public class Call extends E {	
 	TV id;
-	HeterValues v; // puede ser null
+	HeterValues v;
 	public Call(TV id, HeterValues v) {
 		super(Op.CALL);
 		this.id = id;
@@ -22,8 +22,23 @@ public class Call extends E {
 		f = (DefFun) Program.buscaId(id.toString());
 	}
 	@Override
-	protected String chequea() {
-		// TODO comprobar parámetros
-		return f.tipo().pure();
+	protected Typename chequea() throws Exception {
+		while(true) {
+			Params p = f.params;
+			HeterValues q = v;
+			if(p==null && q == null)
+				return f.tipo().pure();
+			if(p==null || q == null)
+				throw new Exception("different parameters in call "+id.fila);
+			Param e1 = p.p;
+			p = p.rest;
+			E e2 = v.e;
+			v = v.rest;
+			e1.chequea();
+			Typename par = e2.chequea();
+			if(!e1.tipo().equals(par)) {
+				throw new Exception("different parameter types in call "+id.fila);
+			}
+		}
 	}
 }

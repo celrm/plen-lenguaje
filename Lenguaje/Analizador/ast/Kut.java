@@ -15,8 +15,8 @@ public class Kut extends Instr {
 	}
 	@Override
 	protected void chequea() throws Exception {
-		String s = print.chequea();
-		if(!s.equals("ent") && !s.equals("bul")) {
+		Typename s = print.chequea();
+		if(s.t != Type.ENT && s.t != Type.BUL) {
 
 			throw new Exception("no kuteable");
 		

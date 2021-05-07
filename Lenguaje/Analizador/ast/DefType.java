@@ -24,11 +24,14 @@ public class DefType extends Declare {
 	protected void vinculo() {
 		Program.insertaId(name(), this);
 	}
-	public void chequea_prep(Map<String, Typename> typedefs) {
-		typedefs.put(name(),tipo);
+	public void chequea_prep(Map<Typename, Typename> typedefs) {
+		typedefs.put(new Typename(id),tipo);
 	}
 	@Override
-	protected void chequea() {}
+	protected void chequea() throws Exception {
+		if(name().equals("ent") || name().equals("car") || name().equals("bul"))
+		throw new Exception("No definas otra vez "+name());
+	}
 	@Override
 	protected Typename tipo() {
 		return tipo;

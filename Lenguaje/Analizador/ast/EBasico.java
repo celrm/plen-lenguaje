@@ -19,17 +19,16 @@ public class EBasico extends E {
 		// por definición de declare, son todos los sitios donde he hecho inserts
 	}
 	@Override
-	public String chequea() {
+	public Typename chequea() {
 		switch(oper()) {
 		case BASICO_BUL:
-			return "bul";
+			return new Typename("bul");
 		case BASICO_CAR:
-			return "car";
+			return new Typename("car");
 		case BASICO_ENT:
-			return "ent";
+			return new Typename("ent");
 		case BASICO_ID:
-//			System.out.println(id.fila);
-			return d.tipo().pure(); // TODO
+			return d.tipo().pure(); 
 		default:
 			break;
 		}

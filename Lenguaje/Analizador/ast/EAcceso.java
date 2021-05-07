@@ -32,7 +32,7 @@ public class EAcceso extends EBin {
 			throw new Exception("Access: "+ o2.toString());
 	}
 	@Override
-	protected String chequea() {
+	protected Typename chequea() {
 		// check si o1 es reg, se supone que arriba
 		return acc.tipo().pure();
 	}

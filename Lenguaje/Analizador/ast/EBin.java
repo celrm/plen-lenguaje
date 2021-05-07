@@ -17,39 +17,39 @@ public class EBin extends E {
 		o2.vinculo();
 	}
 	@Override
-	protected String chequea() throws Exception {
-		String s1 = o1.chequea();
-		String s2 = o2.chequea();
+	protected Typename chequea() throws Exception {
+		Typename s1 = o1.chequea();
+		Typename s2 = o2.chequea();
 		switch(oper()) {
 		case OR:
 		case AND:
-			if(!s1.equals("bul") || !s2.equals("bul"))
+			if(s1.t != Type.BUL || s2.t != Type.BUL)
 				throw new Exception(oper()+" de no bul");
-			return "bul";
+			return new Typename("bul");
 		case ARRAYINIT:
-			if(!s1.equals("ent"))
+			if(s1.t != Type.ENT)
 				throw new Exception("Mal arrayinit tipo");
-			return "arr\\"+s2;
+			return new Typename(s2);
 		case DISTINTO:
 		case IGUAL:
 			if(!s1.equals(s2))
 				throw new Exception(oper() +" mal tipo");
-			return "bul";
+			return new Typename("bul");
 		case MAQ:
 		case MAYOR:
 		case MENOR:
 		case MEQ:
-			if(!s1.equals("ent") || !s2.equals("ent"))
+			if(s1.t != Type.ENT || s2.t != Type.ENT)
 				throw new Exception(oper()+" de no ent");
-			return "bul";
+			return new Typename("bul");
 		case DIV:
 		case MOD:
 		case MUL:
 		case RESTA:
 		case SUMA:
-			if(!s1.equals("ent") || !s2.equals("ent"))
+			if(s1.t != Type.ENT || s2.t != Type.ENT)
 				throw new Exception(oper()+" de no ent");
-			return "ent";
+			return new Typename("ent");
 		default:
 			break;
 		}

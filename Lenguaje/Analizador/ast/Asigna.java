@@ -22,8 +22,8 @@ public class Asigna extends Instr {
 	protected void chequea() throws Exception {
 		if(e1.oper() != Op.ACCESO && e1.oper() != Op.INDICE && e1.oper() != Op.BASICO_ID)
 			throw new Exception("No asignable: " + e1.toString());
-		String t1 = e1.chequea();
-		String t2 = e2.chequea();
-		if(!t1.equals(t2)) throw new Exception("Fallo de tipo");
+		Typename t1 = e1.chequea();
+		Typename t2 = e2.chequea();
+		if(!t1.equals(t2)) throw new Exception("Fallo de tipo en asignación");
 	}
 }

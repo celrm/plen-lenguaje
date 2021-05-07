@@ -4,10 +4,10 @@ import alex.TV;
 
 public class ForDec extends Declare {
 	private TV elem;
-	private For f;
+//	private For f;
 	public ForDec(TV elem,For f) {
 		this.elem = elem;
-		this.f = f;
+//		this.f = f;
 		type_of_dec = Dec.FORDEC;
 		type_of_in = In.DECLARE;
 	}
@@ -17,10 +17,7 @@ public class ForDec extends Declare {
 	@Override
 	protected void vinculo() throws Exception {}
 	@Override
-	protected void chequea() {
-		// TODO Auto-generated method stub
-		
-	}
+	protected void chequea() {}
 	Typename tipo;
 	@Override
 	protected Typename tipo() {

@@ -14,17 +14,17 @@ public class EMono extends E {
 		o.vinculo();
 	}
 	@Override
-	protected String chequea() throws Exception {
-		String s1 = o.chequea();
+	protected Typename chequea() throws Exception {
+		Typename s1 = o.chequea();
 		switch(oper()) {
 		case NOT:
-			if(!s1.equals("bul"))
+			if(s1.t != Type.BUL)
 				throw new Exception("not tipo");
-			return "bul";
+			return s1;
 		case SIGNO:
-			if(!s1.equals("ent"))
+			if(s1.t != Type.ENT)
 				throw new Exception("signo tipo");
-			return "ent";
+			return s1;
 		default:
 			break;
 		
