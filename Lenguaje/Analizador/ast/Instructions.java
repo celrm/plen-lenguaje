@@ -33,14 +33,15 @@ public class Instructions {
 			rest.vinculo();
 	}
 	public List<Typename> chequea() throws Exception {
-		List<Typename> rets = new ArrayList<>();
-		Typename meter = null;
-		i.chequea();
-		if(i.type_of_in == In.RETURN)
-			meter = ((Return)i).tipo();
+		List<Typename> i_rets = i.chequea();
+		List<Typename> all_rets = new ArrayList<>();
+
 		if(rest!=null) 
-			rets = rest.chequea();
-		if(meter!=null) rets.add(meter);
-		return rets;
+			all_rets = rest.chequea();
+		
+		for (Typename meter : i_rets) {
+			all_rets.add(meter);
+		}
+		return all_rets;
 	}
 }

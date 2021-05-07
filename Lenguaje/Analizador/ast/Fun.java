@@ -1,5 +1,8 @@
 package ast;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Fun extends Instr {
 	private Call f;
 	public Fun(Call f) {
@@ -14,7 +17,8 @@ public class Fun extends Instr {
 		f.vinculo();
 	}
 	@Override
-	protected void chequea() throws Exception {
+	protected List<Typename> chequea() throws Exception {
 		f.chequea();
+		return new ArrayList<>();
 	}
 }

@@ -1,5 +1,7 @@
 package ast;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 import alex.TV;
@@ -28,9 +30,10 @@ public class DefType extends Declare {
 		typedefs.put(new Typename(id),tipo);
 	}
 	@Override
-	protected void chequea() throws Exception {
+	protected List<Typename> chequea() throws Exception {
 		if(name().equals("ent") || name().equals("car") || name().equals("bul"))
 		throw new Exception("No definas otra vez "+name());
+		return new ArrayList<>();
 	}
 	@Override
 	protected Typename tipo() {

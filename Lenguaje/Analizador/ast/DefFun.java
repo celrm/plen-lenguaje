@@ -1,5 +1,6 @@
 package ast;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import alex.TV;
@@ -39,13 +40,14 @@ public class DefFun extends Declare {
 		Program.cierraBloque();
 	}
 	@Override
-	protected void chequea() throws Exception {
+	protected List<Typename> chequea() throws Exception {
 		Typename t = tipo.pure();
 		List<Typename> returns = decs.chequea();
 		for(Typename ret : returns) {
 			if(!ret.equals(t))
 				throw new Exception("Bad return type: "+ t + " / " + ret);
 		}
+		return new ArrayList<>();
 	}
 	public Typename tipo() {
 		return tipo;

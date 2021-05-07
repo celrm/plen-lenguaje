@@ -1,5 +1,8 @@
 package ast;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import alex.TV;
 
 public class Param extends Declare {
@@ -21,7 +24,8 @@ public class Param extends Declare {
 		Program.insertaId(id.toString(), this);
 	}
 	@Override
-	protected void chequea() {}
+	protected List<Typename> chequea() {
+		return new ArrayList<>();}
 	@Override
 	protected Typename tipo() {
 		return tipo;

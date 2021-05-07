@@ -1,5 +1,7 @@
 package ast;
 
+import java.util.List;
+
 public class While extends Instr {
 	private E b;
 	private Instructions lista;
@@ -21,11 +23,11 @@ public class While extends Instr {
 		Program.cierraBloque();
 	}
 	@Override
-	protected void chequea() throws Exception {
+	protected List<Typename> chequea() throws Exception {
 		Typename s = b.chequea();
 		if(s.t != Type.BUL) {
 			throw new Exception("While no bul b");
 		}
-		lista.chequea();
+		return lista.chequea();
 	}
 }

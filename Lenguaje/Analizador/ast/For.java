@@ -1,5 +1,7 @@
 package ast;
 
+import java.util.List;
+
 import alex.TV;
 
 public class For extends Instr {
@@ -26,12 +28,12 @@ public class For extends Instr {
 		Program.cierraBloque();
 	}
 	@Override
-	protected void chequea() throws Exception {
+	protected List<Typename> chequea() throws Exception {
 		Typename s1 = arr.chequea(); 
 
 		if(s1.t != Type.ARR)
 			throw new Exception("Acceso no array");
 		elemDec.tipo = s1.t_arr;
-		lista.chequea();
+		return lista.chequea();
 	}
 }

@@ -1,5 +1,8 @@
 package ast;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import alex.TV;
 
 public class Var extends Declare {
@@ -26,12 +29,13 @@ public class Var extends Declare {
 		Program.insertaId(id.toString(), this);
 	}
 	@Override
-	protected void chequea() throws Exception {
+	protected List<Typename> chequea() throws Exception {
 		Typename t = type.pure();
 		Typename e = exp.chequea();
 		if(!t.equals(e)) {
 			throw new Exception("bad var declare " + t +" " + e+" "+ id.fila);
 		}
+		return new ArrayList<>();
 	}
 	@Override
 	protected Typename tipo() {

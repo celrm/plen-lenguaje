@@ -1,5 +1,8 @@
 package ast;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import alex.TV;
 
 public class ForDec extends Declare {
@@ -17,7 +20,7 @@ public class ForDec extends Declare {
 	@Override
 	protected void vinculo() throws Exception {}
 	@Override
-	protected void chequea() {}
+	protected List<Typename> chequea() {return new ArrayList<>();}
 	Typename tipo;
 	@Override
 	protected Typename tipo() {

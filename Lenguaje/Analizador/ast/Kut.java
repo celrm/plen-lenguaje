@@ -1,5 +1,8 @@
 package ast;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Kut extends Instr {
 	private E print;
 	public Kut(E i) {
@@ -14,12 +17,13 @@ public class Kut extends Instr {
 		print.vinculo();		
 	}
 	@Override
-	protected void chequea() throws Exception {
+	protected List<Typename> chequea() throws Exception {
 		Typename s = print.chequea();
 		if(s.t != Type.ENT && s.t != Type.BUL) {
 
 			throw new Exception("no kuteable");
 		
 		}
+		return new ArrayList<>();
 	}
 }

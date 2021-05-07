@@ -1,12 +1,14 @@
 package ast;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 import alex.TV;
 
 public class DefReg extends Declare {
 	private TV id;
-	private Params params;
+	Params params;
 	private Instructions ins;
 	public DefReg(TV id, Params params, Instructions d) {
 		type_of_dec=Dec.REGISTER;
@@ -42,8 +44,9 @@ public class DefReg extends Declare {
 		Program.cierraBloque();
 	}
 	@Override
-	protected void chequea() throws Exception {
+	protected List<Typename> chequea() throws Exception {
 		ins.chequea();
+		return new ArrayList<>();
 	}
 	public Object get(String arg0) {
 		return defs.get(arg0);

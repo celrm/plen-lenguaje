@@ -1,5 +1,8 @@
 package ast;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Return extends Instr {
 	private E exp;
 	public Return(E e) {
@@ -15,8 +18,11 @@ public class Return extends Instr {
 	}
 	Typename tipo;
 	@Override
-	protected void chequea() throws Exception {
+	protected List<Typename> chequea() throws Exception {
 		tipo = exp.chequea();
+		List<Typename> rets = new ArrayList<>();
+		rets.add(tipo);
+		return rets;
 	}
 	public Typename tipo() {
 		return tipo;

@@ -1,5 +1,7 @@
 package ast;
 
+import java.util.List;
+
 public class IfElse extends Instr {
 	private E b;
 	private Instructions listaif;
@@ -28,12 +30,14 @@ public class IfElse extends Instr {
 		Program.cierraBloque();
 	}
 	@Override
-	protected void chequea() throws Exception {
+	protected List<Typename> chequea() throws Exception {
 		Typename s = b.chequea();
 		if(s.t != Type.BUL) {
 			throw new Exception("Ifelse no bul b");
 		}
-		listaif.chequea();
-		listaelse.chequea();
+		List<Typename> rets1 = listaif.chequea();
+		List<Typename> rets2 = listaelse.chequea();
+		rets1.addAll(rets2);
+		return rets1;
 	}
 }

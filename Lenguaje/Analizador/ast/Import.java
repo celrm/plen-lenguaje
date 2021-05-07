@@ -1,5 +1,8 @@
 package ast;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import alex.TV;
 
 public class Import extends Declare {
@@ -18,7 +21,8 @@ public class Import extends Declare {
 	public void vinculo() {
 		Program.insertaId(name.toString(), this);
 	}
-	public void chequea() {} // TODO ?
+	public List<Typename> chequea() {
+		return new ArrayList<>();} // TODO ?
 	@Override
 	protected Typename tipo() {
 		// TODO Auto-generated method stub
