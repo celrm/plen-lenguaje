@@ -1,7 +1,5 @@
 package ast;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Map;
 
 public class Declares {
@@ -12,20 +10,10 @@ public class Declares {
 		this.rest=rest;
 		var.type_of_dec = dectype;
 	}
-	private List<Declare> list() {
-		List<Declare> sol;
-		if(rest == null) {
-			sol = new ArrayList<Declare>();
-		}
-		else sol = rest.list();
-		if(var!=null)
-			sol.add(0, var);
-		return sol;
-	}	
 	public String toString() {
-		String sol = "";
-		for(Declare d : list()) {
-			sol = sol + d.toString() + "\n";
+		String sol = var.toString() + "\n";
+		if (rest!=null) {
+			sol = sol + rest.toString();
 		}
 		return sol;
 	}

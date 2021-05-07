@@ -10,20 +10,10 @@ public class Instructions {
 		this.i=i;
 		this.rest=rest;
 	}
-	private List<Instr> list() {
-		List<Instr> sol;
-		if(rest == null) {
-			sol = new ArrayList<Instr>();
-		}
-		else sol = rest.list();
-		if(i!=null)
-			sol.add(0,i);
-		return sol;
-	}
 	public String toString() {
-		String sol = "";
-		for(Instr d : list()) {
-			sol = sol + d.toString() + "\n";
+		String sol = i.toString() + "\n";
+		if (rest!=null) {
+			sol = sol + rest.toString();
 		}
 		return sol;
 	}

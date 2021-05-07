@@ -17,7 +17,10 @@ public class EAcceso extends EBin {
 			throw new Exception("Access: "+ o2.toString());
 		
 		if (o1.oper()==Op.BASICO_ID) {
-			r = (Reg) Program.buscaId(o1.toString());
+			Declare d = (Declare) Program.buscaId(o1.toString());
+			if(d.type_of_dec == Dec.PARAM) {
+				
+			}
 			dr = r.dr;
 			acc = (Declare) dr.get(o2.toString());
 		}
