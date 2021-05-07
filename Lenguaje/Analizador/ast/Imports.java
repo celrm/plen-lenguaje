@@ -30,7 +30,7 @@ public class Imports {
 		}
 		return sol;
 	}
-	public void vinculo() {
+	public void vinculo() throws Exception {
 		i.vinculo();
 		if(rest!=null)
 			rest.vinculo();

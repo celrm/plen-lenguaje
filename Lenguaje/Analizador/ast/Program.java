@@ -8,7 +8,7 @@ import alex.TV;
 
 public class Program {	
 	private Imports imps;
-	private Declares decs;
+	Declares decs;
 	private Instructions mn;
 	public Program(Imports imps, Declares decs, Instructions mn) {
 		this.imps=imps;
@@ -31,7 +31,7 @@ public class Program {
 	public static void cierraBloque() {
 		pila.pop();
 	}
-	public static Map<String, Object> paraRegistros() {
+	public static Map<String, Object> tablaSimbolos() {
 		return pila.firstElement();
 	}
 	public static void insertaId(String ident,Object puntero) {

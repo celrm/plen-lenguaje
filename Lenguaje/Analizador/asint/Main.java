@@ -16,7 +16,7 @@ public class Main {
 	 prog.chequea();
  }
    
-   protected static Program abrirFichero(String ruta) throws Exception {
+   public static Program abrirFichero(String ruta) throws Exception {
 	     Reader input = new InputStreamReader(new FileInputStream(ruta));
 		 AnalizadorLexico alex = new AnalizadorLexico(input);
 		 AnalizadorSintactico asint = new AnalizadorSintactico(alex);

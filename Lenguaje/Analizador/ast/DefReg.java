@@ -37,7 +37,7 @@ public class DefReg extends Declare {
 		Program.abreBloque();
 		if(ins!=null)
 			ins.vinculo();
-		defs = Program.paraRegistros();
+		defs = Program.tablaSimbolos();
 		Program.cierraBloque();
 		
 		Program.cierraBloque();
