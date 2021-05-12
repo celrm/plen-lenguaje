@@ -8,35 +8,38 @@ public class EAcceso extends EBin {
 	     this.o1 = opnd1;
 	     this.o2 = opnd2;
    }
-   Reg r;
+   Declare r; 
    DefReg dr;
    Declare acc;
 	@Override
-	protected void vinculo() throws Exception {
-		if(o2.oper()!=Op.BASICO_ID)
-			throw new Exception("Access: "+ o2.toString());
-		
+	protected void vinculo() throws Exception {		
 		if (o1.oper()==Op.BASICO_ID) {
-			Declare d = (Declare) Program.buscaId(o1.toString());
-			if(d.type_of_dec == Dec.PARAM) {
-				
-			}
-			dr = r.dr;
-			acc = (Declare) dr.get(o2.toString());
+			r = (Declare) Program.buscaId(o1.toString());
 		}
 		else if (o1.oper()==Op.ACCESO) {
 			EAcceso o11 = (EAcceso) o1;
 			o11.vinculo();
-			r = (Reg) o11.acc;
-			dr = r.dr;
-			acc = (Declare) dr.get(o2.toString());
+			r = o11.acc;
 		}
 		else 
 			throw new Exception("Access: "+ o2.toString());
+		
+
+		Typename t = r.tipo();
+		if (t.t != Type.CUSTOM)
+			throw new Exception("Access: "+ r.toString());
+		
+		dr = (DefReg) Program.buscaId(t.pure().toString()); // este es mi problema
+		// no puedo poner buscaid en chequea porque no estarán los ámbitos activos
+		// no puedo poner pure antes de haber preprocesado... -> prechequea al principio...
+
 	}
 	@Override
-	protected Typename chequea() {
-		// check si o1 es reg, se supone que arriba
+	protected Typename chequea() throws Exception {
+		if(o2.oper()!=Op.BASICO_ID)
+			throw new Exception("Access: "+ o2.toString());
+		
+		acc = (Declare) dr.get(o2.toString());
 		return acc.tipo().pure();
 	}
 	public String o2() {

@@ -28,8 +28,8 @@ public class DefReg extends Declare {
 	}
 	@Override
 	protected void vinculo() throws Exception {
-		Program.insertaId(name(), this);
 		Program.abreBloque();
+		Program.insertaId(name(), this); // bolsillos recursivos, árboles
 		
 		if(params!=null)
 			params.vinculo();

@@ -23,6 +23,7 @@ public class Program {
 	////////////////
 	private static Stack<Map<String,Object>> pila;
 	public static void inicializa() {
+		
 		pila = new Stack<>();
 	}
 	public static void abreBloque() {
@@ -51,6 +52,10 @@ public class Program {
 			new TV("length",-1), new Typename(new TV("ent",-1)), null, null);
 	
 	public void vinculo() throws Exception {
+
+		typedefs = new HashMap<>(); // lo necesito aquí y no en chequea para usarlo en registros
+		decs.chequea_prep(typedefs);
+		
 		inicializa();
 		abreBloque();
 
@@ -71,8 +76,6 @@ public class Program {
 		return typedefs.get(from);
 	}
 	public void chequea() throws Exception {
-		typedefs = new HashMap<>();
-		decs.chequea_prep(typedefs);
 
 		if(imps!=null)
 		imps.chequea();

@@ -28,8 +28,8 @@ public class DefFun extends Declare {
 	}
 	@Override
 	protected void vinculo() throws Exception {
-		Program.insertaId(name(), this);
 		Program.abreBloque();
+		Program.insertaId(name(), this); // rec
 		
 		if(params!=null)
 			params.vinculo();

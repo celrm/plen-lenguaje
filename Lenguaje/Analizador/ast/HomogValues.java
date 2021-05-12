@@ -26,7 +26,7 @@ public class HomogValues {
 		if(rest!= null) {
 			w = rest.chequea();
 			if(!t.equals(w))
-				throw new Exception("bad list");
+				throw new Exception("bad list"); // mirar tamaños varios de arrays [[],[1]]
 		}
 		return t;
 	}
