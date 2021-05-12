@@ -1,0 +1,30 @@
+
+data bolsillo() = {
+    ent monedas = 0.
+}.
+
+data pantalon() = {
+    bolsillo delantero().
+    bolsillo trasero().
+}.
+
+function guardar_dinero return pantalon (ent n) {
+	pantalon sol().
+	while (n>0){
+		if (n % 2 == 0){
+			 sol->delantero->monedas = sol->delantero->monedas + 1.
+		}
+		else{
+			 sol->trasero->monedas = sol->trasero->monedas + 1.
+
+		}
+		n = n-1.
+	}
+	
+}
+
+
+main{
+	pantalon vaquero = guardar_dinero(7).
+	
+}
