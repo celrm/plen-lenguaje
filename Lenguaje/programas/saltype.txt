@@ -1,0 +1,21 @@
+type matriz = arr\arr\ent.
+
+function idtraza return matriz (matriz mi_matriz){
+	arr\ent fila = mi_matriz ! 0.
+	ent n = length(fila).
+	ent suma = 0.
+	ent i = 0.
+	while (i < n){
+		suma = suma + (mi_matriz ! i) ! i.
+		i = i + 1.
+	}
+	matriz sol = [[suma,0,0],[0,suma,0],[0,0,suma]].
+	return sol.
+}
+
+
+main{
+	matriz mi_matriz = [[1,2,3],[0,1,0],[0,0,0]].
+	matriz tr = idtraza(mi_matriz).
+
+}
