@@ -1,0 +1,29 @@
+
+
+
+
+data bolsillo() = {
+    ent monedas = 0.
+}.
+
+data pantalon() = {
+    bolsillo delantero().
+    bolsillo trasero().
+}.
+
+function dinero return ent (pantalon mi_pantalon) {
+	ent mi_dinero = 0.
+	mi_dinero = mi_dinero + mi_pantalon->delantero->monedas.
+	mi_dinero = mi_dinero + mi_pantalon->trasero->monedas.
+	return mi_dinero.
+}
+
+
+
+main{
+	pantalon vaquero().
+    vaquero->delantero->monedas=1.
+    vaquero->delantero->monedas=3.
+	ent total = dinero(vaquero).
+	kut(total).
+}

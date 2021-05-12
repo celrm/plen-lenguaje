@@ -1,0 +1,20 @@
+
+
+function mcd return ent (ent a, ent b){
+	if (b == 0) {
+		return a.
+	}
+	else {
+		return mcd(b, a % b).
+	
+	}
+
+}
+
+
+main {
+	ent a = 7.
+	ent b = 9.
+	ent c = mcd (a, b).
+	kut (c).
+}
