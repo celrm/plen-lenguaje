@@ -1,0 +1,16 @@
+
+const ent pi = 3.
+
+function area_circ return ent (ent r){
+	ent sol = pi * r * r.
+	return sol.
+}
+
+function area_rectangulo return ent (ent a, ent b){
+	ent sol = a * b.
+	return sol.
+}
+
+function area_cuadrado return ent (ent a){
+	return area_rectangulo(a,a).
+}
