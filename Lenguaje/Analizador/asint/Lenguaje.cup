@@ -119,61 +119,61 @@ MAINBL ::= Main LA DENTRO:d LC
 EXPR ::= E0:o
     {: RESULT=o; :}
 		;
-E7 ::= E7:o1 Acceso ETOP:o2
-    {: RESULT=as.op_acceso(o1,o2,Op.ACCESO); :}
+E7 ::= E7:o1 Acceso:f ETOP:o2
+    {: RESULT=as.op_acceso(o1,o2,Op.ACCESO,f); :}
         | ETOP:o
     {: RESULT=o; :}
 		;
-E6 ::= E6:o1 Indice E7:o2
-    {: RESULT=as.op_indice(o1,o2,Op.INDICE); :}
+E6 ::= E6:o1 Indice:f E7:o2
+    {: RESULT=as.op_indice(o1,o2,Op.INDICE,f); :}
         | E7:o
     {: RESULT=o; :}
 		;
-E5 ::= Guion E6:o
-    {: RESULT=as.op_mono(o,Op.SIGNO); :}
+E5 ::= Guion:f E6:o
+    {: RESULT=as.op_mono(o,Op.SIGNO,f); :}
         | E6:o
     {: RESULT=o; :}
 		;
-E4 ::= E4:o1 Mod E5:o2
-    {: RESULT=as.op_bin(o1,o2,Op.MOD); :}
-        | E4:o1 Div E5:o2
-    {: RESULT=as.op_bin(o1,o2,Op.DIV); :}
-        | E4:o1 Mul E5:o2
-    {: RESULT=as.op_bin(o1,o2,Op.MUL); :}
+E4 ::= E4:o1 Mod:f E5:o2
+    {: RESULT=as.op_bin(o1,o2,Op.MOD,f); :}
+        | E4:o1 Div:f E5:o2
+    {: RESULT=as.op_bin(o1,o2,Op.DIV,f); :}
+        | E4:o1 Mul:f E5:o2
+    {: RESULT=as.op_bin(o1,o2,Op.MUL,f); :}
         | E5:o
     {: RESULT=o; :}
 		;
-E3 ::= E3:o1 Suma E4:o2
-    {: RESULT=as.op_bin(o1,o2,Op.SUMA); :}
-        | E3:o1 Guion E4:o2
-    {: RESULT=as.op_bin(o1,o2,Op.RESTA); :}
-        | Not E4:o
-    {: RESULT=as.op_mono(o,Op.NOT); :}
+E3 ::= E3:o1 Suma:f E4:o2
+    {: RESULT=as.op_bin(o1,o2,Op.SUMA,f); :}
+        | E3:o1 Guion:f E4:o2
+    {: RESULT=as.op_bin(o1,o2,Op.RESTA,f); :}
+        | Not:f E4:o
+    {: RESULT=as.op_mono(o,Op.NOT,f); :}
         | E4:o
     {: RESULT=o; :}
 		;
-E2 ::= E2:o1 Meq E3:o2
-    {: RESULT=as.op_bin(o1,o2,Op.MEQ); :}
-        | E2:o1 Maq E3:o2
-    {: RESULT=as.op_bin(o1,o2,Op.MAQ); :}
-        | E2:o1 Menor E3:o2
-    {: RESULT=as.op_bin(o1,o2,Op.MENOR); :}
-        | E2:o1 Mayor E3:o2
-    {: RESULT=as.op_bin(o1,o2,Op.MAYOR); :}
-        | E2:o1 And E3:o2
-    {: RESULT=as.op_bin(o1,o2,Op.AND); :}
+E2 ::= E2:o1 Meq:f E3:o2
+    {: RESULT=as.op_bin(o1,o2,Op.MEQ,f); :}
+        | E2:o1 Maq:f E3:o2
+    {: RESULT=as.op_bin(o1,o2,Op.MAQ,f); :}
+        | E2:o1 Menor:f E3:o2
+    {: RESULT=as.op_bin(o1,o2,Op.MENOR,f); :}
+        | E2:o1 Mayor:f E3:o2
+    {: RESULT=as.op_bin(o1,o2,Op.MAYOR,f); :}
+        | E2:o1 And:f E3:o2
+    {: RESULT=as.op_bin(o1,o2,Op.AND,f); :}
         | E3:o 
     {: RESULT=o; :}
 		;
-E1 ::= E1:o1 Or E2:o2
-    {: RESULT=as.op_bin(o1,o2,Op.OR); :}
+E1 ::= E1:o1 Or:f E2:o2
+    {: RESULT=as.op_bin(o1,o2,Op.OR,f); :}
         | E2:o
     {: RESULT=o; :}
 		;
-E0 ::= E0:o1 Igual E1:o2
-    {: RESULT=as.op_bin(o1,o2,Op.IGUAL); :}
-        | E0:o1 Distinto E1:o2
-    {: RESULT=as.op_bin(o1,o2,Op.DISTINTO); :}
+E0 ::= E0:o1 Igual:f E1:o2
+    {: RESULT=as.op_bin(o1,o2,Op.IGUAL,f); :}
+        | E0:o1 Distinto:f E1:o2
+    {: RESULT=as.op_bin(o1,o2,Op.DISTINTO,f); :}
         | E1:o
     {: RESULT=o; :}
 		;
@@ -193,14 +193,14 @@ ETOP ::= Entero:e
     {: RESULT=e; :}
         | EXPLISTA:e
     {: RESULT=e; :}
-        | PA EXPR:e1 Coma EXPR:e2 PC
-    {: RESULT=as.op_bin(e1,e2,Op.ARRAYINIT); :}
+        | PA EXPR:e1 Coma:f EXPR:e2 PC
+    {: RESULT=as.op_bin(e1,e2,Op.ARRAYINIT,f); :}
         ;
 
-EXPFUN ::= Id:i PA VALUES:v PC
-    {: RESULT=as.op_call(i,v); :};
-EXPLISTA ::= CA LISTADENTRO:l CC
-    {: RESULT=as.op_listinit(l); :};
+EXPFUN ::= Id:i PA VALUES:v PC:f
+    {: RESULT=as.op_call(i,v,f); :};
+EXPLISTA ::= CA LISTADENTRO:l CC:f
+    {: RESULT=as.op_listinit(l,f); :};
 LISTADENTRO ::= 
         | EXPR:e
     {: RESULT=as.list_cons(e,null); :}

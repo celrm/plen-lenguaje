@@ -4,10 +4,10 @@ public class HomogValues {
 	private E e;
 	private HomogValues rest;
 	int fila;
-	public HomogValues(E e, HomogValues rest, int fila) {
+	public HomogValues(E e, HomogValues rest) {
 		this.e=e;
 		this.rest=rest;
-		this.fila = fila;
+		this.fila = e.fila;
 	}
 	public String toString() {
 		String sol = e.toString();

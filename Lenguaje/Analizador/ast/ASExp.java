@@ -15,8 +15,8 @@ public class ASExp {
 		{ return new Call((TV)id,(HeterValues)v, fila.fila); }
 	public E op_listinit(Object l,TV fila) 
 		{ return new ListInit((HomogValues)l, fila.fila); }
-	public HomogValues list_cons(Object e,Object rest,TV fila)  
-		{ return new HomogValues((E)e,(HomogValues)rest, fila.fila); }
+	public HomogValues list_cons(Object e,Object rest)  
+		{ return new HomogValues((E)e,(HomogValues)rest); }
 	public E op_basico_ent(Object e) 
 	{ return new EBasico((TV)e,Op.BASICO_ENT); }
 	public E op_basico_bul(Object e,TV fila) 
