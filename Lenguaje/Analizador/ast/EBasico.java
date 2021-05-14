@@ -15,7 +15,7 @@ public class EBasico extends E {
 	@Override
 	public void vinculo() throws Exception {
 		if(oper()==Op.BASICO_ID)
-			d = (Declare) Program.buscaId(id.toString()); 
+			d = (Declare) Program.buscaId(id.toString(),fila);
 		// por definición de declare, son todos los sitios donde he hecho inserts
 	}
 	@Override

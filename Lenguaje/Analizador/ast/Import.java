@@ -11,6 +11,7 @@ public class Import extends Declare {
 	TV name;
 	TV source;
 	Program p;
+	Declare d; // si hay * es null
 	public Import(TV name, TV source, int fila) {
 		super(fila);
 		this.name=name;
@@ -34,15 +35,14 @@ public class Import extends Declare {
 			}
 		}
 		else  {
-			Declare d = (Declare) tabla.get(name.toString());
+			d = (Declare) tabla.get(name.toString());
 			Program.insertaId(name.toString(), d);
 		}
 	}
 	public List<Typename> chequea() {
-		return new ArrayList<>();} // TODO ?
+		return new ArrayList<>();}
 	@Override
 	protected Typename tipo() {
-		// TODO Auto-generated method stub
-		return null;
+		return d.tipo();
 	}
 }

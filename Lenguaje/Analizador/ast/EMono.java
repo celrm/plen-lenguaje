@@ -19,11 +19,11 @@ public class EMono extends E {
 		switch(oper()) {
 		case NOT:
 			if(s1.t != Type.BUL)
-				throw new Exception("not tipo");
+				throw new Exception("Fila " + fila + ". Not tipo");
 			return s1;
 		case SIGNO:
 			if(s1.t != Type.ENT)
-				throw new Exception("signo tipo");
+				throw new Exception("Fila " + fila + ". Signo tipo");
 			return s1;
 		default:
 			break;

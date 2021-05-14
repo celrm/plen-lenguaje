@@ -22,7 +22,7 @@ public class Kut extends Instr {
 		Typename s = print.chequea();
 		if(s.t != Type.ENT && s.t != Type.BUL) {
 
-			throw new Exception("no kuteable");
+			throw new Exception("Fila " + fila + ". No kuteable");
 		
 		}
 		return new ArrayList<>();

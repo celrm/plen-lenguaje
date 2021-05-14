@@ -31,7 +31,7 @@ public class Reg extends Declare {
 		if(v!=null) {
 			v.vinculo();
 		}
-		dr = (DefReg) Program.buscaId(tipo.toString());
+		dr = (DefReg) Program.buscaId(tipo.toString(),fila);
 		Program.insertaId(name(), this);
 		
 		Params p = dr.params;
@@ -40,9 +40,9 @@ public class Reg extends Declare {
 			if(p==null && q == null)
 				return;
 			if(q==null)
-				throw new Exception("different parameters p: "+p.toString()+" in call "+id.fila);
+				throw new Exception("Fila " + fila + ". Different parameters p: "+p.toString()+" in call "+id.fila);
 			if(p==null)
-				throw new Exception("different parameters c: "+q.toString()+" in call "+id.fila);
+				throw new Exception("Fila " + fila + ". Different parameters c: "+q.toString()+" in call "+id.fila);
 			
 			q.p = p.p;
 			
@@ -59,7 +59,7 @@ public class Reg extends Declare {
 			e1.chequea();
 			Typename par = e2.chequea();
 			if(!e1.tipo().equals(par)) {
-				throw new Exception("different parameter types in call "+id.fila);
+				throw new Exception("Fila " + fila + ". Different parameter types in call "+id.fila);
 			}
 			q = q.rest;
 		}

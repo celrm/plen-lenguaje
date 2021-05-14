@@ -34,7 +34,7 @@ public class IfElse extends Instr {
 	protected List<Typename> chequea() throws Exception {
 		Typename s = b.chequea();
 		if(s.t != Type.BUL) {
-			throw new Exception("Ifelse no bul b");
+			throw new Exception("Fila " + fila + ". Ifelse no bul b");
 		}
 		List<Typename> rets1 = listaif.chequea();
 		List<Typename> rets2 = listaelse.chequea();

@@ -27,7 +27,7 @@ public class If extends Instr {
 	protected List<Typename> chequea() throws Exception {
 		Typename s = b.chequea();
 		if(s.t != Type.BUL) {
-			throw new Exception("If no bul b");
+			throw new Exception("Fila " + fila + ". If no bul b");
 		}
 		return lista.chequea();
 	}

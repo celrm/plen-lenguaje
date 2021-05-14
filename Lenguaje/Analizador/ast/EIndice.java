@@ -29,17 +29,17 @@ public class EIndice extends EBin {
 			dim = o11.dim+1; 
 		}
 		else 
-			throw new Exception("Access: "+ o2.toString());
+			throw new Exception("Fila " + fila + ". Access: "+ o2.toString());
 	}
 	@Override
 	protected Typename chequea() throws Exception {
 		Typename s1 = o1.chequea();
 		Typename s2 = o2.chequea();
 		if(s2.t != Type.ENT)
-			throw new Exception("Acceso no entero");
+			throw new Exception("Fila " + fila + ". Acceso no entero");
 		
 		if(s1.t != Type.ARR)
-			throw new Exception("Acceso no array");
+			throw new Exception("Fila " + fila + ". Acceso no array");
 		return s1.t_arr;
 	}
 	public String o2() {

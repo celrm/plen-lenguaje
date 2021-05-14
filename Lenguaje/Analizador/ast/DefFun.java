@@ -45,7 +45,7 @@ public class DefFun extends Declare {
 		List<Typename> returns = decs.chequea();
 		for(Typename ret : returns) {
 			if(!ret.equals(t))
-				throw new Exception("Bad return type: "+ t + " / " + ret);
+				throw new Exception("Fila " + fila + ". Bad return type: "+ t + " / " + ret);
 		}
 		return new ArrayList<>();
 	}

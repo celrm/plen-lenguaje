@@ -14,7 +14,7 @@ public class EAcceso extends EBin {
 	@Override
 	protected void vinculo() throws Exception {		
 		if (o1.oper()==Op.BASICO_ID) {
-			r = (Declare) Program.buscaId(o1.toString());
+			r = (Declare) Program.buscaId(o1.toString(),fila);
 		}
 		else if (o1.oper()==Op.ACCESO) {
 			EAcceso o11 = (EAcceso) o1;
@@ -22,19 +22,19 @@ public class EAcceso extends EBin {
 			r = o11.acc;
 		}
 		else 
-			throw new Exception("Access: "+ o2.toString());
+			throw new Exception("Fila " + fila + ". Access: "+ o2.toString());
 		
 
 		Typename t = r.tipo();
 		if (t.t != Type.CUSTOM)
-			throw new Exception("Access: "+ r.toString());
+			throw new Exception("Fila " + fila + ". Access: "+ r.toString());
 		
-		dr = (DefReg) Program.buscaId(t.pure().toString()); // este es mi problema
+		dr = (DefReg) Program.buscaId(t.pure().toString(),fila); // este es mi problema
 		// no puedo poner buscaid en chequea porque no estarán los ámbitos activos
 		// no puedo poner pure antes de haber preprocesado... -> prechequea al principio...
 		
 		if(o2.oper()!=Op.BASICO_ID)
-			throw new Exception("Access: "+ o2.toString());
+			throw new Exception("Fila " + fila + ". Access: "+ o2.toString());
 		
 		acc = (Declare) dr.get(o2.toString());
 	}

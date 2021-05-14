@@ -20,7 +20,7 @@ public class Call extends E {
 		if(v!=null) {
 			v.vinculo();
 		}
-		f = (DefFun) Program.buscaId(id.toString());
+		f = (DefFun) Program.buscaId(id.toString(),fila);
 		
 		Params p = f.params;
 		HeterValues q = v;
@@ -28,9 +28,9 @@ public class Call extends E {
 			if(p==null && q == null)
 				return;
 			if(q==null)
-				throw new Exception("different parameters p: "+p.toString()+" in call "+id.fila);
+				throw new Exception("Fila " + fila + ". Different parameters p: "+p.toString()+" in call");
 			if(p==null)
-				throw new Exception("different parameters c: "+q.toString()+" in call "+id.fila);
+				throw new Exception("Fila " + fila + ". Different parameters c: "+q.toString()+" in call");
 			
 			q.p = p.p;
 			
@@ -47,7 +47,7 @@ public class Call extends E {
 			e1.chequea();
 			Typename par = e2.chequea();
 			if(!e1.tipo().equals(par)) {
-				throw new Exception("different parameter types in call "+id.fila);
+				throw new Exception("Fila " + fila + ". Different parameter types in call");
 			}
 			q = q.rest;
 		}

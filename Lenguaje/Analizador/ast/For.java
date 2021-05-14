@@ -33,7 +33,7 @@ public class For extends Instr {
 		Typename s1 = arr.chequea(); 
 
 		if(s1.t != Type.ARR)
-			throw new Exception("Acceso no array");
+			throw new Exception("Fila " + fila + ". Acceso no array");
 		elemDec.tipo = s1.t_arr;
 		return lista.chequea();
 	}

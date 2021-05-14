@@ -38,12 +38,12 @@ public class Program {
 	public static void insertaId(String ident,Object puntero) {
 		pila.firstElement().put(ident,puntero);
 	}
-	public static Object buscaId(String ident) throws Exception {
+	public static Object buscaId(String ident, int fila) throws Exception {
 		for(Map<String,Object> m : pila) { // mirar si va de arriba abajo
 			Object sol = m.get(ident);
 			if(sol != null) return sol;
 		}
-		throw new Exception("Error de vinculación: " + ident);
+		throw new Exception("Fila " + fila + ". Error de vinculación: " + ident);
 	}
 	
 	private DefFun kin = new DefFun(

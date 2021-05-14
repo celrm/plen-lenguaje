@@ -32,7 +32,7 @@ public class DefType extends Declare {
 	@Override
 	protected List<Typename> chequea() throws Exception {
 		if(name().equals("ent") || name().equals("car") || name().equals("bul"))
-		throw new Exception("No definas otra vez "+name());
+		throw new Exception("Fila " + fila + ". No definas otra vez "+name());
 		return new ArrayList<>();
 	}
 	@Override

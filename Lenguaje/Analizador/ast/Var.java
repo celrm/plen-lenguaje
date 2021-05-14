@@ -33,7 +33,7 @@ public class Var extends Declare {
 		Typename t = type.pure();
 		Typename e = exp.chequea();
 		if(!t.equals(e)) {
-			throw new Exception("bad var declare " + t +" " + e+" "+ id.fila);
+			throw new Exception("Fila " + fila + ". Bad var declare " + t +" " + e+" "+ id.fila);
 		}
 		return new ArrayList<>();
 	}

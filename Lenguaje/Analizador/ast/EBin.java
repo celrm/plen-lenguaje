@@ -24,23 +24,23 @@ public class EBin extends E {
 		case OR:
 		case AND:
 			if(s1.t != Type.BUL || s2.t != Type.BUL)
-				throw new Exception(oper()+" de no bul");
+				throw new Exception("Fila " + fila + ". " +oper()+" de no bul");
 			return new Typename("bul");
 		case ARRAYINIT:
 			if(s1.t != Type.ENT)
-				throw new Exception("Mal arrayinit tipo");
+				throw new Exception("Fila " + fila + ". Mal arrayinit tipo");
 			return new Typename(s2);
 		case DISTINTO:
 		case IGUAL:
 			if(!s1.equals(s2))
-				throw new Exception(oper() +" mal tipo");
+				throw new Exception("Fila " + fila + ". "+oper() +" mal tipo");
 			return new Typename("bul");
 		case MAQ:
 		case MAYOR:
 		case MENOR:
 		case MEQ:
 			if(s1.t != Type.ENT || s2.t != Type.ENT)
-				throw new Exception(oper()+" de no ent");
+				throw new Exception("Fila " + fila + ". "+oper()+" de no ent");
 			return new Typename("bul");
 		case DIV:
 		case MOD:
@@ -48,7 +48,7 @@ public class EBin extends E {
 		case RESTA:
 		case SUMA:
 			if(s1.t != Type.ENT || s2.t != Type.ENT)
-				throw new Exception(oper()+" de no ent");
+				throw new Exception("Fila " + fila + ". "+oper()+" de no ent");
 			return new Typename("ent");
 		default:
 			break;
