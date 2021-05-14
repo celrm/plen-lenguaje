@@ -1,7 +1,7 @@
 type string = arr\car.
 const ent max_string = 100.
 
-function copy return string (string source, ent longitud) {
+function copy return string (string  source, ent longitud) {
     string dest = (longitud, ' ').
     i = 0.
     while (i < longitud) {
