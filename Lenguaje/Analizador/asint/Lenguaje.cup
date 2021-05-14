@@ -104,6 +104,7 @@ PARAMS ::= CPARAMS:c
     {: RESULT=is.params(t,i,null,false); :}
 		| TYPENAME:t Id:i Coma PARAMS :r
     {: RESULT=is.params(t,i,r,false); :}
+		| error
 		;
 DENTRO ::= 
 		| INSTR:i DENTRO:r

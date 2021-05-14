@@ -1,0 +1,8 @@
+import * from areas.
+
+main{
+	ent mi_area = area_circ(1).
+
+
+
+}
