@@ -10,7 +10,12 @@ import ast.Program;
 public class Main {
    public static void main(String[] args) throws Exception {
 	 Program prog = abrirFichero(args[0]);
-	 System.out.println(prog);
+	 String code = prog.toString();
+	 int index = 0;
+	 for(String linea : code.split("\n")) {
+		 System.out.println(index+ "\t"+linea);
+		 index++;
+	 }
 
 	 prog.vinculo();
 	 prog.chequea();

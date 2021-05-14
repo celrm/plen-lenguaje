@@ -28,6 +28,9 @@ public class Reg extends Declare {
 	}
 	@Override
 	protected void vinculo() throws Exception {
+		if(name().equals("length") || name().equals("kin")) {
+			throw new Exception("Fila " + fila + ". Banned word: "+ name());
+		}
 		if(v!=null) {
 			v.vinculo();
 		}

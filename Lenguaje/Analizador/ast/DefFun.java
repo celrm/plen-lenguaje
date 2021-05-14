@@ -10,6 +10,7 @@ public class DefFun extends Declare {
 	private Typename tipo;
 	Params params;
 	private Instructions decs;
+	static boolean banned = false;
 	public DefFun(TV id, Typename tipo, Params params, Instructions d) {
 		super(id.fila);
 		type_of_dec = Dec.FUNCTION;
@@ -29,6 +30,9 @@ public class DefFun extends Declare {
 	}
 	@Override
 	protected void vinculo() throws Exception {
+		if(banned && (name().equals("length") || name().equals("kin"))) {
+			throw new Exception("Fila " + fila + ". Banned word: "+ name());
+		}
 		Program.insertaId(name(), this);
 		Program.abreBloque();
 		

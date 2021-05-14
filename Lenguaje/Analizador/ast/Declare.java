@@ -13,5 +13,7 @@ public abstract class Declare extends Instr {
 
 	protected abstract List<Typename> chequea() throws Exception;
 
+	protected abstract String name();
+
 	protected abstract Typename tipo();
 }

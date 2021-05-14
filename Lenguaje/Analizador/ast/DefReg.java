@@ -29,6 +29,9 @@ public class DefReg extends Declare {
 	}
 	@Override
 	protected void vinculo() throws Exception {
+		if(name().equals("length") || name().equals("kin")) {
+			throw new Exception("Fila " + fila + ". Banned word: "+ name());
+		}
 		Program.insertaId(name(), this);
 		Program.abreBloque();
 		

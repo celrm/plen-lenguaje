@@ -22,6 +22,7 @@ javac -cp "../cup.jar" alex/*.java asint/*.java errors/*.java ast/*.java
 for f in ../$1/*.txt; do
     clear
     if [ -f $f ]; then
+    echo -e "Programa $f\n\n"
     java -cp ".:../cup.jar" asint.Main "$f"
     fi
     read -p "Press any key to continue... " -n1 -s

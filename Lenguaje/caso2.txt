@@ -30,7 +30,7 @@ main {
     
     ent a = kin().
     while (a > 0) {
-        kut(a)
+        kut(a).
         a = a - 1.
     }    
     

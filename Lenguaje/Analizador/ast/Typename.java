@@ -37,10 +37,10 @@ public class Typename {
 	public Typename pure() {
 		if(t_id != null) {
 			Typename from = this;
-			Typename to = Program.get_alias(from);
+			Typename to = Program.get_alias(from.toString());
 			while(to != null) {
 				from = to.pure();
-				to = Program.get_alias(from);
+				to = Program.get_alias(from.toString());
 			}
 			return from;
 		}

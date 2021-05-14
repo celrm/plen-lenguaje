@@ -45,4 +45,8 @@ public class Import extends Declare {
 	protected Typename tipo() {
 		return d.tipo();
 	}
+	@Override
+	protected String name() {
+		return name.toString();
+	}
 }

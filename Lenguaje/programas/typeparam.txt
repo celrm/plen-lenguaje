@@ -1,4 +1,3 @@
-
 type matriz = arr\arr\ent.
 
 function traza return ent (matriz mi_matriz){

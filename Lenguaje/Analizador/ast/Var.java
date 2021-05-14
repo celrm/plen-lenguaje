@@ -25,8 +25,14 @@ public class Var extends Declare {
 	}
 	@Override
 	protected void vinculo() throws Exception {
+		if(name().equals("length") || name().equals("kin")) {
+			throw new Exception("Fila " + fila + ". Banned word: "+ name());
+		}
 		exp.vinculo();
 		Program.insertaId(id.toString(), this);
+	}
+	protected String name() {
+		return id.toString();
 	}
 	@Override
 	protected List<Typename> chequea() throws Exception {

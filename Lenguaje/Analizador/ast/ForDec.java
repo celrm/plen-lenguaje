@@ -18,7 +18,14 @@ public class ForDec extends Declare {
 		return elem.toString();
 	}
 	@Override
-	protected void vinculo() throws Exception {}
+	protected void vinculo() throws Exception {
+		if(name().equals("length") || name().equals("kin")) {
+			throw new Exception("Fila " + fila + ". Banned word: "+ name());
+		}
+	}
+	protected String name() {
+		return elem.toString();
+	}
 	@Override
 	protected List<Typename> chequea() {return new ArrayList<>();}
 	Typename tipo;

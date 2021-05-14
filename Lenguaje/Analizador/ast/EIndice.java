@@ -12,6 +12,7 @@ public class EIndice extends EBin {
    int dim = 1;
 	@Override
 	protected void vinculo() throws Exception {
+		o2.vinculo();
 		if (o1.oper()==Op.BASICO_ID) {
 			EBasico o11 = (EBasico) o1;
 			o11.vinculo();
@@ -34,7 +35,9 @@ public class EIndice extends EBin {
 	@Override
 	protected Typename chequea() throws Exception {
 		Typename s1 = o1.chequea();
+		s1 = s1.pure();
 		Typename s2 = o2.chequea();
+		s2 = s2.pure();
 		if(s2.t != Type.ENT)
 			throw new Exception("Fila " + fila + ". Acceso no entero");
 		

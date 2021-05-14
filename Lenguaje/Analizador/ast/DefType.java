@@ -26,11 +26,14 @@ public class DefType extends Declare {
 	protected void vinculo() {
 		Program.insertaId(name(), this);
 	}
-	public void chequea_prep(Map<Typename, Typename> typedefs) {
-		typedefs.put(new Typename(id),tipo);
+	public void chequea_prep(Map<String, Typename> typedefs) {
+		typedefs.put(id.lexema,tipo);
 	}
 	@Override
 	protected List<Typename> chequea() throws Exception {
+		if(name().equals("length") || name().equals("kin")) {
+			throw new Exception("Fila " + fila + ". Banned word: "+ name());
+		}
 		if(name().equals("ent") || name().equals("car") || name().equals("bul"))
 		throw new Exception("Fila " + fila + ". No definas otra vez "+name());
 		return new ArrayList<>();

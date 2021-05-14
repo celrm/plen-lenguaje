@@ -53,13 +53,15 @@ public class Program {
 	public void vinculo() throws Exception {
 
 		typedefs = new HashMap<>(); // lo necesito aquí y no en chequea para usarlo en registros
+
+		if(decs!=null)
 		decs.chequea_prep(typedefs);
-		
 		inicializa();
 		abreBloque();
 
 		kin.vinculo();
 		length.vinculo();
+		DefFun.banned = true; // ban these words
 		
 		if(imps!=null)
 			imps.vinculo();
@@ -70,9 +72,10 @@ public class Program {
 		
 		cierraBloque();
 	}
-	private static Map<Typename,Typename> typedefs;
-	public static Typename get_alias(Typename from) {
-		return typedefs.get(from);
+	private static Map<String,Typename> typedefs;
+	public static Typename get_alias(String from) {
+		Typename t = typedefs.get(from);
+		return t;
 	}
 	public void chequea() throws Exception {
 

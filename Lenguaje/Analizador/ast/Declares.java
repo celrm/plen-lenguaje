@@ -22,7 +22,7 @@ public class Declares {
 		if(rest!=null)
 			rest.vinculo();
 	}
-	public void chequea_prep(Map<Typename, Typename> typedefs) {
+	public void chequea_prep(Map<String, Typename> typedefs) {
 		if(var.type_of_dec == Dec.TYPE)
 			((DefType) var).chequea_prep(typedefs);
 		if(rest!=null)

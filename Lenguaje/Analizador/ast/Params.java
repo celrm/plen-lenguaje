@@ -18,7 +18,7 @@ public class Params {
 		}
 		return sol;
 	}
-	public void vinculo() {
+	public void vinculo() throws Exception {
 		p.vinculo();
 		if(rest!=null)
 			rest.vinculo();

@@ -20,8 +20,14 @@ public class Param extends Declare {
 		sol = sol + id.toString();
 		return (is_const?"const " :"") + sol;
 	}
-	public void vinculo() {
+	public void vinculo() throws Exception {
+		if(name().equals("length") || name().equals("kin")) {
+			throw new Exception("Fila " + fila + ". Banned word: "+ name());
+		}
 		Program.insertaId(id.toString(), this);
+	}
+	protected String name() {
+		return id.toString();
 	}
 	@Override
 	protected List<Typename> chequea() {

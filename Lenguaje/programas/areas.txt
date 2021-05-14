@@ -14,3 +14,5 @@ function area_rectangulo return ent (ent a, ent b){
 function area_cuadrado return ent (ent a){
 	return area_rectangulo(a,a).
 }
+
+main {}
