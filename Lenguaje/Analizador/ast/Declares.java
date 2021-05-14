@@ -17,8 +17,16 @@ public class Declares {
 		}
 		return sol;
 	}
-	public void vinculo() throws Exception {
-		var.vinculo();
+	private boolean errorSemantico = false;
+	public void vinculo() {
+		try {
+			var.vinculo();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+//			e.printStackTrace();
+			System.out.println(e.getMessage());
+			errorSemantico = true;
+		}
 		if(rest!=null)
 			rest.vinculo();
 	}
@@ -28,8 +36,15 @@ public class Declares {
 		if(rest!=null)
 			rest.chequea_prep(typedefs);
 	}
-	public void chequea() throws Exception {
-		var.chequea();
+	public void chequea() {
+		if(!errorSemantico)
+			try {
+				var.chequea();
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+//				e.printStackTrace();
+				System.out.println(e.getMessage());
+			}
 		if(rest!=null)
 			rest.chequea();
 	}

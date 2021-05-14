@@ -50,7 +50,7 @@ public class Program {
 			new TV("kin",-1), new Typename(new TV("ent",-1)), null, null);
 	private Length length = new Length();
 	
-	public void vinculo() throws Exception {
+	public void vinculo() {
 
 		typedefs = new HashMap<>(); // lo necesito aquí y no en chequea para usarlo en registros
 
@@ -59,8 +59,13 @@ public class Program {
 		inicializa();
 		abreBloque();
 
-		kin.vinculo();
-		length.vinculo();
+		try {
+			kin.vinculo();
+			length.vinculo();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		DefFun.banned = true; // ban these words
 		
 		if(imps!=null)
@@ -77,7 +82,7 @@ public class Program {
 		Typename t = typedefs.get(from);
 		return t;
 	}
-	public void chequea() throws Exception {
+	public void chequea() {
 
 		if(imps!=null)
 		imps.chequea();

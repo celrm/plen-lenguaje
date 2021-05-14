@@ -17,13 +17,22 @@ public class Imports {
 		}
 		return sol;
 	}
-	public void vinculo() throws Exception {
-		i.vinculo();
+	private boolean errorSemantico = false;
+	public void vinculo() {
+		try {
+			i.vinculo();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+//			e.printStackTrace();
+			System.out.println(e.getMessage());
+			errorSemantico = true;
+		}
 		if(rest!=null)
 			rest.vinculo();
 	}
 	public void chequea() {
-		i.chequea();
+		if(!errorSemantico)
+			i.chequea();
 		if(rest!=null)
 			rest.chequea();
 	}

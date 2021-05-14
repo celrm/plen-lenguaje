@@ -17,14 +17,31 @@ public class Instructions {
 		}
 		return sol;
 	}
-	public void vinculo() throws Exception {
-		i.vinculo();
+	private boolean errorSemantico = false;
+	public void vinculo() {
+		try {
+			i.vinculo();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+//			e.printStackTrace();
+			System.out.println(e.getMessage());
+			errorSemantico = true;
+		}
 		if(rest!=null)
 			rest.vinculo();
 	}
-	public List<Typename> chequea() throws Exception {
-		List<Typename> i_rets = i.chequea();
+	public List<Typename> chequea() {
+		List<Typename> i_rets = new ArrayList<>();
 		List<Typename> all_rets = new ArrayList<>();
+		
+		if(!errorSemantico)
+			try {
+				i_rets = i.chequea();
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+//				e.printStackTrace();
+				System.out.println(e.getMessage());
+			}
 
 		if(rest!=null) 
 			all_rets = rest.chequea();
