@@ -6,6 +6,7 @@ import java.util.List;
 public class Kut extends Instr {
 	private E print;
 	public Kut(E i) {
+		super(i.fila);
 		print=i;
 		type_of_in = In.KUT;
 	}

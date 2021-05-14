@@ -2,8 +2,8 @@ package ast;
 
 public class EMono extends E {
 	private E o;
-	public EMono(E opnd1, Op oper) {
-		super(oper);
+	public EMono(E opnd1, Op oper, int fila) {
+		super(oper,fila);
 		this.o = opnd1;
 	}
 	public String toString() {

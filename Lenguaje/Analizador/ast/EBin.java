@@ -3,8 +3,8 @@ package ast;
 public class EBin extends E {
    private E o1;
    private E o2;
-   public EBin(E opnd1, E opnd2, Op oper) {
-	   super(oper);
+   public EBin(E opnd1, E opnd2, Op oper, int fila) {
+	   super(oper,fila);
 	     this.o1 = opnd1;
 	     this.o2 = opnd2;
    }

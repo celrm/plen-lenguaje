@@ -10,6 +10,7 @@ public class Param extends Declare {
 	private TV id;
 	boolean is_const=false;
 	public Param(Typename tipo, TV id) {
+		super(id.fila);
 		this.tipo = tipo;
 		this.id = id;
 		type_of_dec = Dec.PARAM;

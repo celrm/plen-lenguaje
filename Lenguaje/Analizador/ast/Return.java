@@ -6,6 +6,7 @@ import java.util.List;
 public class Return extends Instr {
 	private E exp;
 	public Return(E e) {
+		super(e.fila);
 		this.exp=e;
 		type_of_in = In.RETURN;
 	}

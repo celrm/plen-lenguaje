@@ -3,26 +3,26 @@ package ast;
 import alex.TV;
 
 public class ASExp {
-	public E op_acceso(Object opnd1, Object opnd2,Object oper) 
-		{ return new EAcceso((E)opnd1,(EBasico)opnd2,(Op)oper); }
-	public E op_indice(Object opnd1, Object opnd2,Object oper) 
-		{ return new EIndice((E)opnd1,(E)opnd2,(Op)oper); }
-	public E op_bin(Object opnd1, Object opnd2,Object oper) 
-	{ return new EBin((E)opnd1,(E)opnd2,(Op)oper); }
-	public E op_mono(Object opnd1,Object oper) 
-		{ return new EMono((E)opnd1,(Op)oper); }
-	public E op_call(Object id, Object v) 
-		{ return new Call((TV)id,(HeterValues)v); }
-	public E op_listinit(Object l) 
-		{ return new ListInit((HomogValues)l); }
-	public HomogValues list_cons(Object e,Object rest) 
-		{ return new HomogValues((E)e,(HomogValues)rest); }
+	public E op_acceso(Object opnd1, Object opnd2,Object oper,TV fila) 
+		{ return new EAcceso((E)opnd1,(EBasico)opnd2,(Op)oper, fila.fila); }
+	public E op_indice(Object opnd1, Object opnd2,Object oper,TV fila)  
+		{ return new EIndice((E)opnd1,(E)opnd2,(Op)oper, fila.fila); }
+	public E op_bin(Object opnd1, Object opnd2,Object oper,TV fila) 
+	{ return new EBin((E)opnd1,(E)opnd2,(Op)oper, fila.fila); }
+	public E op_mono(Object opnd1,Object oper,TV fila) 
+		{ return new EMono((E)opnd1,(Op)oper, fila.fila); }
+	public E op_call(Object id, Object v,TV fila) 
+		{ return new Call((TV)id,(HeterValues)v, fila.fila); }
+	public E op_listinit(Object l,TV fila) 
+		{ return new ListInit((HomogValues)l, fila.fila); }
+	public HomogValues list_cons(Object e,Object rest,TV fila)  
+		{ return new HomogValues((E)e,(HomogValues)rest, fila.fila); }
 	public E op_basico_ent(Object e) 
 	{ return new EBasico((TV)e,Op.BASICO_ENT); }
-	public E op_basico_bul(Object e) 
+	public E op_basico_bul(Object e,TV fila) 
 	{ return new EBasico((TV)e,Op.BASICO_BUL); }
-	public E op_basico_car(Object e) 
+	public E op_basico_car(Object e,TV fila) 
 	{ return new EBasico((TV)e,Op.BASICO_CAR); }
-	public E op_basico_id(Object e) 
+	public E op_basico_id(Object e,TV fila) 
 	{ return new EBasico((TV)e,Op.BASICO_ID); }
 }

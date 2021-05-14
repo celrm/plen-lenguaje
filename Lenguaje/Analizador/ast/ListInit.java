@@ -2,8 +2,8 @@ package ast;
 
 public class ListInit extends E {
 	private HomogValues lista;
-	public ListInit(HomogValues l) {
-		super(Op.LISTA);
+	public ListInit(HomogValues l, int fila) {
+		super(Op.LISTA,fila);
 		lista=l;
 	}
 	public String toString() {

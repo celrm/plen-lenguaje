@@ -3,9 +3,11 @@ package ast;
 public class HomogValues {
 	private E e;
 	private HomogValues rest;
-	public HomogValues(E e, HomogValues rest) {
+	int fila;
+	public HomogValues(E e, HomogValues rest, int fila) {
 		this.e=e;
 		this.rest=rest;
+		this.fila = fila;
 	}
 	public String toString() {
 		String sol = e.toString();

@@ -11,6 +11,7 @@ public class DefReg extends Declare {
 	Params params;
 	private Instructions ins;
 	public DefReg(TV id, Params params, Instructions d) {
+		super(id.fila);
 		type_of_dec=Dec.REGISTER;
 		this.id=id;
 		this.params=params;
@@ -28,8 +29,8 @@ public class DefReg extends Declare {
 	}
 	@Override
 	protected void vinculo() throws Exception {
+		Program.insertaId(name(), this);
 		Program.abreBloque();
-		Program.insertaId(name(), this); // bolsillos recursivos, árboles
 		
 		if(params!=null)
 			params.vinculo();

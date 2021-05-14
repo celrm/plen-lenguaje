@@ -9,7 +9,8 @@ public class For extends Instr {
 	private E arr;
 	private Instructions lista;
 	public For(TV elem, E arr, Instructions d) {
-		this.elemDec=new ForDec(elem,this);
+		super(arr.fila);
+		this.elemDec=new ForDec(elem,this,arr.fila);
 		this.arr=arr;
 		lista=d;
 		type_of_in = In.FOR;

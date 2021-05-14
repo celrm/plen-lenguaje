@@ -11,6 +11,7 @@ public class Var extends Declare {
 	private E exp;
 	private boolean is_const;
 	public Var(Typename tipo, TV id, E exp2, boolean is_const) {
+		super(id.fila);
 		this.type=tipo;
 		this.id=id;
 		this.exp=exp2;

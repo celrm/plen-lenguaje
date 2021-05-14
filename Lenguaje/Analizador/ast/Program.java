@@ -48,8 +48,7 @@ public class Program {
 	
 	private DefFun kin = new DefFun(
 			new TV("kin",-1), new Typename(new TV("ent",-1)), null, null);
-	private DefFun length = new DefFun(
-			new TV("length",-1), new Typename(new TV("ent",-1)), null, null);
+	private Length length = new Length();
 	
 	public void vinculo() throws Exception {
 

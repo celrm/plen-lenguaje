@@ -3,8 +3,8 @@ package ast;
 public class EAcceso extends EBin {
    private E o1;
    private EBasico o2;
-   public EAcceso(E opnd1, EBasico opnd2, Op oper) {
-	   super(opnd1, opnd2, oper);
+   public EAcceso(E opnd1, EBasico opnd2, Op oper, int fila) {
+	   super(opnd1, opnd2, oper, fila);
 	     this.o1 = opnd1;
 	     this.o2 = opnd2;
    }
@@ -32,14 +32,14 @@ public class EAcceso extends EBin {
 		dr = (DefReg) Program.buscaId(t.pure().toString()); // este es mi problema
 		// no puedo poner buscaid en chequea porque no estarán los ámbitos activos
 		// no puedo poner pure antes de haber preprocesado... -> prechequea al principio...
-
-	}
-	@Override
-	protected Typename chequea() throws Exception {
+		
 		if(o2.oper()!=Op.BASICO_ID)
 			throw new Exception("Access: "+ o2.toString());
 		
 		acc = (Declare) dr.get(o2.toString());
+	}
+	@Override
+	protected Typename chequea() throws Exception {
 		return acc.tipo().pure();
 	}
 	public String o2() {

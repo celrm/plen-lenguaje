@@ -4,7 +4,8 @@ import java.util.List;
 
 public abstract class Declare extends Instr {
 	Dec type_of_dec;
-	public Declare() {
+	public Declare(int fila) {
+		super(fila);
 		type_of_in = In.DECLARE;
 	}
 

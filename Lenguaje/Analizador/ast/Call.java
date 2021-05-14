@@ -5,8 +5,8 @@ import alex.TV;
 public class Call extends E {	
 	TV id;
 	HeterValues v;
-	public Call(TV id, HeterValues v) {
-		super(Op.CALL);
+	public Call(TV id, HeterValues v, int fila) {
+		super(Op.CALL,fila);
 		this.id = id;
 		this.v = v;
 	}

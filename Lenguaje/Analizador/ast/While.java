@@ -6,6 +6,7 @@ public class While extends Instr {
 	private E b;
 	private Instructions lista;
 	public While(E b, Instructions d) {
+		super(b.fila);
 		this.b=b;
 		lista=d;
 		type_of_in = In.WHILE;

@@ -5,7 +5,7 @@ import alex.TV;
 public class EBasico extends E {
 	TV id;
 	public EBasico(TV id, Op basicoEnt) {
-		super(basicoEnt);
+		super(basicoEnt,id.fila);
 		this.id = id;
 	}
 	public String toString() {

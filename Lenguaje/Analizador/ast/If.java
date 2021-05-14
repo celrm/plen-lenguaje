@@ -6,6 +6,7 @@ public class If extends Instr {
 	private E b;
 	private Instructions lista;
 	public If(E b, Instructions d) {
+		super(b.fila);
 		this.b=b;
 		lista=d;
 		type_of_in = In.IF;

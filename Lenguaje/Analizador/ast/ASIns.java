@@ -28,7 +28,7 @@ public class ASIns {
 	public Instructions instructions(Object i, Object rest) 
 		{ return new Instructions((Instr)i,(Instructions)rest); }
 
-	public Instr ins_asign(Object e1,Object e2) 
+	public Instr ins_asign(Object e1,Object e2)
 		{ return new Asigna((E)e1,(E)e2); }
 	public Instr ins_return(Object e) 
 		{ return new Return((E)e); }

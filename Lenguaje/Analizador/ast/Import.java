@@ -11,7 +11,8 @@ public class Import extends Declare {
 	TV name;
 	TV source;
 	Program p;
-	public Import(TV name, TV source) {
+	public Import(TV name, TV source, int fila) {
+		super(fila);
 		this.name=name;
 		this.source=source;
 		type_of_dec = Dec.IMPORT;

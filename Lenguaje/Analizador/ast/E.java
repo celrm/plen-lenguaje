@@ -2,8 +2,10 @@ package ast;
 
 public abstract class E {
 	private Op oper;
-	public E(Op oper) {
+	int fila;
+	public E(Op oper, int fila) {
 		this.oper=oper;
+		this.fila = fila;
 	}
 	public Op oper() {
 		return oper;

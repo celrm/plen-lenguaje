@@ -5,18 +5,13 @@ import java.util.List;
 
 import alex.TV;
 
-public class DefFun extends Declare {
-	private TV id;
-	private Typename tipo;
-	Params params;
-	private Instructions decs;
-	public DefFun(TV id, Typename tipo, Params params, Instructions d) {
-		super(id.fila);
-		type_of_dec = Dec.FUNCTION;
-		this.id=id;
-		this.tipo=tipo;
-		this.params=params;
-		this.decs=d;
+public class Length extends DefFun {
+	private static TV id = new TV("length", -1);
+	private static Typename tipo = new Typename("ent");
+	static Params params = new Params(new Typename("*"), new TV("?", -1), null, false);
+	private static Instructions decs=null;
+	public Length() {
+		super(id,tipo,params,decs);
 	}
 	public String toString() {
 		String sol = "function " + id.toString() + " return " + tipo.toString();
@@ -41,12 +36,6 @@ public class DefFun extends Declare {
 	}
 	@Override
 	protected List<Typename> chequea() throws Exception {
-		Typename t = tipo.pure();
-		List<Typename> returns = decs.chequea();
-		for(Typename ret : returns) {
-			if(!ret.equals(t))
-				throw new Exception("Bad return type: "+ t + " / " + ret);
-		}
 		return new ArrayList<>();
 	}
 	public Typename tipo() {

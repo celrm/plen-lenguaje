@@ -8,7 +8,8 @@ import alex.TV;
 public class ForDec extends Declare {
 	private TV elem;
 //	private For f;
-	public ForDec(TV elem,For f) {
+	public ForDec(TV elem,For f, int fila) {
+		super(fila);
 		this.elem = elem;
 //		this.f = f;
 		type_of_dec = Dec.FORDEC;

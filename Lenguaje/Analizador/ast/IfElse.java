@@ -7,6 +7,7 @@ public class IfElse extends Instr {
 	private Instructions listaif;
 	private Instructions listaelse;
 	public IfElse(E b, Instructions d1, Instructions d2) {
+		super(b.fila);
 		this.b=b;
 		listaif=d1;
 		listaelse=d2;

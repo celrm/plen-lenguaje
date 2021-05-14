@@ -6,7 +6,8 @@ public class Imports {
 	Import i;
 	Imports rest;
 	public Imports(TV name, TV source, Imports rest) {
-		this.i= new Import(name,source);
+		int fila = name.fila;
+		this.i= new Import(name,source,fila);
 		this.rest=rest;
 	}
 	public String toString() {

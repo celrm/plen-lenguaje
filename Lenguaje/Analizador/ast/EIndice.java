@@ -3,8 +3,8 @@ package ast;
 public class EIndice extends EBin {
    private E o1;
    private E o2;
-   public EIndice(E opnd1, E opnd2, Op oper) {
-	   super(opnd1, opnd2, oper);
+   public EIndice(E opnd1, E opnd2, Op oper, int fila) {
+	   super(opnd1, opnd2, oper,fila);
 	     this.o1 = opnd1;
 	     this.o2 = opnd2;
    }

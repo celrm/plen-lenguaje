@@ -9,6 +9,7 @@ public class Asigna extends Instr {
 	private E e2;
 
 	public Asigna(E e1, E e2) {
+		super(e1.fila);
 		this.e1=e1;
 		this.e2=e2;
 		type_of_in = In.ASIGNA;

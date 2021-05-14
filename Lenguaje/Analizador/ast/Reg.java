@@ -10,6 +10,7 @@ public class Reg extends Declare {
 	private TV id;
 	private HeterValues v;
 	public Reg(Typename tipo, TV id, HeterValues values) {
+		super(id.fila);
 		this.tipo=tipo;
 		this.id=id;
 		this.v=values;

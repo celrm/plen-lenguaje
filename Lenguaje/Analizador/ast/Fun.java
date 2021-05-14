@@ -6,6 +6,7 @@ import java.util.List;
 public class Fun extends Instr {
 	private Call f;
 	public Fun(Call f) {
+		super(f.fila);
 		this.f=f;
 		type_of_in = In.FUN;
 	}

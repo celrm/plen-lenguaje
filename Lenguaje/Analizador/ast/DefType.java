@@ -11,6 +11,7 @@ public class DefType extends Declare {
 	private Typename tipo;
 
 	public DefType(TV id, Typename tipo) {
+		super(id.fila);
 		type_of_dec=Dec.TYPE;
 		this.id=id;
 		this.tipo=tipo;
