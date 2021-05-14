@@ -51,6 +51,9 @@ public class DefFun extends Declare {
 			if(!ret.equals(t))
 				throw new Exception("Fila " + fila + ". Bad return type: "+ t + " / " + ret);
 		}
+		if(returns.size() == 0)
+			throw new Exception("Fila " + fila + ". Function needs returns.");
+		
 		return new ArrayList<>();
 	}
 	public Typename tipo() {

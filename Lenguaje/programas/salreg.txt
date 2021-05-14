@@ -20,7 +20,7 @@ function guardar_dinero return pantalon (ent n) {
 		}
 		n = n-1.
 	}
-	
+	return sol.
 }
 
 
