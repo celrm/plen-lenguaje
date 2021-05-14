@@ -19,10 +19,10 @@ public class ASExp {
 		{ return new HomogValues((E)e,(HomogValues)rest); }
 	public E op_basico_ent(Object e) 
 	{ return new EBasico((TV)e,Op.BASICO_ENT); }
-	public E op_basico_bul(Object e,TV fila) 
+	public E op_basico_bul(Object e) 
 	{ return new EBasico((TV)e,Op.BASICO_BUL); }
-	public E op_basico_car(Object e,TV fila) 
+	public E op_basico_car(Object e) 
 	{ return new EBasico((TV)e,Op.BASICO_CAR); }
-	public E op_basico_id(Object e,TV fila) 
+	public E op_basico_id(Object e) 
 	{ return new EBasico((TV)e,Op.BASICO_ID); }
 }
