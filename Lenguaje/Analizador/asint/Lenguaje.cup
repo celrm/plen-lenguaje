@@ -34,13 +34,13 @@ terminal    TV  Id, Entero, Import, From, Const, Arr, Ent,
                         Asign, Distinto, Igual, Or, And, Menor, Meq, 
                         Mayor, Maq, Not, Suma, Guion, Mul, Div, Mod,
                         Indice, Acceso, PA, PC, CA, CC, LA, LC, Coma, 
-                        DosPts, Backslash
+                        DosPts, Backslash, New
                         ;
 
 non terminal    PROG, IMPORTBL, DECBL, DEC_VAR, DEC_DEFREG, DEC_REG,
                 CPARAMS, DENTRO_REG, DEC_FUN, PARAMS, DENTRO, DEC_TYPE,
                 MAINBL,EXPR, EXPFUN, EXPLISTA, LISTADENTRO, VALUES,
-                E0,E1,E2,E3,E4,E5,E6,E7,ETOP,INSTR_REG,
+                E0,E1,E2,E3,E4,E5,E6,E7,E8,ETOP,INSTR_REG,
                 INSTR, TYPENAME;
 
 PROG ::= IMPORTBL:imps DECBL:decs MAINBL:exe
@@ -119,9 +119,16 @@ MAINBL ::= Main LA DENTRO:d LC
 EXPR ::= E0:o
     {: RESULT=o; :}
 		;
-E7 ::= E7:o1 Acceso:f ETOP:o2
-    {: RESULT=as.op_acceso(o1,o2,Op.ACCESO,f); :}
+E8 ::= Mul:f E8:o
+    {: RESULT=as.op_punt(o,Op.PUNTERO,f); :}
+        | And:f E8:o
+    {: RESULT=as.op_puntinv(o,Op.PUNTEROINV,f); :}
         | ETOP:o
+    {: RESULT=o; :}
+		;
+E7 ::= E7:o1 Acceso:f E8:o2
+    {: RESULT=as.op_acceso(o1,o2,Op.ACCESO,f); :}
+        | E8:o
     {: RESULT=o; :}
 		;
 E6 ::= E6:o1 Indice:f E7:o2
@@ -160,20 +167,20 @@ E2 ::= E2:o1 Meq:f E3:o2
     {: RESULT=as.op_bin(o1,o2,Op.MENOR,f); :}
         | E2:o1 Mayor:f E3:o2
     {: RESULT=as.op_bin(o1,o2,Op.MAYOR,f); :}
-        | E2:o1 And:f E3:o2
-    {: RESULT=as.op_bin(o1,o2,Op.AND,f); :}
         | E3:o 
     {: RESULT=o; :}
 		;
-E1 ::= E1:o1 Or:f E2:o2
-    {: RESULT=as.op_bin(o1,o2,Op.OR,f); :}
+E1 ::= E1:o1 Igual:f E2:o2
+    {: RESULT=as.op_bin(o1,o2,Op.IGUAL,f); :}
+        | E1:o1 Distinto:f E2:o2
+    {: RESULT=as.op_bin(o1,o2,Op.DISTINTO,f); :}
         | E2:o
     {: RESULT=o; :}
 		;
-E0 ::= E0:o1 Igual:f E1:o2
-    {: RESULT=as.op_bin(o1,o2,Op.IGUAL,f); :}
-        | E0:o1 Distinto:f E1:o2
-    {: RESULT=as.op_bin(o1,o2,Op.DISTINTO,f); :}
+E0 ::= E0:o1 Or:f E1:o2
+    {: RESULT=as.op_bin(o1,o2,Op.OR,f); :}
+        | E0:o1 And:f E1:o2
+    {: RESULT=as.op_bin(o1,o2,Op.AND,f); :}
         | E1:o
     {: RESULT=o; :}
 		;
@@ -187,6 +194,8 @@ ETOP ::= Entero:e
     {: RESULT=as.op_basico_id(e); :}
         | Caracter :e
     {: RESULT=as.op_basico_car(e); :}
+        | New:f TYPENAME:t
+    {: RESULT=as.op_new(t,f); :}
         | PA E0:e PC
     {: RESULT=e; :}
         | EXPFUN:e
@@ -252,6 +261,8 @@ TYPENAME ::= Ent:e
     {: RESULT=is.typename(e); :}
         | Arr Backslash TYPENAME:e
     {: RESULT=is.typename_arr(e); :}
+        | Mul TYPENAME:e
+    {: RESULT=is.typename_punt(e); :}
         ;
 
 

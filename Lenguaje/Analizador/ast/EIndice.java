@@ -8,11 +8,14 @@ public class EIndice extends EBin {
 	     this.o1 = opnd1;
 	     this.o2 = opnd2;
    }
-   Declare array;
+   private Declare array;
    int dim = 1;
 	@Override
 	protected void vinculo() throws Exception {
 		o2.vinculo();
+		if(!Asigna.designable(o1))			
+			throw new Exception("Fila " + fila + ". Index no asignable: "+ o1.toString());
+
 		if (o1.oper()==Op.BASICO_ID) {
 			EBasico o11 = (EBasico) o1;
 			o11.vinculo();
@@ -29,21 +32,21 @@ public class EIndice extends EBin {
 			array = o11.array;
 			dim = o11.dim+1; 
 		}
-		else 
-			throw new Exception("Fila " + fila + ". Access: "+ o2.toString());
+		else if (o1.oper()==Op.PUNTERO) {
+			EPunt o11 = (EPunt) o1;
+			o11.vinculo();		
+		}
 	}
 	@Override
 	protected Typename chequea() throws Exception {
-		Typename s1 = o1.chequea();
-		s1 = s1.pure();
-		Typename s2 = o2.chequea();
-		s2 = s2.pure();
+		Typename s1 = o1.chequea().pure();
+		Typename s2 = o2.chequea().pure();
 		if(s2.t != Type.ENT)
-			throw new Exception("Fila " + fila + ". Acceso no entero");
+			throw new Exception("Fila " + fila + ". Index no entero");
 		
 		if(s1.t != Type.ARR)
-			throw new Exception("Fila " + fila + ". Acceso no array");
-		return s1.t_arr;
+			throw new Exception("Fila " + fila + ". Index no array");
+		return s1.t_arr.pure();
 	}
 	public String o2() {
 		return o2.toString();

@@ -41,6 +41,9 @@ public class ALexOperations {
   public UnidadLexica unidadData() {
      return new UnidadLexica(alex.fila(),ClaseLexica.Data,alex.lexema()); 
   } 
+  public UnidadLexica unidadNew() {
+     return new UnidadLexica(alex.fila(),ClaseLexica.New,alex.lexema()); 
+  } 
   public UnidadLexica unidadFunction() {
      return new UnidadLexica(alex.fila(),ClaseLexica.Function,alex.lexema()); 
   }

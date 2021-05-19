@@ -15,7 +15,7 @@ public class EMono extends E {
 	}
 	@Override
 	protected Typename chequea() throws Exception {
-		Typename s1 = o.chequea();
+		Typename s1 = o.chequea().pure();
 		switch(oper()) {
 		case NOT:
 			if(s1.t != Type.BUL)

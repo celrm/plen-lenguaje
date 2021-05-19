@@ -47,7 +47,7 @@ public class Instructions {
 			all_rets = rest.chequea();
 		
 		for (Typename meter : i_rets) {
-			all_rets.add(meter);
+			all_rets.add(meter.pure());
 		}
 		return all_rets;
 	}

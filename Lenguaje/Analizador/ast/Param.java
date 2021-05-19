@@ -24,6 +24,7 @@ public class Param extends Declare {
 		if(name().equals("length") || name().equals("kin")) {
 			throw new Exception("Fila " + fila + ". Banned word: "+ name());
 		}
+		Typename.check_custom(tipo,fila);
 		Program.insertaId(id.toString(), this);
 	}
 	protected String name() {

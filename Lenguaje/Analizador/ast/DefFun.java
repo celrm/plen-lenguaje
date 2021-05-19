@@ -33,6 +33,7 @@ public class DefFun extends Declare {
 		if(banned && (name().equals("length") || name().equals("kin"))) {
 			throw new Exception("Fila " + fila + ". Banned word: "+ name());
 		}
+		Typename.check_custom(tipo,fila);
 		Program.insertaId(name(), this);
 		Program.abreBloque();
 		
@@ -46,6 +47,8 @@ public class DefFun extends Declare {
 	@Override
 	protected List<Typename> chequea() throws Exception {
 		Typename t = tipo.pure();
+		if(t.t == Type.CUSTOM || t.t == Type.ARR)
+			throw new Exception("Fila " + fila + ". Return is not basic or punterito: "+t);
 		List<Typename> returns = decs.chequea();
 		for(Typename ret : returns) {
 			if(!ret.equals(t))

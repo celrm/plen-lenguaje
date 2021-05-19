@@ -1,0 +1,67 @@
+const ent taxicab_number = 1729.
+
+data coleccion1 () = {
+  arr\ent cosas = [0].
+  bul vacio = no.
+} .
+
+data coleccion2 (const ent size) = {
+  arr\ent cosas = (size, 0).
+  bul vacio = size == 0.
+} .
+
+function copy return ent (arr\ent v, *arr\ent w) {
+    *w = v.
+    return 0.
+}
+
+type matriz = arr\arr\ent.
+
+main {
+    arr\ent v1 = [1,2,3].
+    arr\ent v2 = (3,0). 
+    
+    arr\arr\ent m1 = [[1,1,1],v1,v2].
+    arr\arr\ent m2 = (3,[0,0,0]).
+    arr\arr\ent m3 = (3,(3,0)).
+    
+    * ent a = new ent.
+    ent b = *(new ent) + 2 + *a.
+    * ent c = &b.
+    
+    coleccion1 bolsa1().
+    bolsa1->cosas ! 0 = 1.
+
+    coleccion2 bolsa2(3).
+    bolsa2->cosas ! 2 = 1.
+    
+    ent num = 10 .
+    num = 0 .
+    v1 ! 2 = 1 .
+    *a = 3 .
+    
+    *arr\ent w = new arr\ent.
+    ent res = copy(v1,w) .
+    copy(v1,w) .
+    
+    bul b = si.
+    while(b) {
+        b = ¬b.
+    }
+    
+    arr\ent lista = [1,2,3].
+    for(l : lista) {
+        kut(l).
+    }
+    
+    if (num < 0) {
+    num = -1 * num.
+    }
+
+    if (num % 2 == 0) {
+        b = si.
+    }
+    else {
+        b = no.
+    }
+}

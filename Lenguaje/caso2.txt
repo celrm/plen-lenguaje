@@ -11,10 +11,7 @@ data coleccion (const ent size) = {
 } .
 
 € Funciones
-function my_quick return arr\ent (arr\ent v) {
-    arr\ent w = (2,0).
-    return w.
-}
+function my_quick return ent (arr\ent v) {}
 
 data bolsillo() = {
     ent monedas = 0.
@@ -37,8 +34,8 @@ main {
     arr\ent v = [2 * 3 + 1, 9 / 3, 1 + (-1)].
     kut(v ! 3).
     
-    my_quick(v).
-    for(e : w) {
+    €my_quick(v).
+    for(e : v) {
         kut(e).
     }
     

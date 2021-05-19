@@ -24,11 +24,18 @@ public class Asigna extends Instr {
 	}
 	@Override
 	protected List<Typename> chequea() throws Exception {
-		if(e1.oper() != Op.ACCESO && e1.oper() != Op.INDICE && e1.oper() != Op.BASICO_ID)
-			throw new Exception("Fila " + fila + ". No asignable: " + e1.toString());
-		Typename t1 = e1.chequea();
-		Typename t2 = e2.chequea();
+		if(!designable(e1))
+			throw new Exception("Fila " + fila + ". No designable: " + e1.toString());
+		Typename t1 = e1.chequea().pure();
+		Typename t2 = e2.chequea().pure();
 		if(!t1.equals(t2)) throw new Exception("Fila " + fila + ". Fallo de tipo en asignación");
 		return new ArrayList<>();
+	}
+	
+	public static boolean designable(E e1) {
+		return e1.oper() == Op.ACCESO 
+			|| e1.oper() == Op.INDICE 
+			|| e1.oper() == Op.PUNTERO 
+			|| e1.oper() == Op.BASICO_ID;
 	}
 }

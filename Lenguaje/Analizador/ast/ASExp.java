@@ -3,8 +3,14 @@ package ast;
 import alex.TV;
 
 public class ASExp {
+	public E op_new(Object t,TV fila) 
+	{ return new ENew((Typename)t,Op.BASICO_NEW,fila.fila); }
+	public E op_punt(Object opnd,Object oper,TV fila) 
+	{ return new EPunt((E)opnd,(Op)oper, fila.fila); }
+	public E op_puntinv(Object opnd,Object oper,TV fila) 
+	{ return new EPuntInv((E)opnd,(Op)oper, fila.fila); }
 	public E op_acceso(Object opnd1, Object opnd2,Object oper,TV fila) 
-		{ return new EAcceso((E)opnd1,(EBasico)opnd2,(Op)oper, fila.fila); }
+	{ return new EAcceso((E)opnd1,(EBasico)opnd2,(Op)oper, fila.fila); }
 	public E op_indice(Object opnd1, Object opnd2,Object oper,TV fila)  
 		{ return new EIndice((E)opnd1,(E)opnd2,(Op)oper, fila.fila); }
 	public E op_bin(Object opnd1, Object opnd2,Object oper,TV fila) 

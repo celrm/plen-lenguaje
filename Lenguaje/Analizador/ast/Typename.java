@@ -17,9 +17,9 @@ public class Typename {
 			t = Type.CAR;
 		else t = Type.CUSTOM;
 	}
-	public Typename(Typename e) {
+	public Typename(Typename e,Type t) {
 		t_arr = e;	
-		t = Type.ARR;
+		this.t = t;
 	}
 	public Typename(String s) {
 		this(new TV(s, -1));
@@ -28,6 +28,9 @@ public class Typename {
 	public String toString() {
 		if (t == Type.ARR) {
 			return "arr\\" + t_arr.toString();
+		}
+		if (t == Type.PUNT) {
+			return "*" + t_arr.toString();
 		}
 		if(t_id != null) {
 			return t_id.toString();
@@ -44,23 +47,53 @@ public class Typename {
 			}
 			return from;
 		}
-		else if (t == Type.ARR) {
-			return new Typename(t_arr.pure());
+		else if (t == Type.ARR || t == Type.PUNT) {
+			return new Typename(t_arr.pure(),t);
 		}
 		return null;
 	}
 	public boolean equals(Typename y) {
 		Typename t1 = pure();
 		Typename t2 = y.pure();
+		if(t1.t == Type.CUSTOM && t1.t_id.toString().equals("*"))
+			return true;
+		if(t2.t == Type.CUSTOM && t2.t_id.toString().equals("*"))
+			return true;
 		if(t2.t != t1.t)
 			return false;
 		if(t1.t == Type.ARR) {
 			return t2.t == Type.ARR &&
 					t2.t_arr.equals(t1.t_arr);
 		}
+		if(t1.t == Type.PUNT) {
+			return t2.t == Type.PUNT &&
+					t2.t_arr.equals(t1.t_arr);
+		}
 		if(t1.t_id == null || 
 				!t1.t_id.toString().equals(t2.t_id.toString())) 
 			return false;
 		return true;
+	}
+
+	public static void check_custom(Typename tipo2,int fila) throws Exception {
+		switch(tipo2.t) {
+		case PUNT:
+		case ARR:
+			check_custom(tipo2.t_arr,fila);
+			break;
+		case BUL:
+		case CAR:
+		case ENT:
+			break;
+		case CUSTOM:
+			if(!tipo2.toString().equals("*")) {
+				@SuppressWarnings("unused") 
+				Declare tp = (Declare) Program.buscaId(tipo2.toString(),fila);
+			}
+			break;
+		default:
+			break;
+		
+		}
 	}
 }

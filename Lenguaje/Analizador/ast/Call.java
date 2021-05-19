@@ -45,7 +45,7 @@ public class Call extends E {
 			Param e1 = q.p;
 			E e2 = q.e;
 			e1.chequea();
-			Typename par = e2.chequea();
+			Typename par = e2.chequea().pure();
 			if(!e1.tipo().equals(par) && !id.lexema.equals("length")) {
 				throw new Exception("Fila " + fila + ". Different parameter types in call");
 			}

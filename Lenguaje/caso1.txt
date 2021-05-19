@@ -1,34 +1,36 @@
+
 type string = arr\car.
 const ent max_string = 100.
 
-function copy return string (string  source, ent longitud) {
-    string dest = (longitud, ' ').
-    i = 0.
+function copy return ent (*string s, *string d, ent longitud) {
+    *d = (longitud,' ').
+    ent i = 0.
     while (i < longitud) {
-        dest!i = source!i.
+        *d!i = *s!i.
         i = i + 1.
     }
-    return dest.
+    return 0.
 }
 
-function kin_string return string (){
-    car letra = kin().
-    string aux = (max_string,' ').
+function kin_string return ent (*string s){
+    *string aux = new string.
+    *aux = (max_string,' ').
     ent i = 0.
+    car letra = kin().
     while (letra != '\n' & i < max_string) {
-        aux!i = letra.
+        *aux!i = letra.
         letra = kin().
         i = i + 1.
     }
     if (i < max_string) {
-        aux!i = letra.
+        *aux!i = letra.
         i = i + 1.
     }
-    return copy(aux,i).
+    return copy(aux,s,i).
 }
 
-function kut_string return ent (string cadena){
-    for(letra : cadena) {
+function kut_string return ent (*string cadena){
+    for(letra : *cadena) {
         kut(letra).
     }
     return 0.

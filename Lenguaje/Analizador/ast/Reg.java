@@ -31,10 +31,12 @@ public class Reg extends Declare {
 		if(name().equals("length") || name().equals("kin")) {
 			throw new Exception("Fila " + fila + ". Banned word: "+ name());
 		}
+		Typename.check_custom(tipo,fila);
 		if(v!=null) {
 			v.vinculo();
 		}
-		dr = (DefReg) Program.buscaId(tipo.toString(),fila);
+		tipo = tipo.pure();
+		dr = (DefReg) Program.buscaId(tipo.toString().toString(),fila);
 		Program.insertaId(name(), this);
 		
 		Params p = dr.params;
@@ -60,7 +62,7 @@ public class Reg extends Declare {
 			Param e1 = q.p;
 			E e2 = q.e;
 			e1.chequea();
-			Typename par = e2.chequea();
+			Typename par = e2.chequea().pure();
 			if(!e1.tipo().equals(par)) {
 				throw new Exception("Fila " + fila + ". Different parameter types in call "+id.fila);
 			}

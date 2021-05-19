@@ -30,12 +30,11 @@ public class For extends Instr {
 	}
 	@Override
 	protected List<Typename> chequea() throws Exception {
-		Typename s1 = arr.chequea(); 
-		s1 = s1.pure();
+		Typename s1 = arr.chequea().pure();
 
 		if(s1.t != Type.ARR)
 			throw new Exception("Fila " + fila + ". Acceso no array");
-		elemDec.tipo = s1.t_arr;
+		elemDec.tipo = s1.t_arr.pure();
 		return lista.chequea();
 	}
 }

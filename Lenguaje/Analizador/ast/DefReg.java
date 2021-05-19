@@ -19,8 +19,8 @@ public class DefReg extends Declare {
 	}
 	public String toString() {
 		String sol = "data " + id.toString();
-		sol = sol + " (" + (params==null?"":params.toString()) + ") {\n";
-		sol = sol + (ins==null?"":ins.toString()) + "}";
+		sol = sol + " (" + (params==null?"":params.toString()) + ") = {\n";
+		sol = sol + (ins==null?"":ins.toString()) + "} .";
 		return sol;
 	}
 	private Map<String,Object> defs;

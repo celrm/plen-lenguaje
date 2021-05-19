@@ -46,6 +46,7 @@ ent = ent
 bul = bul
 car = car
 data = data
+new = new
 function = function
 return = return
 main = main
@@ -98,6 +99,7 @@ backslash = \\
 {bul}                     {return ops.unidadBul();}
 {car}                     {return ops.unidadCar();}
 {data}                    {return ops.unidadData();}
+{new}                     {return ops.unidadNew();}
 {function}                {return ops.unidadFunction();}
 {return}                  {return ops.unidadReturn();}
 {main}                    {return ops.unidadMain();}

@@ -20,7 +20,7 @@ public class Return extends Instr {
 	Typename tipo;
 	@Override
 	protected List<Typename> chequea() throws Exception {
-		tipo = exp.chequea();
+		tipo = exp.chequea().pure();
 		List<Typename> rets = new ArrayList<>();
 		rets.add(tipo);
 		return rets;

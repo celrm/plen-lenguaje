@@ -1,6 +1,7 @@
 package ast;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Stack;
 
@@ -47,7 +48,7 @@ public class Program {
 	}
 	
 	private DefFun kin = new DefFun(
-			new TV("kin",-1), new Typename(new TV("ent",-1)), null, null);
+			new TV("kin",-1), new Typename(new TV("*",-1)), null, null);
 	private Length length = new Length();
 	
 	public void vinculo() {
@@ -86,9 +87,17 @@ public class Program {
 
 		if(imps!=null)
 		imps.chequea();
+		
 		if(decs!=null)
 		decs.chequea();
-		if(mn!=null)
-		mn.chequea();
+		
+		if(mn!=null) {
+			List<Typename> returns = mn.chequea();
+			Typename t = new Typename("ent");
+			for(Typename ret : returns) {
+				if(!ret.equals(t))
+					System.out.println("Main. Bad return type: "+ t + " / " + ret);
+			}
+		}
 	}
 }

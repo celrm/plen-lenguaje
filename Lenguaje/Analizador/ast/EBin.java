@@ -18,29 +18,33 @@ public class EBin extends E {
 	}
 	@Override
 	protected Typename chequea() throws Exception {
-		Typename s1 = o1.chequea();
-		Typename s2 = o2.chequea();
+		Typename s1 = o1.chequea().pure();
+		Typename s2 = o2.chequea().pure();
 		switch(oper()) {
 		case OR:
 		case AND:
 			if(s1.t != Type.BUL || s2.t != Type.BUL)
-				throw new Exception("Fila " + fila + ". " +oper()+" de no bul");
+				throw new Exception("Fila " + fila + ". " +oper()+" de no bul "
+						+s1.t + " " + s2.t);
 			return new Typename("bul");
 		case ARRAYINIT:
 			if(s1.t != Type.ENT)
-				throw new Exception("Fila " + fila + ". Mal arrayinit tipo");
-			return new Typename(s2);
+				throw new Exception("Fila " + fila + ". Mal arrayinit tipo "
+						+s1.t);
+			return new Typename(s2, Type.ARR);
 		case DISTINTO:
 		case IGUAL:
 			if(!s1.equals(s2))
-				throw new Exception("Fila " + fila + ". "+oper() +" mal tipo");
+				throw new Exception("Fila " + fila + ". "+oper() +" mal tipo "
+						+s1.t + " " + s2.t);
 			return new Typename("bul");
 		case MAQ:
 		case MAYOR:
 		case MENOR:
 		case MEQ:
 			if(s1.t != Type.ENT || s2.t != Type.ENT)
-				throw new Exception("Fila " + fila + ". "+oper()+" de no ent");
+				throw new Exception("Fila " + fila + ". "+oper()+" de no ent "
+						+s1.t + " " + s2.t);
 			return new Typename("bul");
 		case DIV:
 		case MOD:
@@ -48,7 +52,8 @@ public class EBin extends E {
 		case RESTA:
 		case SUMA:
 			if(s1.t != Type.ENT || s2.t != Type.ENT)
-				throw new Exception("Fila " + fila + ". "+oper()+" de no ent");
+				throw new Exception("Fila " + fila + ". "+oper()+" de no ent "
+						+s1.t + " " + s2.t);
 			return new Typename("ent");
 		default:
 			break;

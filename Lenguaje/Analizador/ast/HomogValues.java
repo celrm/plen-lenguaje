@@ -23,10 +23,10 @@ public class HomogValues {
 			rest.vinculo();
 	}
 	public Typename chequea() throws Exception {
-		Typename t = e.chequea();
+		Typename t = e.chequea().pure();
 		Typename w;
 		if(rest!= null) {
-			w = rest.chequea();
+			w = rest.chequea().pure();
 			if(!t.equals(w))
 				throw new Exception("Fila " + fila + ". Bad list"); // mirar tamaños varios de arrays [[],[1]]
 		}

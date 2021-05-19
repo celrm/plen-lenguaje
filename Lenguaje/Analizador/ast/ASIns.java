@@ -51,7 +51,9 @@ public class ASIns {
 	public Typename typename(Object e) 
 		{ return new Typename((TV)e); }
 	public Typename typename_arr(Object e) 
-		{ return new Typename((Typename)e); }
+	{ return new Typename((Typename)e, Type.ARR); }
+	public Typename typename_punt(Object e) 
+	{ return new Typename((Typename)e, Type.PUNT); }
 	
 	  
 }

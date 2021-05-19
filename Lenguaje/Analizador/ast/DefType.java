@@ -23,7 +23,9 @@ public class DefType extends Declare {
 		return id.toString();
 	}
 	@Override
-	protected void vinculo() {
+	protected void vinculo() throws Exception {
+		Typename.check_custom(tipo,fila);
+		
 		Program.insertaId(name(), this);
 	}
 	public void chequea_prep(Map<String, Typename> typedefs) {
@@ -36,6 +38,7 @@ public class DefType extends Declare {
 		}
 		if(name().equals("ent") || name().equals("car") || name().equals("bul"))
 		throw new Exception("Fila " + fila + ". No definas otra vez "+name());
+		
 		return new ArrayList<>();
 	}
 	@Override

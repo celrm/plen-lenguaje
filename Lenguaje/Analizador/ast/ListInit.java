@@ -16,7 +16,9 @@ public class ListInit extends E {
 	}
 	@Override
 	protected Typename chequea() throws Exception {
-		return new Typename(lista.chequea());
+		if(lista == null)
+			return new Typename(new Typename("*"), Type.ARR);
+		return new Typename(lista.chequea().pure(), Type.ARR);
 	}
 
 }
