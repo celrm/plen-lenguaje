@@ -18,7 +18,7 @@ public class Instructions {
 		return sol;
 	}
 	private boolean errorSemantico = false;
-	public void vinculo() {
+	public void vinculo() {		
 		try {
 			i.vinculo();
 		} catch (Exception e) {
@@ -38,8 +38,6 @@ public class Instructions {
 			try {
 				i_rets = i.chequea();
 			} catch (Exception e) {
-				// TODO Auto-generated catch block
-//				e.printStackTrace();
 				System.out.println(e.getMessage());
 			}
 
@@ -50,5 +48,16 @@ public class Instructions {
 			all_rets.add(meter.pure());
 		}
 		return all_rets;
+	}
+	public String codigo() {
+		String is = i.codigo();
+		if(rest!=null) 
+			is = is+ rest.codigo();
+		return is;
+	}
+	public void maxMemory(WrapInt c, WrapInt max, WrapInt delta) {
+		i.maxMemory(c,max,delta);
+		if(rest!=null)
+		rest.maxMemory(c,max,delta);
 	}
 }

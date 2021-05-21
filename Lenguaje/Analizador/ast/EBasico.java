@@ -34,5 +34,33 @@ public class EBasico extends E {
 		}
 		return null;
 	}
+	@Override
+	protected String codigo() {
+		String sol = "";
+
+		switch(oper()) {
+		case BASICO_BUL:
+			sol = sol + "   i32.const " + (id.toString().equals("si") ? "0" : "1");
+			break;
+		case BASICO_CAR:
+			break;
+		case BASICO_ENT:
+			sol = sol + "   i32.const " + id.toString();
+			break;
+		case BASICO_ID:
+			int delta = d.delta;
+			sol = sol +
+					"	get_local $localsStart\n" +
+					"   i32.const " + delta*4 + "\n"+
+					"	i32.add\n" +
+					"	i32.load\n"
+					;
+			break;
+		default:
+			break;
+		}
+		
+		return sol + "\n";
+	}
 
 }

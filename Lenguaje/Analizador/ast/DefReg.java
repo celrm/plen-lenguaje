@@ -39,8 +39,9 @@ public class DefReg extends Declare {
 			params.vinculo();
 		
 		Program.abreBloque();
-		if(ins!=null)
+		if(ins!=null) {
 			ins.vinculo();
+		}
 		defs = Program.tablaSimbolos();
 		Program.cierraBloque();
 		
@@ -57,5 +58,10 @@ public class DefReg extends Declare {
 	@Override
 	protected Typename tipo() {
 		return new Typename(id);
+	}
+	@Override
+	protected void maxMemory(WrapInt c, WrapInt max, WrapInt delta) {
+		// TODO Auto-generated method stub
+		
 	}
 }

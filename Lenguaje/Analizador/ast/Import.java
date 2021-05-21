@@ -49,4 +49,9 @@ public class Import extends Declare {
 	protected String name() {
 		return name.toString();
 	}
+	@Override
+	protected void maxMemory(WrapInt c, WrapInt max, WrapInt delta) {
+		// TODO Auto-generated method stub
+		
+	}
 }

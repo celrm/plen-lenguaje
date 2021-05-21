@@ -37,4 +37,9 @@ public class For extends Instr {
 		elemDec.tipo = s1.t_arr.pure();
 		return lista.chequea();
 	}
+	@Override
+	protected void maxMemory(WrapInt c, WrapInt max, WrapInt delta) {
+		// TODO Auto-generated method stub
+		
+	}
 }

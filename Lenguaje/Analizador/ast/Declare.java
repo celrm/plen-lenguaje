@@ -4,6 +4,7 @@ import java.util.List;
 
 public abstract class Declare extends Instr {
 	Dec type_of_dec;
+	int delta;
 	public Declare(int fila) {
 		super(fila);
 		type_of_in = In.DECLARE;
@@ -16,4 +17,6 @@ public abstract class Declare extends Instr {
 	protected abstract String name();
 
 	protected abstract Typename tipo();
+
+	protected abstract void maxMemory(WrapInt c, WrapInt max, WrapInt delta);
 }

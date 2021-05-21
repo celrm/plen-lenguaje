@@ -21,6 +21,7 @@ public class Main {
 
 	 prog.vinculo();
 	 prog.chequea();
+	 prog.codigo(args[0].substring(0, args[0].length()-4));
  }
    
    public static Program abrirFichero(String ruta) throws Exception {

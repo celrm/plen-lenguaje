@@ -41,4 +41,9 @@ public class IfElse extends Instr {
 		rets1.addAll(rets2);
 		return rets1;
 	}
+	@Override
+	protected void maxMemory(WrapInt c, WrapInt max, WrapInt delta) {
+		// TODO Auto-generated method stub
+		
+	}
 }

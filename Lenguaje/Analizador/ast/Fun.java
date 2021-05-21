@@ -22,4 +22,9 @@ public class Fun extends Instr {
 		f.chequea();
 		return new ArrayList<>();
 	}
+	@Override
+	protected void maxMemory(WrapInt c, WrapInt max, WrapInt delta) {
+		// TODO Auto-generated method stub
+		
+	}
 }

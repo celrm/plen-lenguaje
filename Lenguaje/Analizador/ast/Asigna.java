@@ -38,4 +38,6 @@ public class Asigna extends Instr {
 			|| e1.oper() == Op.PUNTERO 
 			|| e1.oper() == Op.BASICO_ID;
 	}
+	@Override
+	protected void maxMemory(WrapInt c, WrapInt max, WrapInt delta) {}
 }

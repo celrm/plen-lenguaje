@@ -48,4 +48,32 @@ public class Var extends Declare {
 	protected Typename tipo() {
 		return tipo;
 	}
+	@Override
+	public String codigo() {
+		String codeE = exp.codigo();
+		// donde se va a guardar
+		String sol = 
+				"	get_local $localsStart\n" +
+				"   i32.const " + delta * 4 + "\n"+
+				"	i32.add\n" +
+				codeE +
+				"i32.store\n"
+				;
+
+//		acceso
+//		get $start si es mía la variable
+//		+
+//		(i + despl(si array))*4
+		return sol;
+	}
+	@Override
+	protected void maxMemory(WrapInt c, WrapInt max, WrapInt delta) {
+		c.v += size();
+		if (c.v > max.v) max.v = c.v; 
+		this.delta = delta.v;
+		delta.v++;
+	}
+	private Integer size() {
+		return tipo.size(); // no está
+	}
 }

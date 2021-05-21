@@ -31,4 +31,27 @@ public class EMono extends E {
 		}
 		return null;
 	}
+	@Override
+	protected String codigo() {
+		String sol = "";
+		String e1 = o.codigo();
+		sol = sol + e1 ;
+		switch(oper()) {
+		case NOT:
+//			sol = sol +
+//			"i32.neg" TODO
+//			;
+			break;
+		case SIGNO:
+			sol = sol +
+					"i32.const -1\n"+
+					"i32.mul"
+			;
+			break;
+		default:
+			break;
+		
+		}
+		return sol + "\n";
+	}
 }

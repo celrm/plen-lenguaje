@@ -16,5 +16,10 @@ public class ENew extends E {
 	public Typename chequea() {
 		return new Typename(t.pure(),Type.PUNT);
 	}
+	@Override
+	protected String codigo() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 
 }

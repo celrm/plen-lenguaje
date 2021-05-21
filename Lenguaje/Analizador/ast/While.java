@@ -31,4 +31,9 @@ public class While extends Instr {
 		}
 		return lista.chequea();
 	}
+	@Override
+	protected void maxMemory(WrapInt c, WrapInt max, WrapInt delta) {
+		// TODO Auto-generated method stub
+		
+	}
 }

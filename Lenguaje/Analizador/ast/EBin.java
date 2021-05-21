@@ -60,4 +60,83 @@ public class EBin extends E {
 		}
 		return null;
 	}
+	@Override
+	protected String codigo() {
+		String sol = "";
+		String e1 = o1.codigo();
+		String e2 = o2.codigo();
+		sol = sol + e1 + e2;
+		switch(oper()) {
+		case OR:
+			sol = sol +
+					"i32.or"
+					;
+			break;
+		case AND:
+			sol = sol +
+			"i32.and"
+			;
+			break;
+		case ARRAYINIT:
+			break;
+		case DISTINTO:
+			sol = sol +
+			"i32.ne"
+			;
+			break;
+		case IGUAL:
+			sol = sol +
+			"i32.eq"
+			;
+			break;
+		case MAQ:
+			sol = sol +
+			"i32.ge_s"
+			;
+			break;
+		case MAYOR:
+			sol = sol +
+			"i32.gt_s"
+			;
+			break;
+		case MENOR:
+			sol = sol +
+			"i32.lt_s"
+			;
+			break;
+		case MEQ:
+			sol = sol +
+			"i32.le_s"
+			;
+			break;
+		case DIV:
+			sol = sol +
+			"i32.div_s"
+			;
+			break;
+		case MOD:
+			sol = sol +
+			"i32.rem_s"
+			;
+			break;
+		case MUL:
+			sol = sol +
+			"i32.mul"
+			;
+			break;
+		case RESTA:
+			sol = sol +
+			"i32.sub"
+			;
+			break;
+		case SUMA:
+			sol = sol +
+			"i32.add"
+			;
+			break;
+		default:
+			break;
+		}
+		return sol + "\n";
+	}
 }

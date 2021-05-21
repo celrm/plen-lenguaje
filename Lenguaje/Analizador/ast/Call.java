@@ -53,4 +53,9 @@ public class Call extends E {
 		}
 		return f.tipo().pure();
 	}
+	@Override
+	protected String codigo() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }

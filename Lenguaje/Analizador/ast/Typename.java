@@ -96,4 +96,20 @@ public class Typename {
 		
 		}
 	}
+	public Integer size() {
+		switch(t) {
+		case ARR:
+			break;
+		case CUSTOM:
+			break;
+		case BUL:
+		case CAR:
+		case ENT:
+		case PUNT:
+			return 1;
+		default:
+			break;
+		}
+		return 0;
+	}
 }

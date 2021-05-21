@@ -77,4 +77,14 @@ public class Reg extends Declare {
 	protected Typename tipo() {
 		return tipo;
 	}
+	@Override
+	protected void maxMemory(WrapInt c, WrapInt max, WrapInt delta) {
+		c.v += size();
+		if (c.v > max.v) max.v = c.v; 
+		this.delta = delta.v;
+		delta.v++;
+	}
+	private Integer size() {
+		return tipo.size(); // no está
+	}
 }

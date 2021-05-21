@@ -27,4 +27,24 @@ public class Kut extends Instr {
 		}
 		return new ArrayList<>();
 	}
+	@Override
+	public String codigo() {
+		String codeE = print.codigo();
+		String sol = "   call $print";
+		return codeE + sol;
+	}
+	@Override
+	protected void maxMemory(WrapInt c, WrapInt max, WrapInt delta) {
+		// TODO Auto-generated method stub
+		
+	}
 }
+
+/*
+ memory noseque:
+  rellenar el resto -M
+   y size de struc/array -?
+ codigo de instrucciones (estan en diapositivas) -M
+ implementar definiciones de funciones ??? 
+ punteros: operaciones
+*/

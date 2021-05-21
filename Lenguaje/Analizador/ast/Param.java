@@ -37,4 +37,9 @@ public class Param extends Declare {
 	protected Typename tipo() {
 		return tipo;
 	}
+	@Override
+	protected void maxMemory(WrapInt c, WrapInt max, WrapInt delta) {
+		// TODO Auto-generated method stub
+		
+	}
 }

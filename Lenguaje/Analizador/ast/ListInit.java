@@ -20,5 +20,10 @@ public class ListInit extends E {
 			return new Typename(new Typename("*"), Type.ARR);
 		return new Typename(lista.chequea().pure(), Type.ARR);
 	}
+	@Override
+	protected String codigo() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 
 }

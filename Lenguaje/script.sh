@@ -1,6 +1,8 @@
 #!/bin/bash
 clear
 
+file=$1 
+
 echo -e 'Analizador léxico:\n\n'
 
 cd Analizador/alex/
@@ -18,8 +20,16 @@ echo -e '\n\n'
 
 cd Analizador/
 javac -cp "../cup.jar" alex/*.java asint/*.java errors/*.java ast/*.java
-java -cp ".:../cup.jar" asint.Main "../$1.txt"
+java -cp ".:../cup.jar" asint.Main "../$file.txt"
 
 cd ..
 
 echo -e '\n\n'
+
+
+echo -e '\n\nGeneración de código\n\n'
+
+wabt/bin/wat2wasm "$file.wat"
+
+node "main.js"
+

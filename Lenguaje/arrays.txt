@@ -1,8 +1,5 @@
-
-data pantalon () = { ent monedas = 0. }.
-data pantalon () = { arr\ent monedas = []. }.
-
 main {
-    pantalon p().
-    arr\pantalon ps = [].
+    ent a = 3.
+    ent b = 4.
+    kut(a+b).
 }

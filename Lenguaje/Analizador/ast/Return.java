@@ -27,6 +27,11 @@ public class Return extends Instr {
 	}
 	public Typename tipo() {
 		return tipo;
+	}
+	@Override
+	protected void maxMemory(WrapInt c, WrapInt max, WrapInt delta) {
+		// TODO Auto-generated method stub
+		
 	} 
 
 }

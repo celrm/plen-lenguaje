@@ -39,8 +39,9 @@ public class DefFun extends Declare {
 		
 		if(params!=null)
 			params.vinculo();
-		if(decs!=null)
+		if(decs!=null) {
 			decs.vinculo();
+		}
 		
 		Program.cierraBloque();
 	}
@@ -62,4 +63,28 @@ public class DefFun extends Declare {
 	public Typename tipo() {
 		return tipo;
 	}
+	@Override
+	protected void maxMemory(WrapInt c, WrapInt max, WrapInt delta) { 
+//		if (false) { // isDef()
+////			c += size();
+////			if (c > max) max = c; 
+////			this.delta = delta;
+////			delta++;
+//		} else if (false) { // isBlock()
+//			Integer c1 = 0;
+//			Integer max1 = 0;
+//			Integer delta1 = 0;
+//			maxMemory(c1,max1,delta1);
+//			if (c+max1 > max) {
+//				max = c + max1;
+//			}
+//		} else {
+//		}
+	}
+//	private Integer size() {
+//		int size = 0;
+//		size = size + params.size();
+//		size = size + params.size();
+//		return 0;
+//	}
 }

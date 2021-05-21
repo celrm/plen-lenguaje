@@ -13,4 +13,5 @@ public abstract class E {
 	public abstract String toString();
 	protected abstract void vinculo() throws Exception;
 	protected abstract Typename chequea() throws Exception;
+	protected abstract String codigo();
 }
