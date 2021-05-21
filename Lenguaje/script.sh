@@ -29,7 +29,11 @@ echo -e '\n\n'
 
 echo -e '\n\nGeneración de código\n\n'
 
-wabt/bin/wat2wasm "$file.wat"
+#parentdir="$(dirname "$(file)")"
+base="$(basename "$file")"
 
-node "main.js"
+wabt/bin/wat2wasm "$file.wat"
+mv "$base.wasm" "$file.wasm" 
+
+node "main.js" $file
 

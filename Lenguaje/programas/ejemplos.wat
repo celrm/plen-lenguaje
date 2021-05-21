@@ -30,25 +30,84 @@
 	get_local $localsStart
    i32.const 0
 	i32.add
-   i32.const 3
-i32.store
+nulli32.store
 	get_local $localsStart
    i32.const 4
 	i32.add
-   i32.const 4
+   i32.const 3
+   i32.const 0
+
 i32.store
 	get_local $localsStart
+   i32.const 8
+	i32.add
+nulli32.store
+	get_local $localsStart
+   i32.const 12
+	i32.add
+   i32.const 3
+null
+i32.store
+	get_local $localsStart
+   i32.const 16
+	i32.add
+   i32.const 3
+   i32.const 3
    i32.const 0
+
+
+i32.store
+	get_local $localsStart
+   i32.const 20
+	i32.add
+nulli32.store
+	get_local $localsStart
+   i32.const 24
+	i32.add
+null
+   i32.const 2
+i32.add
+	get_local $localsStart
+   i32.const 20
 	i32.add
 	i32.load
 
-	get_local $localsStart
-   i32.const 4
-	i32.add
-	i32.load
 
 i32.add
-   call $print
+i32.store
+	get_local $localsStart
+   i32.const 28
+	i32.add
+	get_local $localsStart
+   i32.const 24
+	i32.add
+	i32.load
+
+
+i32.store
+nullnullnullnull	get_local $localsStart
+   i32.const 40
+	i32.add
+   i32.const 10
+i32.store
+nullnullnull	get_local $localsStart
+   i32.const 44
+	i32.add
+nulli32.store
+	get_local $localsStart
+   i32.const 48
+	i32.add
+nulli32.store
+null	get_local $localsStart
+   i32.const 52
+	i32.add
+   i32.const 0
+i32.store
+null	get_local $localsStart
+   i32.const 56
+	i32.add
+nulli32.store
+nullnullnull
    call $freeStack
  )(func $reserveStack (param $size i32)
    (result i32)
