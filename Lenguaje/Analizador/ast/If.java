@@ -36,4 +36,17 @@ public class If extends Instr {
 		// TODO Auto-generated method stub
 		
 	}
+	@Override
+	protected String codigo() {
+		String codeB = b.codigo();
+		String codeI = lista.codigo();
+		String sol = 
+				codeB +
+				"   if\n"+
+				codeI +
+				"	end\n"
+				;
+
+		return sol;
+	}
 }

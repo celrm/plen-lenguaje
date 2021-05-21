@@ -40,4 +40,14 @@ public class Asigna extends Instr {
 	}
 	@Override
 	protected void maxMemory(WrapInt c, WrapInt max, WrapInt delta) {}
+	protected String codigo() {
+		String codeE1 = e1.codigo();
+		String codeE2 = e2.codigo();
+		String sol = 
+				codeE1 +
+				codeE2+
+				"i32.store\n"
+				;		
+		return sol;
+	}
 }

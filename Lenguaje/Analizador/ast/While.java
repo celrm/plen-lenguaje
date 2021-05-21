@@ -36,4 +36,21 @@ public class While extends Instr {
 		// TODO Auto-generated method stub
 		
 	}
+	@Override
+	protected String codigo() {
+		String codeE = b.codigo();
+		String codeI = lista.codigo();
+		String sol = 
+				"	block\n" +
+				"   loop\n"+
+				codeE +
+				"	i32.eqz\n"+
+				"	i32.br_if 1\n"+
+				codeI +
+				"	br 0\n"+
+				"	end\n"
+				;
+
+		return sol;
+	}
 }

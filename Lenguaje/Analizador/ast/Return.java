@@ -32,6 +32,12 @@ public class Return extends Instr {
 	protected void maxMemory(WrapInt c, WrapInt max, WrapInt delta) {
 		// TODO Auto-generated method stub
 		
+	}
+	@Override
+	protected String codigo() {
+		String codeE = exp.codigo();
+		String sol = codeE;
+		return sol;
 	} 
 
 }

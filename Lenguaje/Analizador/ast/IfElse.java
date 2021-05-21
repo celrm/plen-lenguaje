@@ -43,7 +43,22 @@ public class IfElse extends Instr {
 	}
 	@Override
 	protected void maxMemory(WrapInt c, WrapInt max, WrapInt delta) {
-		// TODO Auto-generated method stub
-		
+
+	}
+	@Override
+	protected String codigo() {
+		String codeB = b.codigo();
+		String codeI = listaif.codigo();
+		String codeE = listaif.codigo();
+		String sol = 
+				codeB +
+				"   if\n"+
+				codeI +
+				"	else\n"+
+				codeE+
+				"	end\n"
+				;
+
+		return sol;
 	}
 }

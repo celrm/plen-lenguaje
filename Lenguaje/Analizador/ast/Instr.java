@@ -11,11 +11,11 @@ public abstract class Instr {
 	}
 	protected abstract void vinculo() throws Exception;
 	protected abstract List<Typename> chequea() throws Exception;
-//	protected abstract String codigo();
-	public String codigo() {
+	protected abstract String codigo();
+	/*public String codigo() {
 		// TODO Auto-generated method stub
 		return null;
-	}
+	}*/
 	protected abstract void maxMemory(WrapInt c, WrapInt max, WrapInt delta);
 
 
