@@ -1,5 +1,6 @@
 package ast;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class While extends Instr {
@@ -20,7 +21,8 @@ public class While extends Instr {
 	protected void vinculo() throws Exception {
 		b.vinculo();
 		Program.abreBloque();
-		lista.vinculo();
+		if(lista!=null)	
+			lista.vinculo();
 		Program.cierraBloque();
 	}
 	@Override
@@ -29,12 +31,26 @@ public class While extends Instr {
 		if(s.t != Type.BUL) {
 			throw new Exception("Fila " + fila + ". While no bul b");
 		}
-		return lista.chequea();
+		if(lista!=null)
+			return lista.chequea();
+		return new ArrayList<>();
 	}
+	boolean siesbloque = true;
 	@Override
-	protected void maxMemory(WrapInt c, WrapInt max, WrapInt delta) {
-		// TODO Auto-generated method stub
-		
+	public void maxMemory(WrapInt c, WrapInt max, WrapInt delta) {
+		if (siesbloque) { // isBlock()
+			siesbloque = false;
+			WrapInt c1 = new WrapInt();
+			WrapInt max1 = new WrapInt();
+			WrapInt delta1 = new WrapInt();
+			maxMemory(c1,max1,delta1);
+			if (c.v+max1.v > max.v) {
+				max.v = c.v + max1.v;
+			}
+		} else {
+		if(lista!=null)
+			lista.maxMemory(c,max,delta);
+		}
 	}
 	@Override
 	protected String codigo() {

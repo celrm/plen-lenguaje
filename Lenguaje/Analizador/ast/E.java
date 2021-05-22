@@ -3,6 +3,7 @@ package ast;
 public abstract class E {
 	private Op oper;
 	int fila;
+	Typename tipo;
 	public E(Op oper, int fila) {
 		this.oper=oper;
 		this.fila = fila;

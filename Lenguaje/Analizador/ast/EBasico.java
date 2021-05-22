@@ -22,17 +22,21 @@ public class EBasico extends E {
 	public Typename chequea() {
 		switch(oper()) {
 		case BASICO_BUL:
-			return new Typename("bul");
+			tipo  = new Typename("bul");
+			break;
 		case BASICO_CAR:
-			return new Typename("car");
+			tipo = new Typename("car");
+			break;
 		case BASICO_ENT:
-			return new Typename("ent");
+			tipo = new Typename("ent");
+			break;
 		case BASICO_ID:
-			return d.tipo().pure(); 
+			tipo = d.tipo().pure(); 
+			break;
 		default:
 			break;
 		}
-		return null;
+		return tipo;
 	}
 	@Override
 	protected String codigo() {
@@ -62,5 +66,5 @@ public class EBasico extends E {
 		
 		return sol + "\n";
 	}
-
+	
 }

@@ -50,8 +50,7 @@ public class Program {
 		throw new Exception("Fila " + fila + ". Error de vinculación: " + ident);
 	}
 	
-	private DefFun kin = new DefFun(
-			new TV("kin",-1), new Typename(new TV("*",-1)), null, null);
+	private DefFun kin = new Kin();
 	private Length length = new Length();
 	
 	public void vinculo() {
@@ -119,8 +118,8 @@ public class Program {
 				max.v = c.v + max1.v;
 			}
 		} else {
-//			if(decs!=null) 
-//			decs.maxMemory(c,max,delta);
+			if(decs!=null) 
+				decs.maxMemory(c,max,delta);
 		if(mn!=null)
 			mn.maxMemory(c,max,delta);
 			
@@ -128,17 +127,21 @@ public class Program {
 	}
 	
 	public void codigo(String fichero) {
-		maxMemory(new WrapInt(),new WrapInt(),new WrapInt());
+		WrapInt c = new WrapInt();
+		WrapInt max = new WrapInt();
+		WrapInt delta = new WrapInt();
+		maxMemory(c,max,delta);
 		
 		
-		String main = "(func $main  (type $_sig_void)\n" + principio();
+		String main = "(func $main  (type $_sig_void)\n" + principio(max.v+2);
 		
 
 //		if(imps!=null)
 //			imps.codigo();
 //		
-//		if(decs!=null)
-//			decs.codigo();
+		String more = "";
+		if(decs!=null)
+			more = more + decs.codigo();
 		
 		if(mn!=null) 
 			main = main + mn.codigo();
@@ -151,6 +154,7 @@ public class Program {
 		main = main + 
 				"\n   call $freeStack\n " +
 				")";
+		main = main +"\n\n"+ more+"\n\n";
 		
 		String webas = cabecera() + main + stack() + ")";
 		PrintWriter writer;
@@ -208,10 +212,11 @@ public class Program {
 				")";
 	}
 	
-	public static final String principio() {
+	public static final String principio(int size) {
 		return "(local $localsStart i32)\n" + 
 				"   (local $temp i32)\n" + 
-				"   i32.const 200  ;; let this be the stack size needed (params+locals+2)*4\n" + 
+				"   i32.const "+size*4
+				+ "  ;; let this be the stack size needed (params+locals+2)*4\n" + 
 				"   call $reserveStack  ;; returns old MP (dynamic link)\n" + 
 				"   set_local $temp\n" + 
 				"   get_global $MP\n" + 

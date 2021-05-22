@@ -14,7 +14,8 @@ public class ENew extends E {
 	public void vinculo() throws Exception {}
 	@Override
 	public Typename chequea() {
-		return new Typename(t.pure(),Type.PUNT);
+		tipo= new Typename(t.pure(),Type.PUNT);
+		return tipo;
 	}
 	@Override
 	protected String codigo() {

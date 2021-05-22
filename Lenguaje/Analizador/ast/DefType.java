@@ -12,6 +12,7 @@ public class DefType extends Declare {
 
 	public DefType(TV id, Typename tipo) {
 		super(id.fila);
+		this.isconst = true;
 		type_of_dec=Dec.TYPE;
 		this.id=id;
 		this.tipo=tipo;
@@ -49,5 +50,10 @@ public class DefType extends Declare {
 	protected void maxMemory(WrapInt c, WrapInt max, WrapInt delta) {
 		// TODO Auto-generated method stub
 		
+	}
+	@Override
+	protected String codigo() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

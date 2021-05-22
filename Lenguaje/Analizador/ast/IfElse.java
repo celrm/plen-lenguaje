@@ -1,5 +1,6 @@
 package ast;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class IfElse extends Instr {
@@ -24,9 +25,11 @@ public class IfElse extends Instr {
 	protected void vinculo() throws Exception {
 		b.vinculo();
 		Program.abreBloque();
+		if(listaif!=null)
 		listaif.vinculo();
 		Program.cierraBloque();
 		Program.abreBloque();
+		if(listaelse!=null)
 		listaelse.vinculo();
 		Program.cierraBloque();
 	}
@@ -36,14 +39,47 @@ public class IfElse extends Instr {
 		if(s.t != Type.BUL) {
 			throw new Exception("Fila " + fila + ". Ifelse no bul b");
 		}
-		List<Typename> rets1 = listaif.chequea();
-		List<Typename> rets2 = listaelse.chequea();
+		List<Typename> rets1, rets2;
+		if(listaif!=null)
+			rets1= listaif.chequea();
+		else 
+			rets1= new ArrayList<>();
+		if(listaelse!=null)
+			rets2= listaif.chequea();
+		else 
+			rets2= new ArrayList<>();		
 		rets1.addAll(rets2);
 		return rets1;
 	}
+	boolean siesbloque = true;
+	boolean siesbloque2 = true;
 	@Override
-	protected void maxMemory(WrapInt c, WrapInt max, WrapInt delta) {
-
+	public void maxMemory(WrapInt c, WrapInt max, WrapInt delta) {
+		if (siesbloque) { // isBlock()
+			siesbloque = false;
+			WrapInt c1 = new WrapInt();
+			WrapInt max1 = new WrapInt();
+			WrapInt delta1 = new WrapInt();
+			maxMemory(c1,max1,delta1);
+			if (c.v+max1.v > max.v) {
+				max.v = c.v + max1.v;
+			}
+		} else if (siesbloque2) { // isBlock()
+			listaif.maxMemory(c,max,delta);
+			
+			siesbloque2 = false;
+			maxMemory(c,max,delta);
+			
+			WrapInt c1 = new WrapInt();
+			WrapInt max1 = new WrapInt();
+			WrapInt delta1 = new WrapInt();
+			maxMemory(c1,max1,delta1);
+			if (c.v+max1.v > max.v) {
+				max.v = c.v + max1.v;
+			}
+		} else {
+			listaelse.maxMemory(c,max,delta);
+		}
 	}
 	@Override
 	protected String codigo() {

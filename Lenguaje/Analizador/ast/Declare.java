@@ -5,6 +5,7 @@ import java.util.List;
 public abstract class Declare extends Instr {
 	Dec type_of_dec;
 	int delta;
+	boolean isconst;
 	public Declare(int fila) {
 		super(fila);
 		type_of_in = In.DECLARE;

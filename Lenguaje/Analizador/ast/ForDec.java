@@ -10,6 +10,7 @@ public class ForDec extends Declare {
 //	private For f;
 	public ForDec(TV elem,For f, int fila) {
 		super(fila);
+		this.isconst = true;
 		this.elem = elem;
 //		this.f = f;
 		type_of_dec = Dec.FORDEC;
@@ -37,5 +38,10 @@ public class ForDec extends Declare {
 	protected void maxMemory(WrapInt c, WrapInt max, WrapInt delta) {
 		// TODO Auto-generated method stub
 		
+	}
+	@Override
+	protected String codigo() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

@@ -1,0 +1,7 @@
+function suma return ent (ent a, ent b) {
+    return a+b.
+}
+
+main {
+    kut(suma(3,4)).
+}

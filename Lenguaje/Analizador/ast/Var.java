@@ -9,19 +9,18 @@ public class Var extends Declare {
 	private Typename tipo;
 	private TV id;
 	private E exp;
-	private boolean is_const;
 	public Var(Typename tipo, TV id, E exp2, boolean is_const) {
 		super(id.fila);
 		this.tipo=tipo;
 		this.id=id;
 		this.exp=exp2;
-		this.is_const=is_const;
+		this.isconst=is_const;
 	}
 	public String toString() {
 		String sol = tipo.toString() + " ";
 		sol = sol + id.toString() + " = ";
 		sol = sol + exp.toString() + ".";
-		return (is_const?"const " :"") + sol;
+		return (isconst?"const " :"") + sol;
 	}
 	@Override
 	protected void vinculo() throws Exception {
@@ -59,11 +58,6 @@ public class Var extends Declare {
 				codeE +
 				"i32.store\n"
 				;
-
-//		acceso
-//		get $start si es mía la variable
-//		+
-//		(i + despl(si array))*4
 		return sol;
 	}
 	@Override

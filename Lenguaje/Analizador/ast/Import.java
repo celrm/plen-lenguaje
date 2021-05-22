@@ -14,6 +14,7 @@ public class Import extends Declare {
 	Declare d; // si hay * es null
 	public Import(TV name, TV source, int fila) {
 		super(fila);
+		this.isconst = true;
 		this.name=name;
 		this.source=source;
 		type_of_dec = Dec.IMPORT;
@@ -23,6 +24,9 @@ public class Import extends Declare {
 	}
 	public void vinculo() throws Exception {
 		p = Main.abrirFichero(source.toString()); // compilado ahí
+		p.vinculo();
+		p.chequea();
+		 
 		Declares decs = p.decs;
 		Program.abreBloque();
 		if(decs!=null) decs.vinculo();
@@ -51,7 +55,14 @@ public class Import extends Declare {
 	}
 	@Override
 	protected void maxMemory(WrapInt c, WrapInt max, WrapInt delta) {
-		// TODO Auto-generated method stub
-		
+		if(d==null) {
+			System.out.println("Fila"+fila+": import * no implementado");
+			return;
+		}
+		d.maxMemory(c, max, delta);
+	}
+	@Override
+	protected String codigo() {
+		return d.codigo();
 	}
 }

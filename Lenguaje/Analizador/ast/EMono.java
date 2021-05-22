@@ -20,16 +20,16 @@ public class EMono extends E {
 		case NOT:
 			if(s1.t != Type.BUL)
 				throw new Exception("Fila " + fila + ". Not tipo");
-			return s1;
+			tipo= s1;
 		case SIGNO:
 			if(s1.t != Type.ENT)
 				throw new Exception("Fila " + fila + ". Signo tipo");
-			return s1;
+			tipo= s1;
 		default:
 			break;
 		
 		}
-		return null;
+		return s1;
 	}
 	@Override
 	protected String codigo() {

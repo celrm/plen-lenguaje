@@ -53,4 +53,15 @@ public class Declares {
 			if(rest != null)
 			rest.maxMemory(c,max,delta);
 	}
+	public String codigo() {
+		String is ="";
+		if(var.type_of_dec==Dec.FUNCTION) // TODO de momento? 
+		{
+			is = is + ((DefFun) var).codigo();
+			
+		}
+		if(rest!=null) 
+			is = is+ rest.codigo();
+		return is;
+	}
 }

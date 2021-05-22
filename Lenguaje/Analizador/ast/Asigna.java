@@ -36,12 +36,13 @@ public class Asigna extends Instr {
 		return e1.oper() == Op.ACCESO 
 			|| e1.oper() == Op.INDICE 
 			|| e1.oper() == Op.PUNTERO 
-			|| e1.oper() == Op.BASICO_ID;
+			|| (e1.oper() == Op.BASICO_ID
+			&& !((EBasico) e1).d.isconst);
 	}
 	@Override
 	protected void maxMemory(WrapInt c, WrapInt max, WrapInt delta) {}
 	protected String codigo() {
-		String codeE1 = e1.codigo();
+		String codeE1 = e1.codigo(); // hay que calcular su dirección no su valor ¿?
 		String codeE2 = e2.codigo();
 		String sol = 
 				codeE1 +

@@ -13,6 +13,7 @@ public class DefFun extends Declare {
 	static boolean banned = false;
 	public DefFun(TV id, Typename tipo, Params params, Instructions d) {
 		super(id.fila);
+		this.isconst = true;
 		type_of_dec = Dec.FUNCTION;
 		this.id=id;
 		this.tipo=tipo;
@@ -63,28 +64,41 @@ public class DefFun extends Declare {
 	public Typename tipo() {
 		return tipo;
 	}
+	int max = 0;
+	boolean siesbloque = true;
 	@Override
-	protected void maxMemory(WrapInt c, WrapInt max, WrapInt delta) { 
-//		if (false) { // isDef()
-////			c += size();
-////			if (c > max) max = c; 
-////			this.delta = delta;
-////			delta++;
-//		} else if (false) { // isBlock()
-//			Integer c1 = 0;
-//			Integer max1 = 0;
-//			Integer delta1 = 0;
-//			maxMemory(c1,max1,delta1);
-//			if (c+max1 > max) {
-//				max = c + max1;
-//			}
-//		} else {
-//		}
+	public void maxMemory(WrapInt c, WrapInt max, WrapInt delta) {
+		if (siesbloque) { // isBlock()
+			siesbloque = false;
+			WrapInt c1 = new WrapInt();
+			WrapInt max1 = new WrapInt();
+			WrapInt delta1 = new WrapInt();
+			maxMemory(c1,max1,delta1);
+			if (c.v+max1.v > max.v) {
+				max.v = c.v + max1.v;
+			}
+		} else {
+			if(params!=null)
+				params.maxMemory(c,max,delta);
+			if(decs!=null)
+				decs.maxMemory(c,max,delta);
+		}
+		this.max = max.v;
 	}
-//	private Integer size() {
-//		int size = 0;
-//		size = size + params.size();
-//		size = size + params.size();
-//		return 0;
-//	}
+	@Override
+	protected String codigo() {
+		int psize = (params==null?0:params.size());
+
+		String fun = "(func $_"+id.toString()+
+				" \n(result i32)"+
+				"\n" + Program.principio(this.max+2+psize);
+		
+		fun = fun +decs.codigo()+"\n"
+				;
+		
+		fun = fun + 
+				"\n   call $freeStack\n " +
+				")";
+		return fun;
+	}
 }

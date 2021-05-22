@@ -29,15 +29,14 @@ public class Return extends Instr {
 		return tipo;
 	}
 	@Override
-	protected void maxMemory(WrapInt c, WrapInt max, WrapInt delta) {
-		// TODO Auto-generated method stub
-		
-	}
+	protected void maxMemory(WrapInt c, WrapInt max, WrapInt delta) {}
 	@Override
 	protected String codigo() {
 		String codeE = exp.codigo();
 		String sol = codeE;
-		return sol;
+		return sol + "\n"
+				+ "	call $freeStack\n"
+				+ "	return\n";
 	} 
 
 }

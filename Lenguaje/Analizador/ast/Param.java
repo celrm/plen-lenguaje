@@ -8,7 +8,6 @@ import alex.TV;
 public class Param extends Declare {
 	private Typename tipo;
 	private TV id;
-	boolean is_const=false;
 	public Param(Typename tipo, TV id) {
 		super(id.fila);
 		this.tipo = tipo;
@@ -18,7 +17,7 @@ public class Param extends Declare {
 	public String toString() {
 		String sol = tipo.toString() + " ";
 		sol = sol + id.toString();
-		return (is_const?"const " :"") + sol;
+		return (isconst?"const " :"") + sol;
 	}
 	public void vinculo() throws Exception {
 		if(name().equals("length") || name().equals("kin")) {
@@ -39,7 +38,17 @@ public class Param extends Declare {
 	}
 	@Override
 	protected void maxMemory(WrapInt c, WrapInt max, WrapInt delta) {
+		c.v += size();
+		if (c.v > max.v) max.v = c.v; 
+		this.delta = delta.v;
+		delta.v++;
+	}
+	@Override
+	protected String codigo() {
 		// TODO Auto-generated method stub
-		
+		return null;
+	}
+	public int size() {
+		return tipo.size();
 	}
 }

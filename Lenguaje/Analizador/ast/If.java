@@ -31,10 +31,22 @@ public class If extends Instr {
 		}
 		return lista.chequea();
 	}
+	boolean siesbloque = true;
 	@Override
-	protected void maxMemory(WrapInt c, WrapInt max, WrapInt delta) {
-		// TODO Auto-generated method stub
-		
+	public void maxMemory(WrapInt c, WrapInt max, WrapInt delta) {
+		if (siesbloque) { // isBlock()
+			siesbloque = false;
+			WrapInt c1 = new WrapInt();
+			WrapInt max1 = new WrapInt();
+			WrapInt delta1 = new WrapInt();
+			maxMemory(c1,max1,delta1);
+			if (c.v+max1.v > max.v) {
+				max.v = c.v + max1.v;
+			}
+		} else {
+		if(lista!=null)
+			lista.maxMemory(c,max,delta);
+		}
 	}
 	@Override
 	protected String codigo() {

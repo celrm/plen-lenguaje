@@ -11,6 +11,7 @@ public class Reg extends Declare {
 	private HeterValues v;
 	public Reg(Typename tipo, TV id, HeterValues values) {
 		super(id.fila);
+		isconst  =true;
 		this.tipo=tipo;
 		this.id=id;
 		this.v=values;
@@ -86,5 +87,10 @@ public class Reg extends Declare {
 	}
 	private Integer size() {
 		return tipo.size(); // no está
+	}
+	@Override
+	protected String codigo() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

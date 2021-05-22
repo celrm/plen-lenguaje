@@ -15,6 +15,7 @@ public class EPunt extends EMono {
 		Typename t = o1.chequea().pure();
 		if(t.t != Type.PUNT)
 			throw new Exception("Fila " + fila + ". No es puntero: "+ o1.toString());
-		return t.t_arr.pure();
+		tipo= t.t_arr.pure();
+		return tipo;
 	}
 }

@@ -46,7 +46,8 @@ public class EIndice extends EBin {
 		
 		if(s1.t != Type.ARR)
 			throw new Exception("Fila " + fila + ". Index no array");
-		return s1.t_arr.pure();
+		tipo= s1.t_arr.pure();
+		return tipo;
 	}
 	public String o2() {
 		return o2.toString();

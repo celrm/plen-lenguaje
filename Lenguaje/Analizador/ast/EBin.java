@@ -26,7 +26,8 @@ public class EBin extends E {
 			if(s1.t != Type.BUL || s2.t != Type.BUL)
 				throw new Exception("Fila " + fila + ". " +oper()+" de no bul "
 						+s1.t + " " + s2.t);
-			return new Typename("bul");
+			tipo= new Typename("bul");
+			return tipo;
 		case ARRAYINIT:
 			if(s1.t != Type.ENT)
 				throw new Exception("Fila " + fila + ". Mal arrayinit tipo "
@@ -37,7 +38,8 @@ public class EBin extends E {
 			if(!s1.equals(s2))
 				throw new Exception("Fila " + fila + ". "+oper() +" mal tipo "
 						+s1.t + " " + s2.t);
-			return new Typename("bul");
+			tipo=  new Typename("bul");
+			return tipo;
 		case MAQ:
 		case MAYOR:
 		case MENOR:
@@ -45,7 +47,8 @@ public class EBin extends E {
 			if(s1.t != Type.ENT || s2.t != Type.ENT)
 				throw new Exception("Fila " + fila + ". "+oper()+" de no ent "
 						+s1.t + " " + s2.t);
-			return new Typename("bul");
+			tipo=  new Typename("bul");
+			return tipo;
 		case DIV:
 		case MOD:
 		case MUL:
@@ -54,7 +57,8 @@ public class EBin extends E {
 			if(s1.t != Type.ENT || s2.t != Type.ENT)
 				throw new Exception("Fila " + fila + ". "+oper()+" de no ent "
 						+s1.t + " " + s2.t);
-			return new Typename("ent");
+			tipo=  new Typename("ent");
+			return tipo;
 		default:
 			break;
 		}

@@ -8,7 +8,7 @@ public class Params {
 	public Params(Typename tipo, TV id, Params rest, boolean is_const2) {
 		p = new Param(tipo,id);
 		this.rest = rest;
-		p.is_const=is_const2;
+		p.isconst=is_const2;
 	}
 	public String toString() {
 		String sol = p.toString();
@@ -22,5 +22,16 @@ public class Params {
 		p.vinculo();
 		if(rest!=null)
 			rest.vinculo();
+	}
+	public int size() {
+		int size = p.size();
+		if(rest!=null)
+			size = size+rest.size();
+		return size;
+	}
+	public void maxMemory(WrapInt c, WrapInt max, WrapInt delta) {
+		p.maxMemory(c,max,delta);
+		if(rest != null)
+		rest.maxMemory(c,max,delta);
 	}
 }

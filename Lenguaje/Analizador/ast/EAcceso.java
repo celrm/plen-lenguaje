@@ -40,7 +40,8 @@ public class EAcceso extends EBin {
 	}
 	@Override
 	protected Typename chequea() throws Exception {
-		return acc.tipo().pure();
+		tipo= acc.tipo().pure();
+		return tipo;
 	}
 	public String o2() {
 		return o2.toString();

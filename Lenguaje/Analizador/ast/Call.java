@@ -45,17 +45,22 @@ public class Call extends E {
 			Param e1 = q.p;
 			E e2 = q.e;
 			e1.chequea();
-			Typename par = e2.chequea().pure();
-			if(!e1.tipo().equals(par) && !id.lexema.equals("length")) {
+			Typename pt = e1.tipo().pure();
+			Typename et = e2.chequea().pure();
+			if(!pt.equals(et) && !id.lexema.equals("length")) {
 				throw new Exception("Fila " + fila + ". Different parameter types in call");
 			}
 			q = q.rest;
 		}
-		return f.tipo().pure();
+		tipo= f.tipo().pure();
+		return tipo;
 	}
 	@Override
 	protected String codigo() {
-		// TODO Auto-generated method stub
-		return null;
+		return (v==null?"":v.codigo(2)) + 
+				"\n" + 
+				"call $_"+
+				id.toString()+
+				"\n";
 	}
 }

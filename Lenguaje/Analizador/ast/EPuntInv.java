@@ -15,6 +15,7 @@ public class EPuntInv extends EMono {
 		if(!Asigna.designable(o1))
 			throw new Exception("Fila " + fila + ". No designable: " + o1.toString());
 		Typename t = o1.chequea().pure();
-		return new Typename(t,Type.PUNT);
+		tipo= new Typename(t,Type.PUNT);
+		return tipo;
 	}
 }

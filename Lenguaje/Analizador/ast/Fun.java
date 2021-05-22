@@ -27,4 +27,8 @@ public class Fun extends Instr {
 		// TODO Auto-generated method stub
 		
 	}
+	@Override
+	protected String codigo() {
+		return f.codigo();
+	}
 }

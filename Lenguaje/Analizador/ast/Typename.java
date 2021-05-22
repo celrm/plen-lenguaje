@@ -96,7 +96,7 @@ public class Typename {
 		
 		}
 	}
-	public Integer size() {
+	public int size() {
 		switch(t) {
 		case ARR:
 			break;

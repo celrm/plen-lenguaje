@@ -12,6 +12,7 @@ public class DefReg extends Declare {
 	private Instructions ins;
 	public DefReg(TV id, Params params, Instructions d) {
 		super(id.fila);
+		this.isconst = true;
 		type_of_dec=Dec.REGISTER;
 		this.id=id;
 		this.params=params;
@@ -63,5 +64,10 @@ public class DefReg extends Declare {
 	protected void maxMemory(WrapInt c, WrapInt max, WrapInt delta) {
 		// TODO Auto-generated method stub
 		
+	}
+	@Override
+	protected String codigo() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }
