@@ -3,6 +3,8 @@ package ast;
 public class EBin extends E {
    private E o1;
    private E o2;
+   private EBasico a1;
+int tam = 0;
    public EBin(E opnd1, E opnd2, Op oper, int fila) {
 	   super(oper,fila);
 	     this.o1 = opnd1;
@@ -29,6 +31,7 @@ public class EBin extends E {
 			tipo= new Typename("bul");
 			return tipo;
 		case ARRAYINIT:
+			a1 = (EBasico) o1; // solo puede ser una constante
 			if(s1.t != Type.ENT)
 				throw new Exception("Fila " + fila + ". Mal arrayinit tipo "
 						+s1.t);
@@ -82,6 +85,7 @@ public class EBin extends E {
 			;
 			break;
 		case ARRAYINIT:
+			tam = Integer.parseInt(e1.toString()); // TODO to do...
 			break;
 		case DISTINTO:
 			sol = sol +

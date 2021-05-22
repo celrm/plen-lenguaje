@@ -29,7 +29,7 @@ public class Return extends Instr {
 		return tipo;
 	}
 	@Override
-	protected void maxMemory(WrapInt c, WrapInt max, WrapInt delta) {}
+	protected void maxMemory(WrapInt c, WrapInt max) {}
 	@Override
 	protected String codigo() {
 		String codeE = exp.codigo();

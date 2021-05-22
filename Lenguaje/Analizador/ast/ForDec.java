@@ -35,7 +35,7 @@ public class ForDec extends Declare {
 		return tipo;
 	}
 	@Override
-	protected void maxMemory(WrapInt c, WrapInt max, WrapInt delta) {
+	protected void maxMemory(WrapInt c, WrapInt max) {
 		// TODO Auto-generated method stub
 		
 	}

@@ -27,7 +27,7 @@ cd ..
 echo -e '\n\n'
 
 
-echo -e '\n\nGeneración de código\n\n'
+echo -e '\n\nEjecución del código:\n\n'
 
 #parentdir="$(dirname "$(file)")"
 base="$(basename "$file")"

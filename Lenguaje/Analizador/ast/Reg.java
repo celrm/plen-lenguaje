@@ -79,11 +79,10 @@ public class Reg extends Declare {
 		return tipo;
 	}
 	@Override
-	protected void maxMemory(WrapInt c, WrapInt max, WrapInt delta) {
+	protected void maxMemory(WrapInt c, WrapInt max) {
+		this.delta = c.v;
 		c.v += size();
 		if (c.v > max.v) max.v = c.v; 
-		this.delta = delta.v;
-		delta.v++;
 	}
 	private Integer size() {
 		return tipo.size(); // no está

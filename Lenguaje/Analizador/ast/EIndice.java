@@ -1,10 +1,10 @@
 package ast;
 
-public class EIndice extends EBin {
+public class EIndice extends E {
    private E o1;
    private E o2;
    public EIndice(E opnd1, E opnd2, Op oper, int fila) {
-	   super(opnd1, opnd2, oper,fila);
+	   super(oper,fila);
 	     this.o1 = opnd1;
 	     this.o2 = opnd2;
    }
@@ -13,10 +13,8 @@ public class EIndice extends EBin {
 	@Override
 	protected void vinculo() throws Exception {
 		o2.vinculo();
-		if(!Asigna.designable(o1))			
-			throw new Exception("Fila " + fila + ". Index no asignable: "+ o1.toString());
-
-		if (o1.oper()==Op.BASICO_ID) {
+	
+		if (o1.oper()==Op.BASICO_ID) {		
 			EBasico o11 = (EBasico) o1;
 			o11.vinculo();
 			array = o11.d;
@@ -34,8 +32,12 @@ public class EIndice extends EBin {
 		}
 		else if (o1.oper()==Op.PUNTERO) {
 			EPunt o11 = (EPunt) o1;
-			o11.vinculo();		
+			o11.vinculo();
 		}
+
+		if(!Asigna.designable(o1))			
+			throw new Exception("Fila " + fila + ". Index no asignable: "+ o1.toString());
+
 	}
 	@Override
 	protected Typename chequea() throws Exception {
@@ -51,5 +53,26 @@ public class EIndice extends EBin {
 	}
 	public String o2() {
 		return o2.toString();
+	}
+	public String toString() {
+		return "("+o1.toString() + " " + this.oper().toString() + " " + o2.toString()+")";
+	}
+	protected String getref() {
+		return "get_local $localsStart\n"+
+				"i32.const " + array.delta*4 +"\n"
+				+ o2.codigo() +"\n"
+						+ "i32.const 4\n"
+						+ "i32.mul\n"
+				+ "i32.add\n"
+				+ "i32.add\n"
+				+ "";
+	}
+	@Override
+	protected String codigo() { // no para punteros
+		String sol = getref()
+				+ "i32.load\n"
+				+ "";
+		
+		return sol;
 	}
 }

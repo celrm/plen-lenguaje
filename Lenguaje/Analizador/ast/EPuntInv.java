@@ -12,10 +12,10 @@ public class EPuntInv extends EMono {
 	}
 	@Override
 	protected Typename chequea() throws Exception {
-		if(!Asigna.designable(o1))
-			throw new Exception("Fila " + fila + ". No designable: " + o1.toString());
 		Typename t = o1.chequea().pure();
 		tipo= new Typename(t,Type.PUNT);
+		if(!Asigna.designable(o1))
+			throw new Exception("Fila " + fila + ". No designable: " + o1.toString());
 		return tipo;
 	}
 }

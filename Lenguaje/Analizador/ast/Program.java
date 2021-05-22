@@ -49,6 +49,11 @@ public class Program {
 		}
 		throw new Exception("Fila " + fila + ". Error de vinculación: " + ident);
 	}
+	public static void kutall() {
+		for(Map<String,Object> m : pila) { // mirar si va de arriba abajo
+			System.out.println(m.values());
+		}
+	}
 	
 	private DefFun kin = new Kin();
 	private Length length = new Length();
@@ -107,21 +112,20 @@ public class Program {
 	}
 
 	boolean siesbloque = true;
-	public void maxMemory(WrapInt c, WrapInt max, WrapInt delta) {
+	public void maxMemory(WrapInt c, WrapInt max) {
 		if (siesbloque) { // isBlock()
 			siesbloque = false;
 			WrapInt c1 = new WrapInt();
 			WrapInt max1 = new WrapInt();
-			WrapInt delta1 = new WrapInt();
-			maxMemory(c1,max1,delta1);
+			maxMemory(c1,max1);
 			if (c.v+max1.v > max.v) {
 				max.v = c.v + max1.v;
 			}
 		} else {
 			if(decs!=null) 
-				decs.maxMemory(c,max,delta);
+				decs.maxMemory(c,max);
 		if(mn!=null)
-			mn.maxMemory(c,max,delta);
+			mn.maxMemory(c,max);
 			
 		}
 	}
@@ -129,11 +133,11 @@ public class Program {
 	public void codigo(String fichero) {
 		WrapInt c = new WrapInt();
 		WrapInt max = new WrapInt();
-		WrapInt delta = new WrapInt();
-		maxMemory(c,max,delta);
+		maxMemory(c,max);
 		
-		
-		String main = "(func $main  (type $_sig_void)\n" + principio(max.v+2);
+		String size = 
+				"   i32.const "+(max.v+2)*4;
+		String main = "(func $main  (type $_sig_void)\n" + principio(size);
 		
 
 //		if(imps!=null)
@@ -212,10 +216,10 @@ public class Program {
 				")";
 	}
 	
-	public static final String principio(int size) {
+	public static final String principio(String size) {
 		return "(local $localsStart i32)\n" + 
 				"   (local $temp i32)\n" + 
-				"   i32.const "+size*4
+				size
 				+ "  ;; let this be the stack size needed (params+locals+2)*4\n" + 
 				"   call $reserveStack  ;; returns old MP (dynamic link)\n" + 
 				"   set_local $temp\n" + 

@@ -33,19 +33,18 @@ public class If extends Instr {
 	}
 	boolean siesbloque = true;
 	@Override
-	public void maxMemory(WrapInt c, WrapInt max, WrapInt delta) {
+	public void maxMemory(WrapInt c, WrapInt max) {
 		if (siesbloque) { // isBlock()
 			siesbloque = false;
 			WrapInt c1 = new WrapInt();
 			WrapInt max1 = new WrapInt();
-			WrapInt delta1 = new WrapInt();
-			maxMemory(c1,max1,delta1);
+			maxMemory(c1,max1);
 			if (c.v+max1.v > max.v) {
 				max.v = c.v + max1.v;
 			}
 		} else {
 		if(lista!=null)
-			lista.maxMemory(c,max,delta);
+			lista.maxMemory(c,max);
 		}
 	}
 	@Override

@@ -12,7 +12,7 @@ public abstract class Instr {
 	protected abstract void vinculo() throws Exception;
 	protected abstract List<Typename> chequea() throws Exception;
 	protected abstract String codigo();
-	protected abstract void maxMemory(WrapInt c, WrapInt max, WrapInt delta);
+	protected abstract void maxMemory(WrapInt c, WrapInt max);
 
 
 }

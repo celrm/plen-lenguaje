@@ -34,7 +34,7 @@ public class Kut extends Instr {
 		return codeE + sol;
 	}
 	@Override
-	protected void maxMemory(WrapInt c, WrapInt max, WrapInt delta) {
+	protected void maxMemory(WrapInt c, WrapInt max) {
 		// TODO Auto-generated method stub
 		
 	}

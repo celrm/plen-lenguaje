@@ -17,10 +17,12 @@ public class HomogValues {
 		}
 		return sol;
 	}
-	public void vinculo() throws Exception {
+	public int vinculo() throws Exception {
+		int sol = 0;
 		e.vinculo();
 		if(rest!=null)
-			rest.vinculo();
+			sol = rest.vinculo();
+		return sol+1;
 	}
 	public Typename chequea() throws Exception {
 		Typename t = e.chequea().pure();
@@ -31,5 +33,19 @@ public class HomogValues {
 				throw new Exception("Fila " + fila + ". Bad list"); // mirar tamaños varios de arrays [[],[1]]
 		}
 		return t;
+	}
+	public String codigo(int delta) {
+		String codeE = e.codigo() + "\n";
+		String lsol = 
+				"	get_local $localsStart\n" +
+				"   i32.const " + delta * 4 + "\n"+
+				"	i32.add\n" +
+				codeE +
+				"i32.store\n"
+				;
+		if(rest!= null) {
+			lsol = lsol + rest.codigo(delta+e.tipo.size());
+		}
+		return lsol;
 	}
 }

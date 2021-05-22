@@ -55,9 +55,9 @@ public class Instructions {
 			is = is+ rest.codigo();
 		return is;
 	}
-	public void maxMemory(WrapInt c, WrapInt max, WrapInt delta) {
-		i.maxMemory(c,max,delta);
+	public void maxMemory(WrapInt c, WrapInt max) {
+		i.maxMemory(c,max);
 		if(rest!=null)
-		rest.maxMemory(c,max,delta);
+		rest.maxMemory(c,max);
 	}
 }

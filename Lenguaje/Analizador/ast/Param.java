@@ -37,18 +37,18 @@ public class Param extends Declare {
 		return tipo;
 	}
 	@Override
-	protected void maxMemory(WrapInt c, WrapInt max, WrapInt delta) {
-		c.v += size();
+	protected void maxMemory(WrapInt c, WrapInt max) {
+		this.delta = c.v;
+		c.v += tipo.size();
 		if (c.v > max.v) max.v = c.v; 
-		this.delta = delta.v;
-		delta.v++;
 	}
 	@Override
 	protected String codigo() {
 		// TODO Auto-generated method stub
 		return null;
 	}
-	public int size() {
-		return tipo.size();
+	public String size() {
+		
+		return "i32.const "+tipo.size()*4+"\n";
 	}
 }

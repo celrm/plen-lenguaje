@@ -48,10 +48,10 @@ public class Declares {
 		if(rest!=null)
 			rest.chequea();
 	}
-	public void maxMemory(WrapInt c, WrapInt max, WrapInt delta) {
-			var.maxMemory(c,max,delta);
+	public void maxMemory(WrapInt c, WrapInt max) {
+			var.maxMemory(c,max);
 			if(rest != null)
-			rest.maxMemory(c,max,delta);
+			rest.maxMemory(c,max);
 	}
 	public String codigo() {
 		String is ="";

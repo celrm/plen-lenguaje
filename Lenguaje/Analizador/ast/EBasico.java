@@ -52,11 +52,8 @@ public class EBasico extends E {
 			sol = sol + "   i32.const " + id.toString();
 			break;
 		case BASICO_ID:
-			int delta = d.delta;
 			sol = sol +
-					"	get_local $localsStart\n" +
-					"   i32.const " + delta*4 + "\n"+
-					"	i32.add\n" +
+					getref()+
 					"	i32.load\n"
 					;
 			break;
@@ -65,6 +62,12 @@ public class EBasico extends E {
 		}
 		
 		return sol + "\n";
+	}
+	public String getref() {
+		int delta = d.delta;
+		return "	get_local $localsStart\n" +
+				"   i32.const " + delta*4 + "\n"+
+				"	i32.add\n";
 	}
 	
 }

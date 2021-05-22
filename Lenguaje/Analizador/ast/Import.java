@@ -54,12 +54,12 @@ public class Import extends Declare {
 		return name.toString();
 	}
 	@Override
-	protected void maxMemory(WrapInt c, WrapInt max, WrapInt delta) {
+	protected void maxMemory(WrapInt c, WrapInt max) {
 		if(d==null) {
 			System.out.println("Fila"+fila+": import * no implementado");
 			return;
 		}
-		d.maxMemory(c, max, delta);
+		d.maxMemory(c, max);
 	}
 	@Override
 	protected String codigo() {

@@ -110,6 +110,6 @@ public class Typename {
 		default:
 			break;
 		}
-		return 0;
+		return 1; // mal para mas de 2 diim TODO
 	}
 }

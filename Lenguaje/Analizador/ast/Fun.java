@@ -23,7 +23,7 @@ public class Fun extends Instr {
 		return new ArrayList<>();
 	}
 	@Override
-	protected void maxMemory(WrapInt c, WrapInt max, WrapInt delta) {
+	protected void maxMemory(WrapInt c, WrapInt max) {
 		// TODO Auto-generated method stub
 		
 	}

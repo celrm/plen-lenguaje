@@ -2,6 +2,7 @@ package ast;
 
 public class ListInit extends E {
 	private HomogValues lista;
+	int tam = 0;
 	public ListInit(HomogValues l, int fila) {
 		super(Op.LISTA,fila);
 		lista=l;
@@ -12,7 +13,7 @@ public class ListInit extends E {
 	@Override
 	protected void vinculo() throws Exception {
 		if(lista!=null)
-			lista.vinculo();
+			tam = lista.vinculo();
 	}
 	@Override
 	protected Typename chequea() throws Exception {
@@ -20,8 +21,12 @@ public class ListInit extends E {
 			return new Typename(new Typename("*"), Type.ARR);
 		return new Typename(lista.chequea().pure(), Type.ARR);
 	}
+	protected String codigo(int delta) {
+		String codeE = lista.codigo(delta);
+		return codeE;
+	}
 	@Override
-	protected String codigo() {
+	protected String codigo() {// no funciona para algo que no sea una var
 		// TODO Auto-generated method stub
 		return null;
 	}

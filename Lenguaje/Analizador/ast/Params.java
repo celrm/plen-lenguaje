@@ -23,15 +23,19 @@ public class Params {
 		if(rest!=null)
 			rest.vinculo();
 	}
-	public int size() {
-		int size = p.size();
-		if(rest!=null)
-			size = size+rest.size();
+	public String size() {
+		String size = p.size();
+		if(rest!=null) {
+			size = size
+					+ rest.size()
+					+ "\n"
+					+ "i32.add\n";
+		}
 		return size;
 	}
-	public void maxMemory(WrapInt c, WrapInt max, WrapInt delta) {
-		p.maxMemory(c,max,delta);
+	public void maxMemory(WrapInt c, WrapInt max) {
+		p.maxMemory(c,max);
 		if(rest != null)
-		rest.maxMemory(c,max,delta);
+		rest.maxMemory(c,max);
 	}
 }

@@ -13,10 +13,8 @@ public class Main {
    public static void main(String[] args) throws Exception {
 	 Program prog = abrirFichero(args[0]);
 	 String code = prog.toString();
-	 int index = 0;
 	 for(String linea : code.split("\n")) {
-		 System.out.println(index+ "\t"+linea);
-		 index++;
+		 System.out.println("\t"+linea);
 	 }
 
 	 prog.vinculo();

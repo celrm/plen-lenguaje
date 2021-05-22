@@ -19,5 +19,5 @@ public abstract class Declare extends Instr {
 
 	protected abstract Typename tipo();
 
-	protected abstract void maxMemory(WrapInt c, WrapInt max, WrapInt delta);
+	protected abstract void maxMemory(WrapInt c, WrapInt max);
 }

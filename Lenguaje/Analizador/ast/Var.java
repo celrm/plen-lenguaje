@@ -45,10 +45,17 @@ public class Var extends Declare {
 	}
 	@Override
 	protected Typename tipo() {
-		return tipo;
+		return tipo.pure();
 	}
 	@Override
 	public String codigo() {
+		if(tipo().t == Type.ARR) {
+			if(exp.oper() == Op.LISTA) {
+				ListInit l = (ListInit) exp;
+				return l.codigo(delta);
+			}
+		}
+		
 		String codeE = exp.codigo();
 		// donde se va a guardar
 		String sol = 
@@ -61,13 +68,18 @@ public class Var extends Declare {
 		return sol;
 	}
 	@Override
-	protected void maxMemory(WrapInt c, WrapInt max, WrapInt delta) {
+	protected void maxMemory(WrapInt c, WrapInt max) {
+		this.delta = c.v;
 		c.v += size();
 		if (c.v > max.v) max.v = c.v; 
-		this.delta = delta.v;
-		delta.v++;
 	}
-	private Integer size() {
-		return tipo.size(); // no está
+	private int size() {
+		if(tipo().t == Type.ARR) {
+			if(exp.oper() == Op.LISTA) {
+				ListInit l = (ListInit) exp;
+				return l.tam*tipo().size();
+			}
+		}
+		return tipo().size(); // no está
 	}
 }
