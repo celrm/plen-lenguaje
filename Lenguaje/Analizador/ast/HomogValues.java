@@ -34,17 +34,33 @@ public class HomogValues {
 		}
 		return t;
 	}
-	public String codigo(int delta) {
-		String codeE = e.codigo() + "\n";
-		String lsol = 
-				"	get_local $localsStart\n" +
+	public String codigo(int delta, boolean hom) {
+		String codeE = "";
+		String lsol = "";
+		if(e.tipo.t == Type.ARR) {
+			if(e.oper() == Op.LISTA) {
+				codeE = ((ListInit)e).codigo(delta,hom)
+						+ "\n";
+
+				lsol = codeE;
+			}
+		}
+		else 
+			{
+			lsol = 
+				(hom?"	get_global $SP\n":
+				"	get_local $localsStart\n") +
 				"   i32.const " + delta * 4 + "\n"+
 				"	i32.add\n" +
-				codeE +
+				e.codigo() + "\n"+
 				"i32.store\n"
 				;
+			System.out.println(this + "  " +hom);
+
+		}
 		if(rest!= null) {
-			lsol = lsol + rest.codigo(delta+e.tipo.size());
+			int next = delta+e.tipo.size();
+			lsol = lsol + rest.codigo(next,hom);
 		}
 		return lsol;
 	}

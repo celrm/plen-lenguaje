@@ -36,4 +36,16 @@ public class Imports {
 		if(rest!=null)
 			rest.chequea();
 	}
+	public String codigo() {
+		String is ="";
+		is = is + i.codigo() + "\n";
+		if(rest!=null) 
+			is = is+ rest.codigo();
+		return is;
+	}
+	public void maxMemory(WrapInt c, WrapInt max) {
+		i.maxMemory(c,max);
+		if(rest != null)
+		rest.maxMemory(c,max);
+	}
 }

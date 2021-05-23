@@ -42,6 +42,8 @@ public class While extends Instr {
 			siesbloque = false;
 			WrapInt c1 = new WrapInt();
 			WrapInt max1 = new WrapInt();
+			c1.v = c.v;
+			max1.v = max.v;
 			maxMemory(c1,max1);
 			if (c.v+max1.v > max.v) {
 				max.v = c.v + max1.v;
@@ -58,14 +60,14 @@ public class While extends Instr {
 		if(lista!=null)
 		codeI = lista.codigo();
 		String sol = 
-				"	block\n" +
-				"   loop\n"+
+				"	(block\n" +
+				"   (loop\n"+
 				codeE +
 				"	i32.eqz\n"+
-				"	i32.br_if 1\n"+
+				"	br_if 1\n"+
 				codeI +
 				"	br 0\n"+
-				"	end\n"
+				"	))\n"
 				;
 
 		return sol;

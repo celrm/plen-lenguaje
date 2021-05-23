@@ -24,8 +24,7 @@ public class Fun extends Instr {
 	}
 	@Override
 	protected void maxMemory(WrapInt c, WrapInt max) {
-		// TODO Auto-generated method stub
-		
+//		f.f.maxMemory(c,max); TODO
 	}
 	@Override
 	protected String codigo() {

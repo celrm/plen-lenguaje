@@ -24,7 +24,7 @@ public class Import extends Declare {
 	}
 	public void vinculo() throws Exception {
 		p = Main.abrirFichero(source.toString()); // compilado ahí
-		p.vinculo();
+		p.vinculo(false);
 		p.chequea();
 		 
 		Declares decs = p.decs;
@@ -63,6 +63,9 @@ public class Import extends Declare {
 	}
 	@Override
 	protected String codigo() {
-		return d.codigo();
+		if(d.type_of_dec==Dec.FUNCTION) {
+			return d.codigo();
+		}
+		return "";
 	}
 }

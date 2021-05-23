@@ -1,9 +1,0 @@
-main {
-€    arr\ent a = [2,3,4].
-€    ent i = 0.
-    while(no) {
-€        ent e = a ! i.
-€        kut(e).
-€        i = i+1.
-    }
-}

@@ -48,7 +48,9 @@ public class Typename {
 			return from;
 		}
 		else if (t == Type.ARR || t == Type.PUNT) {
-			return new Typename(t_arr.pure(),t);
+			Typename nuevo = new Typename(t_arr.pure(),t);
+			nuevo.tam = tam;
+			return nuevo;
 		}
 		return null;
 	}
@@ -96,10 +98,11 @@ public class Typename {
 		
 		}
 	}
+	int tam = 1;
 	public int size() {
 		switch(t) {
 		case ARR:
-			break;
+			return tam;
 		case CUSTOM:
 			break;
 		case BUL:
@@ -110,6 +113,6 @@ public class Typename {
 		default:
 			break;
 		}
-		return 1; // mal para mas de 2 diim TODO
+		return 1;
 	}
 }

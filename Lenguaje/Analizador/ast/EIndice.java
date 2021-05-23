@@ -8,7 +8,7 @@ public class EIndice extends E {
 	     this.o1 = opnd1;
 	     this.o2 = opnd2;
    }
-   private Declare array;
+   Declare d;
    int dim = 1;
 	@Override
 	protected void vinculo() throws Exception {
@@ -17,22 +17,23 @@ public class EIndice extends E {
 		if (o1.oper()==Op.BASICO_ID) {		
 			EBasico o11 = (EBasico) o1;
 			o11.vinculo();
-			array = o11.d;
+//			d = o11.d;
 		}
 		else if (o1.oper()==Op.ACCESO) {
 			EAcceso o11 = (EAcceso) o1;
 			o11.vinculo();
-			array = o11.acc;
+//			d = o11.acc;
 		}
 		else if (o1.oper()==Op.INDICE) {
 			EIndice o11 = (EIndice) o1;
 			o11.vinculo();
-			array = o11.array;
-			dim = o11.dim+1; 
+//			d = o11.d;
+//			dim = o11.dim+1;
 		}
 		else if (o1.oper()==Op.PUNTERO) {
 			EPunt o11 = (EPunt) o1;
 			o11.vinculo();
+//			d = o11.d; TODO
 		}
 
 		if(!Asigna.designable(o1))			
@@ -41,14 +42,15 @@ public class EIndice extends E {
 	}
 	@Override
 	protected Typename chequea() throws Exception {
-		Typename s1 = o1.chequea().pure();
+		Typename s1 = o1.chequea();
 		Typename s2 = o2.chequea().pure();
 		if(s2.t != Type.ENT)
 			throw new Exception("Fila " + fila + ". Index no entero");
 		
 		if(s1.t != Type.ARR)
 			throw new Exception("Fila " + fila + ". Index no array");
-		tipo= s1.t_arr.pure();
+		
+		tipo = s1.t_arr.pure();		
 		return tipo;
 	}
 	public String o2() {
@@ -58,20 +60,18 @@ public class EIndice extends E {
 		return "("+o1.toString() + " " + this.oper().toString() + " " + o2.toString()+")";
 	}
 	protected String getref() {
-		return "get_local $localsStart\n"+
-				"i32.const " + array.delta*4 +"\n"
-				+ o2.codigo() +"\n"
-						+ "i32.const 4\n"
-						+ "i32.mul\n"
-				+ "i32.add\n"
-				+ "i32.add\n"
-				+ "";
+		return  Asigna.design(o1) +"\n"
+					+ "i32.const " +tipo.size()+" \n"
+					+ o2.codigo()
+					+ "i32.mul\n"
+					+ "i32.const 4\n"
+					+ "i32.mul\n"
+			+ "i32.add\n";
 	}
 	@Override
 	protected String codigo() { // no para punteros
 		String sol = getref()
-				+ "i32.load\n"
-				+ "";
+				+ "i32.load\n";
 		
 		return sol;
 	}

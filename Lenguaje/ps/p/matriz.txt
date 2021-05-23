@@ -1,0 +1,7 @@
+main {
+    arr\arr\ent a = [[0,1],[2,3]].
+    kut(a!0!0).
+    kut(a!0!1).
+    kut(a!1!0).
+    kut(a!1!1).
+}

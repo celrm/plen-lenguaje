@@ -44,6 +44,8 @@ public class For extends Instr {
 			siesbloque = false;
 			WrapInt c1 = new WrapInt();
 			WrapInt max1 = new WrapInt();
+			c1.v = c.v;
+			max1.v = max.v;
 			maxMemory(c1,max1);
 			if (c.v+max1.v > max.v) {
 				max.v = c.v + max1.v;

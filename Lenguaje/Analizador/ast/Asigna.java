@@ -39,21 +39,26 @@ public class Asigna extends Instr {
 			|| (e1.oper() == Op.BASICO_ID
 			&& !((EBasico) e1).d.isconst);
 	}
-	@Override
-	protected void maxMemory(WrapInt c, WrapInt max) {}
-	protected String codigo() {
-		String codeE1 = "";
+	
+	public static String design(E e1) {
 		if(e1.oper() == Op.ACCESO) {//TODO
 		}
 		if(e1.oper() == Op.INDICE) {
-			codeE1 = ((EIndice) e1).getref();
+			return ((EIndice) e1).getref();
 		}
 		if(e1.oper() == Op.PUNTERO) {
-			codeE1 = e1.codigo();
+			return e1.codigo();
 		}
 		if(e1.oper() == Op.BASICO_ID) {
-			codeE1 = ((EBasico) e1).getref();
+			return ((EBasico) e1).getref();
 		}
+		System.out.println(e1);
+		return null;
+	}
+	@Override
+	protected void maxMemory(WrapInt c, WrapInt max) {}
+	protected String codigo() {
+		String codeE1 = design(e1);
 		String codeE2 = e2.codigo();
 		String sol = 
 				codeE1 +

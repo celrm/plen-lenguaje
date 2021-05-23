@@ -8,8 +8,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Stack;
 
-import alex.TV;
-
 public class Program {	
 	private Imports imps;
 	Declares decs;
@@ -50,36 +48,37 @@ public class Program {
 		throw new Exception("Fila " + fila + ". Error de vinculación: " + ident);
 	}
 	public static void kutall() {
-		for(Map<String,Object> m : pila) { // mirar si va de arriba abajo
-			System.out.println(m.values());
-		}
+		System.out.println(pila);
 	}
 	
 	private DefFun kin = new Kin();
 	private Length length = new Length();
 	
-	public void vinculo() {
+	public void vinculo(boolean init) {
 
 		typedefs = new HashMap<>(); // lo necesito aquí y no en chequea para usarlo en registros
 
 		if(decs!=null)
 		decs.chequea_prep(typedefs);
-		inicializa();
+		if(init)
+			inicializa();
+		
 		abreBloque();
 
 		try {
 			kin.vinculo();
 			length.vinculo();
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		DefFun.banned = true; // ban these words
 		
 		if(imps!=null)
 			imps.vinculo();
+		
 		if(decs!=null)
 			decs.vinculo();
+
 		if(mn!=null)
 			mn.vinculo();
 		
@@ -122,6 +121,8 @@ public class Program {
 				max.v = c.v + max1.v;
 			}
 		} else {
+			if(imps!=null) 
+				imps.maxMemory(c,max);
 			if(decs!=null) 
 				decs.maxMemory(c,max);
 		if(mn!=null)
@@ -144,9 +145,10 @@ public class Program {
 //			imps.codigo();
 //		
 		String more = "";
+		if(imps!=null)
+			more = more + imps.codigo();
 		if(decs!=null)
 			more = more + decs.codigo();
-		
 		if(mn!=null) 
 			main = main + mn.codigo();
 		

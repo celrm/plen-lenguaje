@@ -27,13 +27,36 @@ public class HeterValues {
 			rest.chequea();
 	}
 	public String codigo(int i) {
-		Typename t = e.tipo;
-		int s = t.size();
-		return "get_global $SP\n" +
-				"i32.const "+i * s * 4+"\n"+
-				"i32.add\n"+
-				e.codigo() + 
-				"i32.store\n" + 
-				(rest==null?"":rest.codigo(i+1));
+		String codeE = "";
+		String lsol = "";
+		if(e.tipo.t == Type.ARR) {
+			if(e.oper() == Op.BASICO_ID) {
+//				Declare d = ((EBasico)e).d;
+//				codeE = ((ListInit)d).codigo(i,true)
+//						+ "\n";
+//				lsol = codeE;
+			}
+			else if(e.oper() == Op.LISTA) {
+				codeE = ((ListInit)e).codigo(i,true)
+						+ "\n";
+				lsol = codeE;
+			}
+		}
+		else 
+			{
+			lsol = 
+				"	get_global $SP\n" +
+				"   i32.const " + i * 4 + "\n"+
+				"	i32.add\n" +
+				e.codigo() + "\n"+
+				"i32.store\n"
+				;
+
+		}
+		if(rest!= null) {
+			int next = i+e.tipo.size();
+			lsol = lsol + rest.codigo(next);
+		}
+		return lsol;
 	}
 }

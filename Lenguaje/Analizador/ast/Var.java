@@ -41,6 +41,7 @@ public class Var extends Declare {
 		if(!t.equals(e)) {
 			throw new Exception("Fila " + fila + ". Bad var declare " + t +" " + e+" "+ id.fila);
 		}
+		tipo = e;
 		return new ArrayList<>();
 	}
 	@Override
@@ -52,7 +53,7 @@ public class Var extends Declare {
 		if(tipo().t == Type.ARR) {
 			if(exp.oper() == Op.LISTA) {
 				ListInit l = (ListInit) exp;
-				return l.codigo(delta);
+				return l.codigo(delta,false);
 			}
 		}
 		

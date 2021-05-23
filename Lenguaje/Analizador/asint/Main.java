@@ -17,7 +17,7 @@ public class Main {
 		 System.out.println("\t"+linea);
 	 }
 
-	 prog.vinculo();
+	 prog.vinculo(true);
 	 prog.chequea();
 	 prog.codigo(args[0].substring(0, args[0].length()-4));
  }

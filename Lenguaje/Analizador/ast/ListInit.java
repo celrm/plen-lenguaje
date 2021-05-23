@@ -17,17 +17,23 @@ public class ListInit extends E {
 	}
 	@Override
 	protected Typename chequea() throws Exception {
-		if(lista == null)
-			return new Typename(new Typename("*"), Type.ARR);
-		return new Typename(lista.chequea().pure(), Type.ARR);
+		if(lista == null) {
+			tipo = new Typename(new Typename("*"), Type.ARR);
+			tipo.tam = 0;
+			return tipo;
+		}
+		tipo = new Typename(lista.chequea().pure(), Type.ARR);
+		tipo.tam = tam;
+		return tipo;
 	}
-	protected String codigo(int delta) {
-		String codeE = lista.codigo(delta);
+	protected String codigo(int delta, boolean hom) {
+		String codeE = "";
+		if(lista != null)
+			codeE = lista.codigo(delta,hom);
 		return codeE;
 	}
 	@Override
 	protected String codigo() {// no funciona para algo que no sea una var
-		// TODO Auto-generated method stub
 		return null;
 	}
 

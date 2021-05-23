@@ -59,18 +59,24 @@ public class IfElse extends Instr {
 			siesbloque = false;
 			WrapInt c1 = new WrapInt();
 			WrapInt max1 = new WrapInt();
+			c1.v = c.v;
+			max1.v = max.v;
 			maxMemory(c1,max1);
 			if (c.v+max1.v > max.v) {
 				max.v = c.v + max1.v;
 			}
 		} else if (siesbloque2) { // isBlock()
-			listaif.maxMemory(c,max);
-			
+
 			siesbloque2 = false;
-			maxMemory(c,max);
-			
 			WrapInt c1 = new WrapInt();
 			WrapInt max1 = new WrapInt();
+			c1.v = c.v;
+			max1.v = max.v;
+			
+			listaif.maxMemory(c,max);
+			
+			maxMemory(c,max);
+			
 			maxMemory(c1,max1);
 			if (c.v+max1.v > max.v) {
 				max.v = c.v + max1.v;

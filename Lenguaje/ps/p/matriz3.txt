@@ -1,0 +1,12 @@
+import suma from sumafun.
+main {
+    ent i = 0.
+    while(i<2) {
+        arr\arr\ent b = [[i*4,1+i*4],[suma(2,i*4),suma(3,i*4)]].
+        kut(b!0!0).
+        kut(b!0!1).
+        kut(b!1!0).
+        kut(b!1!1).
+        i = suma(i,1).
+    }
+}

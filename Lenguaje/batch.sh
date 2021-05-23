@@ -25,7 +25,19 @@ for f in ../$1/*.txt; do
     echo -e "Programa $f\n\n"
     java -cp ".:../cup.jar" asint.Main "$f"
     fi
+    cd ..
+    
+    echo -e '\n\nEjecución del código:\n\n'
+    
+    aux="${f%.*}"
+    base="$(basename "$aux")"
+    notxt=${aux:3}
+    wabt/bin/wat2wasm "$notxt.wat"
+    mv "$base.wasm" "$notxt.wasm"
+    node "main.js" $notxt
+    
     read -p "Press any key to continue... " -n1 -s
+    cd Analizador/
     
 done
 cd ..
