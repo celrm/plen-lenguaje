@@ -59,20 +59,31 @@ public class EIndice extends E {
 	public String toString() {
 		return "("+o1.toString() + " " + this.oper().toString() + " " + o2.toString()+")";
 	}
-	protected String getref() {
-		return  Asigna.design(o1) +"\n"
-					+ "i32.const " +tipo.size()+" \n"
-					+ o2.codigo()
-					+ "i32.mul\n"
-					+ "i32.const 4\n"
-					+ "i32.mul\n"
-			+ "i32.add\n";
-	}
+//	protected String getref() {
+//		return  Asigna.design(o1) +"\n"
+//					+ "i32.const " +tipo.size()+" \n"
+//					+ o2.codigoE()
+//					+ "i32.mul\n"
+//					+ "i32.const 4\n"
+//					+ "i32.mul\n"
+//			+ "i32.add\n";
+//	}
 	@Override
-	protected String codigo() { // no para punteros
-		String sol = getref()
+	protected String codigoE() { // no para punteros
+		String sol = codigoD()
 				+ "i32.load\n";
 		
 		return sol;
+	}
+	@Override
+	protected String codigoD() {
+		// TODO Auto-generated method stub
+		return o1.codigoD() +"\n"
+		+ "i32.const " +tipo.size()+" \n"
+		+ o2.codigoE()
+		+ "i32.mul\n"
+		+ "i32.const 4\n"
+		+ "i32.mul\n"
+		+ "i32.add\n";
 	}
 }

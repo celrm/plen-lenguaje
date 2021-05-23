@@ -57,7 +57,7 @@ public class Var extends Declare {
 			}
 		}
 		
-		String codeE = exp.codigo();
+		String codeE = exp.codigoE();
 		// donde se va a guardar
 		String sol = 
 				"	get_local $localsStart\n" +

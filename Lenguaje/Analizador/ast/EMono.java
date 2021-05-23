@@ -32,15 +32,15 @@ public class EMono extends E {
 		return s1;
 	}
 	@Override
-	protected String codigo() {
+	protected String codigoE() {
 		String sol = "";
-		String e1 = o.codigo();
+		String e1 = o.codigoE();
 		sol = sol + e1 ;
 		switch(oper()) {
 		case NOT:
-//			sol = sol +
-//			"i32.neg" TODO
-//			;
+			sol = sol +
+			"i32.eqz"
+			;
 			break;
 		case SIGNO:
 			sol = sol +
@@ -53,5 +53,10 @@ public class EMono extends E {
 		
 		}
 		return sol + "\n";
+	}
+	@Override
+	protected String codigoD() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

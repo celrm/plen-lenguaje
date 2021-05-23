@@ -207,6 +207,21 @@ public class Program {
 				"   call $exception\n" + 
 				"   end\n" + 
 				")\n" + 
+				"(func $reserveHeap (param $size i32)\n" + 
+				"   get_global $NP\n" + 
+				"   set_global $MP\n" + 
+				"   get_global $NP\n" + 
+				"   get_local $size\n" + 
+				"   i32.sub\n" + 
+				"   set_global $SP\n" + 
+				"   get_global $SP\n" + 
+				"   get_global $NP\n" + 
+				"   i32.gt_u\n" + 
+				"   if\n" + 
+				"   i32.const 3\n" + 
+				"   call $exception\n" + 
+				"   end\n" + 
+				")\n" + 
 				"(func $freeStack (type $_sig_void)\n" + 
 				"   get_global $MP\n" + 
 				"   i32.load\n" + 

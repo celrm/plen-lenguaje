@@ -31,10 +31,6 @@ public class HeterValues {
 		String lsol = "";
 		if(e.tipo.t == Type.ARR) {
 			if(e.oper() == Op.BASICO_ID) {
-//				Declare d = ((EBasico)e).d;
-//				codeE = ((ListInit)d).codigo(i,true)
-//						+ "\n";
-//				lsol = codeE;
 			}
 			else if(e.oper() == Op.LISTA) {
 				codeE = ((ListInit)e).codigo(i,true)
@@ -48,7 +44,7 @@ public class HeterValues {
 				"	get_global $SP\n" +
 				"   i32.const " + i * 4 + "\n"+
 				"	i32.add\n" +
-				e.codigo() + "\n"+
+				e.codigoE() + "\n"+
 				"i32.store\n"
 				;
 

@@ -56,11 +56,16 @@ public class Call extends E {
 		return tipo;
 	}
 	@Override
-	protected String codigo() {
+	protected String codigoE() {
 		return (v==null?"":v.codigo(2)) + 
 				"\n" + 
 				"call $_"+
 				id.toString()+
 				"\n";
+	}
+	@Override
+	protected String codigoD() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

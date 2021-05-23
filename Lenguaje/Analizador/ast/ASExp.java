@@ -3,8 +3,8 @@ package ast;
 import alex.TV;
 
 public class ASExp {
-	public E op_new(Object t,TV fila) 
-	{ return new ENew((Typename)t,Op.BASICO_NEW,fila.fila); }
+	public E op_new(Object t, TV tam,TV fila) 
+	{ return new ENew((Typename)t, tam,Op.BASICO_NEW,fila.fila); }
 	public E op_punt(Object opnd,Object oper,TV fila) 
 	{ return new EPunt((E)opnd,(Op)oper, fila.fila); }
 	public E op_puntinv(Object opnd,Object oper,TV fila) 

@@ -1,10 +1,10 @@
 package ast;
 
-public class EAcceso extends EBin {
+public class EAcceso extends E {
    private E o1;
    private EBasico o2;
    public EAcceso(E opnd1, EBasico opnd2, Op oper, int fila) {
-	   super(opnd1, opnd2, oper, fila);
+	   super(oper, fila);
 	     this.o1 = opnd1;
 	     this.o2 = opnd2;
    }
@@ -45,5 +45,18 @@ public class EAcceso extends EBin {
 	}
 	public String o2() {
 		return o2.toString();
+	}
+	public String toString() {
+		return "("+o1.toString() + " " + this.oper().toString() + " " + o2.toString()+")";
+	}
+	@Override
+	protected String codigoE() {
+		return null;
+	}
+	@Override
+	protected String codigoD() {
+		return o1.codigoD()
+				+ "	i32.const "+ acc.delta + "\n"
+				+ "	i32.add\n";
 	}
 }

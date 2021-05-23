@@ -1,10 +1,14 @@
 package ast;
 
+import alex.TV;
+
 public class ENew extends E {
-	Typename t;
-	public ENew(Typename t, Op basicoNew, int fila) {
+	Typename t; 
+	TV tam;
+	public ENew(Typename t, TV tam, Op basicoNew, int fila) {
 		super(basicoNew,fila);
 		this.t=t;
+		this.tam = tam;
 	}
 	public String toString() {
 		return "(new ("+t.toString() + "))";
@@ -17,8 +21,16 @@ public class ENew extends E {
 		tipo= new Typename(t.pure(),Type.PUNT);
 		return tipo;
 	}
+	
 	@Override
-	protected String codigo() {
+	protected String codigoE() {
+		return "i32.const "+tam.toString()+"\n"
+				+ "call $reserveHeap\n"
+				+ "get_global $NP\n"
+				;
+	}
+	@Override
+	protected String codigoD() {
 		// TODO Auto-generated method stub
 		return null;
 	}

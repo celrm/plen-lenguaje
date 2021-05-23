@@ -1,0 +1,12 @@
+main {
+    ent a = 3.
+    *ent b = &a.
+    *ent c = new ent (1).
+    *c = 1.
+    
+    a = a+1.
+    
+    kut(a).
+    kut(*b).
+    kut(*c).
+}

@@ -33,7 +33,13 @@ public class ListInit extends E {
 		return codeE;
 	}
 	@Override
-	protected String codigo() {// no funciona para algo que no sea una var
+	protected String codigoE() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	@Override
+	protected String codigoD() {
+		// TODO Auto-generated method stub
 		return null;
 	}
 

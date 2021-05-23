@@ -39,7 +39,7 @@ public class EBasico extends E {
 		return tipo;
 	}
 	@Override
-	protected String codigo() {
+	protected String codigoE() {
 		String sol = "";
 
 		switch(oper()) {
@@ -53,7 +53,7 @@ public class EBasico extends E {
 			break;
 		case BASICO_ID:
 			sol = sol +
-					getref()+
+					codigoD()+
 					"	i32.load\n"
 					;
 			break;
@@ -63,11 +63,11 @@ public class EBasico extends E {
 		
 		return sol + "\n";
 	}
-	public String getref() {
+	public String codigoD() {
 		int delta = d.delta;
-		return "	get_local $localsStart\n" +
-				"   i32.const " + delta*4 + "\n"+
-				"	i32.add\n";
+		return "   i32.const " + delta*4 + "\n"+
+			"	get_local $localsStart\n" +
+			"	i32.add\n";
 	}
 	
 }

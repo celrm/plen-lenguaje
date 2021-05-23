@@ -28,6 +28,6 @@ public class Fun extends Instr {
 	}
 	@Override
 	protected String codigo() {
-		return f.codigo();
+		return f.codigoE();
 	}
 }

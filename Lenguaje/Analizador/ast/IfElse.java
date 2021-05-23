@@ -87,18 +87,19 @@ public class IfElse extends Instr {
 	}
 	@Override
 	protected String codigo() {
-		String codeB = b.codigo();
-		String codeI = listaif.codigo();
-		String codeE = listaif.codigo();
-		String sol = 
-				codeB +
+		String codeI = "";
+		String codeII = "";
+		if(listaif!=null)
+			codeI = listaif.codigo();
+		if(listaelse!=null)
+			codeII = listaelse.codigo();
+		return 
+				b.codigoE() +
 				"   if\n"+
 				codeI +
-				"	else\n"+
-				codeE+
+				"   else\n"+
+				codeII +
 				"	end\n"
 				;
-
-		return sol;
 	}
 }

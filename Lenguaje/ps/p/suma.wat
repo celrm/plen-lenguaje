@@ -37,13 +37,13 @@ i32.store
 	i32.add
    i32.const 4
 i32.store
-	get_local $localsStart
    i32.const 0
+	get_local $localsStart
 	i32.add
 	i32.load
 
-	get_local $localsStart
    i32.const 4
+	get_local $localsStart
 	i32.add
 	i32.load
 
@@ -63,6 +63,21 @@ i32.add
    get_global $SP
    get_local $size
    i32.add
+   set_global $SP
+   get_global $SP
+   get_global $NP
+   i32.gt_u
+   if
+   i32.const 3
+   call $exception
+   end
+)
+(func $reserveHeap (param $size i32)
+   get_global $NP
+   set_global $MP
+   get_global $NP
+   get_local $size
+   i32.sub
    set_global $SP
    get_global $SP
    get_global $NP

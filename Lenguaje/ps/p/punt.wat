@@ -14,7 +14,7 @@
 (func $main  (type $_sig_void)
 (local $localsStart i32)
    (local $temp i32)
-   i32.const 44  ;; let this be the stack size needed (params+locals+2)*4
+   i32.const 20  ;; let this be the stack size needed (params+locals+2)*4
    call $reserveStack  ;; returns old MP (dynamic link)
    set_local $temp
    get_global $MP
@@ -30,66 +30,71 @@
 	get_local $localsStart
    i32.const 0
 	i32.add
-   i32.const 1
-
+   i32.const 3
 i32.store
 	get_local $localsStart
    i32.const 4
 	i32.add
-   i32.const 2
-
+   i32.const 0
+	get_local $localsStart
+	i32.add
 i32.store
 	get_local $localsStart
    i32.const 8
 	i32.add
-   i32.const 3
-
+i32.const 1
+call $reserveHeap
+get_global $NP
 i32.store
+	;; Asigna en: PUNTERO c
+   i32.const 8
+	get_local $localsStart
+	i32.add
 
-call $_suma
+	i32.load
+	;; Asigna valor: 1
+   i32.const 1
+
+	i32.store
+	;; Asigna en: a
+   i32.const 0
+	get_local $localsStart
+	i32.add
+	;; Asigna valor: (a SUMA 1)
+   i32.const 0
+	get_local $localsStart
+	i32.add
+	i32.load
+
+   i32.const 1
+i32.add
+
+	i32.store
+   i32.const 0
+	get_local $localsStart
+	i32.add
+	i32.load
+
+   call $print
+   i32.const 4
+	get_local $localsStart
+	i32.add
+
+	i32.load
+i32.load
+   call $print
+   i32.const 8
+	get_local $localsStart
+	i32.add
+
+	i32.load
+i32.load
    call $print
 
    call $freeStack
  )
 
-(func $_suma 
-(result i32)
-(local $localsStart i32)
-   (local $temp i32)
-i32.const 4
-   i32.const 12
-i32.add
-  ;; let this be the stack size needed (params+locals+2)*4
-   call $reserveStack  ;; returns old MP (dynamic link)
-   set_local $temp
-   get_global $MP
-   get_local $temp
-   i32.store
-   get_global $MP
-   get_global $SP
-   i32.store offset=4
-   get_global $MP
-   i32.const 8
-   i32.add
-   set_local $localsStart
-   i32.const 0
-	get_local $localsStart
-	i32.add
 
-i32.const 1 
-   i32.const 0
-i32.mul
-i32.const 4
-i32.mul
-i32.add
-i32.load
-
-	call $freeStack
-	return
-
-
-   call $freeStack
- )
 
 (func $reserveStack (param $size i32)
    (result i32)

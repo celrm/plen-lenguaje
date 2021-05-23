@@ -32,7 +32,7 @@ public class Return extends Instr {
 	protected void maxMemory(WrapInt c, WrapInt max) {}
 	@Override
 	protected String codigo() {
-		String codeE = exp.codigo();
+		String codeE = exp.codigoE();
 		String sol = codeE;
 		return sol + "\n"
 				+ "	call $freeStack\n"

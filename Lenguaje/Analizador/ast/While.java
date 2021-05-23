@@ -55,14 +55,13 @@ public class While extends Instr {
 	}
 	@Override
 	protected String codigo() {
-		String codeE = b.codigo();
 		String codeI = "";
 		if(lista!=null)
-		codeI = lista.codigo();
+			codeI = lista.codigo();
 		String sol = 
 				"	(block\n" +
 				"   (loop\n"+
-				codeE +
+				b.codigoE() +
 				"	i32.eqz\n"+
 				"	br_if 1\n"+
 				codeI +

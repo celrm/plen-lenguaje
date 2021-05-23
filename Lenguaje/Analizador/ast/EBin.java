@@ -68,10 +68,10 @@ int tam = 0;
 		return null;
 	}
 	@Override
-	protected String codigo() {
+	protected String codigoE() {
 		String sol = "";
-		String e1 = o1.codigo();
-		String e2 = o2.codigo();
+		String e1 = o1.codigoE();
+		String e2 = o2.codigoE();
 		sol = sol + e1 + e2;
 		switch(oper()) {
 		case OR:
@@ -146,5 +146,10 @@ int tam = 0;
 			break;
 		}
 		return sol + "\n";
+	}
+	@Override
+	protected String codigoD() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

@@ -40,30 +40,20 @@ public class Asigna extends Instr {
 			&& !((EBasico) e1).d.isconst);
 	}
 	
-	public static String design(E e1) {
-		if(e1.oper() == Op.ACCESO) {//TODO
-		}
-		if(e1.oper() == Op.INDICE) {
-			return ((EIndice) e1).getref();
-		}
-		if(e1.oper() == Op.PUNTERO) {
-			return e1.codigo();
-		}
-		if(e1.oper() == Op.BASICO_ID) {
-			return ((EBasico) e1).getref();
-		}
-		System.out.println(e1);
-		return null;
-	}
+//	public static String design(E e1) {
+//		return e1.codigoD();
+//	}
 	@Override
 	protected void maxMemory(WrapInt c, WrapInt max) {}
 	protected String codigo() {
-		String codeE1 = design(e1);
-		String codeE2 = e2.codigo();
 		String sol = 
-				codeE1 +
-				codeE2+
-				"i32.store\n"
+				"	;; Asigna en: "+e1+"\n" +
+				e1.codigoD() +
+//				"\n	get_local $localsStart\n" +
+//				"	i32.add\n" +
+				"	;; Asigna valor: "+e2+"\n" +
+				e2.codigoE()+
+				"\n	i32.store\n"
 				;		
 		return sol;
 	}

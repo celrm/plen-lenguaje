@@ -29,7 +29,7 @@ public class Kut extends Instr {
 	}
 	@Override
 	public String codigo() {
-		String codeE = print.codigo();
+		String codeE = print.codigoE();
 		String sol = "   call $print\n";
 		return codeE + sol;
 	}

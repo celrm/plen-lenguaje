@@ -51,15 +51,14 @@ public class If extends Instr {
 	}
 	@Override
 	protected String codigo() {
-		String codeB = b.codigo();
-		String codeI = lista.codigo();
-		String sol = 
-				codeB +
+		String codeI = "";
+		if(lista!=null)
+		codeI = lista.codigo();
+		return 
+				b.codigoE() +
 				"   if\n"+
-				codeI +
+				codeI+
 				"	end\n"
 				;
-
-		return sol;
 	}
 }

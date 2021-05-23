@@ -52,7 +52,7 @@ public class HomogValues {
 				"	get_local $localsStart\n") +
 				"   i32.const " + delta * 4 + "\n"+
 				"	i32.add\n" +
-				e.codigo() + "\n"+
+				e.codigoE() + "\n"+
 				"i32.store\n"
 				;
 			System.out.println(this + "  " +hom);

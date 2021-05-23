@@ -194,8 +194,8 @@ ETOP ::= Entero:e
     {: RESULT=as.op_basico_id(e); :}
         | Caracter :e
     {: RESULT=as.op_basico_car(e); :}
-        | New:f TYPENAME:t
-    {: RESULT=as.op_new(t,f); :}
+        | New:f TYPENAME:t PA Entero:e PC
+    {: RESULT=as.op_new(t,e,f); :}
         | PA E0:e PC
     {: RESULT=e; :}
         | EXPFUN:e
