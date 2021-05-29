@@ -80,13 +80,13 @@ public class Reg extends Declare {
 	}
 	@Override
 	protected void maxMemory(WrapInt c, WrapInt max) {
-		this.delta = c.v;
-		c.v += size();
-		if (c.v > max.v) max.v = c.v; 
+//		this.delta = c.v;
+//		c.v += size();
+//		if (c.v > max.v) max.v = c.v; 
 	}
-	private Integer size() {
-		return tipo.size(); // no está
-	}
+//	private Integer size() {
+////		return tipo.size(); // no está
+//	}
 	@Override
 	protected String codigo() {
 		// TODO Auto-generated method stub

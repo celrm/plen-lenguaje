@@ -230,6 +230,37 @@ public class Program {
 				"   get_global $MP\n" + 
 				"   i32.load\n" + 
 				"   set_global $MP   \n" + 
+				")\n" + 
+				"(func $copyn "
+//				+ "(type $_sig_i32i32i32) "
+				+ ";; copy $n i32 slots from $src to $dest\n" + 
+				"   (param $src i32)\n" + 
+				"   (param $dest i32)\n" + 
+				"   (param $n i32)\n" + 
+				"   block\n" + 
+				"     loop\n" + 
+				"       get_local $n\n" + 
+				"       i32.eqz\n" + 
+				"       br_if 1\n" + 
+				"       get_local $n\n" + 
+				"       i32.const 1\n" + 
+				"       i32.sub\n" + 
+				"       set_local $n\n" + 
+				"       get_local $dest\n" + 
+				"       get_local $src\n" + 
+				"       i32.load\n" + 
+				"       i32.store\n" + 
+				"       get_local $dest\n" + 
+				"       i32.const 4\n" + 
+				"       i32.add\n" + 
+				"       set_local $dest\n" + 
+				"       get_local $src\n" + 
+				"       i32.const 4\n" + 
+				"       i32.add\n" + 
+				"       set_local $src\n" + 
+				"       br 0\n" + 
+				"     end\n" + 
+				"   end\n" + 
 				")";
 	}
 	

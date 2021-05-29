@@ -2,7 +2,7 @@ package ast;
 
 public class ListInit extends E {
 	private HomogValues lista;
-	int tam = 0;
+	int n_elems = 0;
 	public ListInit(HomogValues l, int fila) {
 		super(Op.LISTA,fila);
 		lista=l;
@@ -13,17 +13,18 @@ public class ListInit extends E {
 	@Override
 	protected void vinculo() throws Exception {
 		if(lista!=null)
-			tam = lista.vinculo();
+			n_elems = lista.vinculo();
 	}
 	@Override
 	protected Typename chequea() throws Exception {
 		if(lista == null) {
 			tipo = new Typename(new Typename("*"), Type.ARR);
-			tipo.tam = 0;
+			tipo.shape.v = 0;
 			return tipo;
 		}
 		tipo = new Typename(lista.chequea().pure(), Type.ARR);
-		tipo.tam = tam;
+		int tam = n_elems * lista.longit;
+		tipo.shape.v = tam;
 		return tipo;
 	}
 	protected String codigo(int delta, boolean hom) {

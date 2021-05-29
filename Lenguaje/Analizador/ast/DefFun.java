@@ -53,12 +53,13 @@ public class DefFun extends Declare {
 			throw new Exception("Fila " + fila + ". Return is not basic or punterito: "+t);
 		List<Typename> returns = decs.chequea();
 		for(Typename ret : returns) {
-			if(!ret.equals(t))
+			if(!ret.equals(t))// || ret.shape != t.shape)
 				throw new Exception("Fila " + fila + ". Bad return type: "+ t + " / " + ret);
 		}
 		if(returns.size() == 0)
 			throw new Exception("Fila " + fila + ". Function needs returns.");
 		
+		tipo.shape = t.shape;
 		return new ArrayList<>();
 	}
 	public Typename tipo() {
@@ -102,7 +103,7 @@ public class DefFun extends Declare {
 				;
 		
 		fun = fun + 
-				"\n   call $freeStack\n " +
+				"i32.const 0\n"+ // si no da error
 				")";
 		return fun;
 	}

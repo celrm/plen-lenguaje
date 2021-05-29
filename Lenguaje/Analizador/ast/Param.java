@@ -6,8 +6,9 @@ import java.util.List;
 import alex.TV;
 
 public class Param extends Declare {
-	private Typename tipo;
+	Typename tipo;
 	private TV id;
+	int tam = 1;
 	public Param(Typename tipo, TV id) {
 		super(id.fila);
 		this.tipo = tipo;
@@ -39,7 +40,7 @@ public class Param extends Declare {
 	@Override
 	protected void maxMemory(WrapInt c, WrapInt max) {
 		this.delta = c.v;
-		c.v += tipo.size();
+		c.v += tipo.shape.v;
 		if (c.v > max.v) max.v = c.v; 
 	}
 	@Override
@@ -48,7 +49,6 @@ public class Param extends Declare {
 		return null;
 	}
 	public String size() {
-		
-		return "i32.const "+tipo.size()*4+"\n";
+		return "i32.const "+tipo.shape.v*4+"\n";
 	}
 }

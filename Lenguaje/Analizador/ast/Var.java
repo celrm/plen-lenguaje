@@ -70,17 +70,17 @@ public class Var extends Declare {
 	}
 	@Override
 	protected void maxMemory(WrapInt c, WrapInt max) {
-		this.delta = c.v;
+		this.delta = c.v; 
 		c.v += size();
 		if (c.v > max.v) max.v = c.v; 
 	}
 	private int size() {
-		if(tipo().t == Type.ARR) {
-			if(exp.oper() == Op.LISTA) {
-				ListInit l = (ListInit) exp;
-				return l.tam*tipo().size();
-			}
-		}
-		return tipo().size(); // no está
+//		if(tipo().t == Type.ARR) {
+//			if(exp.oper() == Op.LISTA) {
+//				ListInit l = (ListInit) exp;
+//				return l.n_elems*l.longit;
+//			}
+//		}
+		return tipo.shape.v; // no está
 	}
 }

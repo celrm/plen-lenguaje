@@ -1,6 +1,7 @@
 package ast;
 
 public class HomogValues {
+	int longit = 1;
 	private E e;
 	private HomogValues rest;
 	int fila;
@@ -26,11 +27,15 @@ public class HomogValues {
 	}
 	public Typename chequea() throws Exception {
 		Typename t = e.chequea().pure();
+		if(e.oper() == Op.LISTA)
+			longit = ((ListInit)e).n_elems;
 		Typename w;
 		if(rest!= null) {
 			w = rest.chequea().pure();
 			if(!t.equals(w))
-				throw new Exception("Fila " + fila + ". Bad list"); // mirar tamaños varios de arrays [[],[1]]
+				throw new Exception("Fila " + fila + ". Bad list");
+//			if(longit != rest.longit)
+//				throw new Exception("Fila " + fila + ". Bad list longs");
 		}
 		return t;
 	}
@@ -55,11 +60,10 @@ public class HomogValues {
 				e.codigoE() + "\n"+
 				"i32.store\n"
 				;
-			System.out.println(this + "  " +hom);
 
 		}
 		if(rest!= null) {
-			int next = delta+e.tipo.size();
+			int next = delta+e.tipo.shape.v;
 			lsol = lsol + rest.codigo(next,hom);
 		}
 		return lsol;

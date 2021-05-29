@@ -49,7 +49,7 @@ public class Typename {
 		}
 		else if (t == Type.ARR || t == Type.PUNT) {
 			Typename nuevo = new Typename(t_arr.pure(),t);
-			nuevo.tam = tam;
+			nuevo.shape = shape;
 			return nuevo;
 		}
 		return null;
@@ -98,21 +98,6 @@ public class Typename {
 		
 		}
 	}
-	int tam = 1;
-	public int size() {
-		switch(t) {
-		case ARR:
-			return tam;
-		case CUSTOM:
-			break;
-		case BUL:
-		case CAR:
-		case ENT:
-		case PUNT:
-			return 1;
-		default:
-			break;
-		}
-		return 1;
-	}
+	
+	WrapInt shape = new WrapInt(1);
 }

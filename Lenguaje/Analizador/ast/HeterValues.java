@@ -27,15 +27,20 @@ public class HeterValues {
 			rest.chequea();
 	}
 	public String codigo(int i) {
-		String codeE = "";
 		String lsol = "";
-		if(e.tipo.t == Type.ARR) {
+		if(e.tipo != null && e.tipo.t == Type.ARR) {
 			if(e.oper() == Op.BASICO_ID) {
+				lsol = e.codigoD() + "\n"+ // src
+						"	get_global $SP\n" +
+						"   i32.const " + i * 4 + "\n"+
+						"	i32.add\n" + //dst
+						"	i32.const "+ e.tipo.shape+ "\n"+
+						"	call $copyn\n"
+						;
 			}
 			else if(e.oper() == Op.LISTA) {
-				codeE = ((ListInit)e).codigo(i,true)
+				lsol = ((ListInit)e).codigo(i,true)
 						+ "\n";
-				lsol = codeE;
 			}
 		}
 		else 
@@ -50,7 +55,7 @@ public class HeterValues {
 
 		}
 		if(rest!= null) {
-			int next = i+e.tipo.size();
+			int next = i+(e.tipo != null?e.tipo.shape.v:1);
 			lsol = lsol + rest.codigo(next);
 		}
 		return lsol;

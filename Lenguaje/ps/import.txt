@@ -1,8 +1,0 @@
-import area_circ from areas. € arreglar *
-
-main{
-	ent mi_area = area_circ(1).
-
-
-
-}

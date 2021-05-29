@@ -6,9 +6,7 @@ function mcd return ent (ent a, ent b){
 	}
 	else {
 		return mcd(b, a % b).
-	
 	}
-
 }
 
 
@@ -17,4 +15,5 @@ main {
 	ent b = 9.
 	ent c = mcd (a, b).
 	kut (c).
+	kut (mcd (14, a)).
 }

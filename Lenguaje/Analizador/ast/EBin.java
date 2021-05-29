@@ -85,7 +85,7 @@ int tam = 0;
 			;
 			break;
 		case ARRAYINIT:
-			tam = Integer.parseInt(e1.toString()); // TODO to do...
+//			tam = Integer.parseInt(e1.toString()); // TODO to do...
 			break;
 		case DISTINTO:
 			sol = sol +

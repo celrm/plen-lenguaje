@@ -31,7 +31,7 @@ public class EBasico extends E {
 			tipo = new Typename("ent");
 			break;
 		case BASICO_ID:
-			tipo = d.tipo().pure(); 
+			tipo = d.tipo().pure();
 			break;
 		default:
 			break;

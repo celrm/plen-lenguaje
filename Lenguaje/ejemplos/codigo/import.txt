@@ -1,0 +1,12 @@
+import area_circ from areas.
+import area_rectangulo from areas.
+import area_cuadrado from areas.
+
+main{
+	ent mi_area = area_circ(1).
+    kut(mi_area).
+    mi_area = area_rectangulo(2,3).
+    kut(mi_area).
+    mi_area = area_cuadrado(2).
+    kut(mi_area).
+}

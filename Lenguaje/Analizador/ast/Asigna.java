@@ -46,7 +46,7 @@ public class Asigna extends Instr {
 	@Override
 	protected void maxMemory(WrapInt c, WrapInt max) {}
 	protected String codigo() {
-		String sol = 
+		return
 				"	;; Asigna en: "+e1+"\n" +
 				e1.codigoD() +
 //				"\n	get_local $localsStart\n" +
@@ -55,6 +55,5 @@ public class Asigna extends Instr {
 				e2.codigoE()+
 				"\n	i32.store\n"
 				;		
-		return sol;
 	}
 }

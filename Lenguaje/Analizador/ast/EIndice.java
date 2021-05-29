@@ -8,8 +8,7 @@ public class EIndice extends E {
 	     this.o1 = opnd1;
 	     this.o2 = opnd2;
    }
-   Declare d;
-   int dim = 1;
+//   Declare d;
 	@Override
 	protected void vinculo() throws Exception {
 		o2.vinculo();
@@ -28,12 +27,10 @@ public class EIndice extends E {
 			EIndice o11 = (EIndice) o1;
 			o11.vinculo();
 //			d = o11.d;
-//			dim = o11.dim+1;
 		}
 		else if (o1.oper()==Op.PUNTERO) {
 			EPunt o11 = (EPunt) o1;
 			o11.vinculo();
-//			d = o11.d; TODO
 		}
 
 		if(!Asigna.designable(o1))			
@@ -50,7 +47,8 @@ public class EIndice extends E {
 		if(s1.t != Type.ARR)
 			throw new Exception("Fila " + fila + ". Index no array");
 		
-		tipo = s1.t_arr.pure();		
+		tipo = s1.t_arr.pure();			
+
 		return tipo;
 	}
 	public String o2() {
@@ -59,15 +57,6 @@ public class EIndice extends E {
 	public String toString() {
 		return "("+o1.toString() + " " + this.oper().toString() + " " + o2.toString()+")";
 	}
-//	protected String getref() {
-//		return  Asigna.design(o1) +"\n"
-//					+ "i32.const " +tipo.size()+" \n"
-//					+ o2.codigoE()
-//					+ "i32.mul\n"
-//					+ "i32.const 4\n"
-//					+ "i32.mul\n"
-//			+ "i32.add\n";
-//	}
 	@Override
 	protected String codigoE() { // no para punteros
 		String sol = codigoD()
@@ -78,12 +67,18 @@ public class EIndice extends E {
 	@Override
 	protected String codigoD() {
 		// TODO Auto-generated method stub
-		return o1.codigoD() +"\n"
-		+ "i32.const " +tipo.size()+" \n"
-		+ o2.codigoE()
-		+ "i32.mul\n"
-		+ "i32.const 4\n"
-		+ "i32.mul\n"
-		+ "i32.add\n";
+		return 
+		"	;; Base direction "+o1+"\n"+
+		o1.codigoD() +"\n"+
+		"	;; Element size "+o1+"\n"+
+		 "i32.const " + tipo.shape+" \n"+
+		"	;; Index "+o2+"\n"+
+		 o2.codigoE()+
+		 "i32.mul\n"+
+		"	;; Size*Index \n"+
+		 "i32.const 4\n"+
+		 "i32.mul\n"+
+		"	;; Typical * 4 \n"+
+		 "i32.add\n";
 	}
 }

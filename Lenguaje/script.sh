@@ -22,18 +22,25 @@ cd Analizador/
 javac -cp "../cup.jar" alex/*.java asint/*.java errors/*.java ast/*.java
 java -cp ".:../cup.jar" asint.Main "../$file.txt"
 
-cd ..
-
 echo -e '\n\n'
 
 
-echo -e '\n\nEjecución del código:\n\n'
-
-#parentdir="$(dirname "$(file)")"
-base="$(basename "$file")"
-
-wabt/bin/wat2wasm "$file.wat"
-mv "$base.wasm" "$file.wasm" 
-
-node "main.js" $file
-
+for f in ../$file.txt; do
+    if [ -f $f ]; then
+    echo -e "Programa $f\n\n"
+    fi
+    cd ..
+    
+    echo -e '\n\nEjecución del código:\n\n'
+    
+    aux="${f%.*}"
+    base="$(basename "$aux")"
+    notxt=${aux:3}
+    wabt/bin/wat2wasm "$notxt.wat"
+    mv "$base.wasm" "$notxt.wasm"
+    node "main.js" $notxt
+    
+    cd Analizador/
+    
+done
+cd ..

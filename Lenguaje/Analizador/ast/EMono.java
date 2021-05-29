@@ -21,10 +21,12 @@ public class EMono extends E {
 			if(s1.t != Type.BUL)
 				throw new Exception("Fila " + fila + ". Not tipo");
 			tipo= s1;
+			break;
 		case SIGNO:
 			if(s1.t != Type.ENT)
 				throw new Exception("Fila " + fila + ". Signo tipo");
 			tipo= s1;
+			break;
 		default:
 			break;
 		

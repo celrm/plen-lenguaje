@@ -24,9 +24,10 @@ public class ENew extends E {
 	
 	@Override
 	protected String codigoE() {
-		return "i32.const "+tam.toString()+"\n"
+		return "get_global $NP\n"
+				+ "i32.const "
+				+ Integer.parseInt(tam.toString())*4+"\n"
 				+ "call $reserveHeap\n"
-				+ "get_global $NP\n"
 				;
 	}
 	@Override

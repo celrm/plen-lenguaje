@@ -25,8 +25,8 @@ main {
     arr\arr\ent m2 = (3,[0,0,0]).
     arr\arr\ent m3 = (3,(3,0)).
     
-    * ent a = new ent.
-    ent b = *(new ent) + 2 + *a.
+    * ent a = new ent (1).
+    ent b = *(new ent (1)) + 2 + *a.
     * ent c = &b.
     
     coleccion1 bolsa1().
@@ -40,7 +40,7 @@ main {
     v1 ! 2 = 1 .
     *a = 3 .
     
-    *arr\ent w = new arr\ent.
+    *arr\ent w = new arr\ent (3).
     ent res = copy(v1,w) .
     copy(v1,w) .
     
